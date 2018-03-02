@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('MainCtrl', function ($scope, $timeout) {	
+angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $timeout) {	
 
 	var editor = new MediumEditor('.editable', {
 		imageDragging: false,
@@ -137,7 +137,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($scope, $time
 		console.log('Description ' + $scope.recipeDescription);
 	});
 
-	$scope.toggleNewRecipeBox = function(val) {
+	$rootScope.toggleNewRecipeBox = function(val) {
 		if(val == 1) { //SlideDown
 			$('body').addClass('noscroll');
 			$('.new-recipe-box').slideDown(function() {					
