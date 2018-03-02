@@ -27,6 +27,11 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		}
 	});
 
+	$scope.number = 10;
+	$scope.getNumber = function(num) {
+    	return new Array(num);   
+	}
+
 	$scope.selectedCuisine = '';
 	$scope.cookingTime = '';
 	$scope.spiciness = 1;	

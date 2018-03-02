@@ -2,6 +2,8 @@
 @import "components-font-awesome/scss/fontawesome.scss";
 // endbower
 
+*, *:before, *:after {box-sizing:  border-box !important;}
+
 body {
   padding: 0;
 }
@@ -491,16 +493,44 @@ body {
 	.spiciness-rate-box > input:checked ~ label:hover ~ label { color: rgb(241, 33, 33);  } 
 }
 
+$spiciness-level-color: rgb(247, 81, 81);
+
+
 .feed-box {
 	.left-pane {
-
+		.recipe-card-list {
+			// -moz-column-width: 13em;
+ 			// -webkit-column-width: 13em;
+ 			// -moz-column-gap: 1em;
+ 			// -webkit-column-gap: 1em; 
+			padding: 20px;
+			.recipe-item {
+				// display: inline-block;
+				// margin:  0.25rem;
+				// // padding:  1rem;
+				// width:  100%; 				
+			}
+			.content {
+				padding: 15px 10px !important;
+			}
+			.extra {
+				padding: 10px !important;
+			}
+			.extra ~ .extra {
+				.spice-box {
+					i {
+						margin: 0 !important;
+						color: $spiciness-level-color;
+					}
+				}
+			}
+		}
 	}
 	.right-pane-fixed {
 		position: fixed;
 		right: 0;height: 100%;
 	}
 }
-
 
 /**
 MEDIA QUERIES
@@ -513,21 +543,22 @@ MEDIA QUERIES
 /*--- Mobile portrait ---*/
 @media only screen and (min-width : 0px) and (max-width : 480px) {
     .hidden-for-mobile { display: none !important; }
+    .hidden-for-mobile-and-tablet { display: none !important; }
 }
 
 /*--- Mobile landscape ---*/
 @media only screen and (min-width : 480px) and (max-width : 595px) {
-
+	.hidden-for-mobile-and-tablet { display: none !important; }
 }
 
 /*--- Tablet portrait ---*/
 @media only screen and (min-width : 640px) and (max-width : 800px) {
-
+	.hidden-for-mobile-and-tablet { display: none !important; }
 }
 
 /*--- Tablet portrait iPad Mini--- */
 @media only screen and (min-width : 769px) and (max-width : 1024px) {
-
+	.hidden-for-mobile-and-tablet { display: none !important; }
 }
 
 /*--- Tablet landscape --- */
