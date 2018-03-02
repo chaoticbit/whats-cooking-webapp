@@ -490,3 +490,47 @@ body {
 	.spiciness-rate-box > label:hover ~ input:checked ~ label, /* lighten current selection */
 	.spiciness-rate-box > input:checked ~ label:hover ~ label { color: rgb(241, 33, 33);  } 
 }
+
+.feed-box {
+	.left-pane {
+
+	}
+	.right-pane-fixed {
+		position: fixed;
+		right: 0;height: 100%;
+	}
+}
+
+
+/**
+MEDIA QUERIES
+**/
+
+@media only screen and (min-width: 960px) and (max-width: 1199px) {
+
+}
+
+/*--- Mobile portrait ---*/
+@media only screen and (min-width : 0px) and (max-width : 480px) {
+    .hidden-for-mobile { display: none !important; }
+}
+
+/*--- Mobile landscape ---*/
+@media only screen and (min-width : 480px) and (max-width : 595px) {
+
+}
+
+/*--- Tablet portrait ---*/
+@media only screen and (min-width : 640px) and (max-width : 800px) {
+
+}
+
+/*--- Tablet portrait iPad Mini--- */
+@media only screen and (min-width : 769px) and (max-width : 1024px) {
+
+}
+
+/*--- Tablet landscape --- */
+@media only screen and (min-width : 1024px) and (max-width : 1224px) {
+
+}
