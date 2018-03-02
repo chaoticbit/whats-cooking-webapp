@@ -66,6 +66,9 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($scope, $time
         }
 	});
 
+
+	$('.dropdown').dropdown();
+	$('.headbar-user-dropdown').dropdown();
 	$('.food-group-dropdown').dropdown({
 		useLabels: false
 	});	
