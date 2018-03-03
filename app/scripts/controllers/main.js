@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $timeout) {	
+angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $http, $timeout) {	
 
 	var editor = new MediumEditor('.editable', {
 		imageDragging: false,
@@ -31,6 +31,10 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 	$scope.getNumber = function(num) {
     	return new Array(num);   
 	}
+
+	$http.get('http://localhost/soapbox-api/Ajax_Controller/search_tags/').then(function(res) {
+		$scope.tags = res.data.results;		
+	});
 
 	$scope.selectedCuisine = '';
 	$scope.cookingTime = '';

@@ -475,6 +475,30 @@ color: #eeeeee !important;
 	background-color: #48a5f3 !important;
 }
 
+.featured-tags-title {
+    padding-top: 10px !important;
+    border-top: 1px solid rgba(0,0,0,0.05) !important;
+    text-transform: uppercase;
+    letter-spacing: 1.5px !important;
+    font-family: 'Open Sans Bold' !important;
+    font-size: 9pt !important;    
+    margin: -1px 0 0 0 !important; 
+}
+
+.tag {
+    font-size: 10pt;
+    color: #333 !important;
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 5px 10px;
+    background: #fff;
+    border-radius: 3px;
+    margin: 0 5px 7px 0;
+	display: inline-block;
+	transition: background 0.2s ease-in-out;
+    -webkit-transition: background 0.2s ease-in-out;
+    -moz-transition: background 0.2s ease-in-out;
+}
+
 .new-recipe-box {
 	margin-top: 65px;
 	height: 87vh;
@@ -586,10 +610,17 @@ color: #eeeeee !important;
 		.recipe-card-list {			
 			padding: 20px;			
 			.content {
-				padding: 15px 10px !important;
+				padding: 15px 10px 5px !important;
+				.header {
+					font-size: 16px !important;
+				}
+				.description {
+					font-size: 12px !important;
+					color: #333 !important;;					
+				}
 			}
 			.extra {
-				padding: 10px !important;
+				padding: 7px 10px !important;
 			}
 			.extra ~ .extra {
 				.spice-box {
@@ -603,7 +634,27 @@ color: #eeeeee !important;
 	}
 	.right-pane-fixed {
 		position: fixed;
-		right: 0;height: 100%;
+		right: 0;
+		height: 100%;
+		background-color: #FbFbFb;
+		box-shadow: -1px 0 1px -2px rgba(0,0,0,0.9);
+		padding-top: 10px;
+		.top-recipe-list {
+			padding: 0px 20px;
+			margin-top: 0px;
+			.recipe-item {
+				padding: 10px 0 !important;
+				.content {
+					padding-left: 10px !important;
+					.header {
+						font-size: 15px !important;
+					}
+					.description {
+						margin-top: 3px !important;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -618,7 +669,12 @@ MEDIA QUERIES
 /*--- Mobile portrait ---*/
 @media only screen and (min-width : 0px) and (max-width : 480px) {
     .hidden-for-mobile { display: none !important; }
-    .hidden-for-mobile-and-tablet { display: none !important; }
+	.hidden-for-mobile-and-tablet { display: none !important; }
+	.recipe-item { 
+		width: calc(50% - 1em) !important;
+		margin-left: 9px !important; 
+		margin-right: 0px !important;
+	}
 }
 
 /*--- Mobile landscape ---*/
