@@ -33,7 +33,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 	}
 
 	$http.get('http://localhost/soapbox-api/Ajax_Controller/search_tags/').then(function(res) {
-		$scope.tags = res.data.results;		
+		$scope.tags = res.results;		
 	});
 
 	$scope.selectedCuisine = '';

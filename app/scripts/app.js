@@ -57,8 +57,7 @@ var app = angular
 				return $q.reject(rejection);
 			},
 
-			'response': function(response) {
-				console.log(response);
+			'response': function(response) {				
 				/* if it is not an internal angular request then unwrap the response data  */
 				if(_.isObject(response.data)) {
 					return response.data;
