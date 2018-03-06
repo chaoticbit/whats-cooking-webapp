@@ -58,12 +58,14 @@ var app = angular
 			},
 
 			'response': function(response) {
+				console.log(response);
 				/* if it is not an internal angular request then unwrap the response data  */
 				if(_.isObject(response.data)) {
 					return response.data;
 				}
 				else {
 					// forward internal angular response
+					
 					return response;
 				}
 			},
@@ -82,5 +84,5 @@ var app = angular
 });
 
 app.run(function($rootScope, $timeout, $window, $location) {
-	
+	$rootScope.isLoggedIn = false;
 });

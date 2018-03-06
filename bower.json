@@ -13,7 +13,8 @@
     "angular-touch": "^1.4.0",
     "semantic": "semantic-ui#^2.2.14",
     "components-font-awesome": "^5.0.6",
-    "medium-editor": "^5.23.3"
+    "medium-editor": "^5.23.3",
+    "lodash": "^4.17.5"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
