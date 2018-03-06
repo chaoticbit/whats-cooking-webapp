@@ -7,11 +7,6 @@
  * # LoginCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp')
-  .controller('LoginCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, $scope, $location) {
+        
+});
