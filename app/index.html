@@ -34,7 +34,27 @@
 				</div>
               	<div class="pure-u-1 pure-u-md-1-2">
 					<div class="ui fluid input">
-						<input type="text" placeholder="Search" style="padding: 7px;margin-top: 3px;" />
+                        <input type="text" class="global-search" placeholder="Search" style="padding: 7px;margin-top: 3px;" />
+                        <div class="search-dropdown">
+                            <div class="ingredient-search-filter pure-g">
+                                <div class="pure-u-md-1-5">
+                                    <div class="label1">Ingredient Search</div>
+                                </div>
+                                <div class="pure-u-md-4-5">
+                                    <div class="ing-search-input-div">
+                                        <input type="text" class="ing-search-input" placeholder="add ingredients(3)" autocomplete="off">
+                                        <input type="hidden" name="ingsearchlist" class="ing-search-hdn-input" data-cnt="0">
+                                    </div>
+                                </div>                                                                
+                            </div>
+                            <ul>
+                                <li>dasdsadsadasdasdsadsa</li>
+                            </ul>
+                            <div class="search-all">
+                                <i class="fa fa-search"></i>
+                                Search all
+                            </div>
+                        </div>
 					</div>
 				</div>
 				<div class="pure-u-1 pure-u-md-1-6 icon-group hidden-for-mobile">						
@@ -95,6 +115,7 @@
           </div>
       </div>
     </div>
+    <div class="search-wrapper"></div>
     <div class="container-fluid">
         <div ng-view=""></div>
     </div>

@@ -82,7 +82,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 	$('.user-action-dropdown').dropdown();
 	$('.food-group-dropdown').dropdown({
 		useLabels: false
-	});	
+    });	
+    $('.ing-search-dropdown').dropdown();
 	$('.cuisine-dropdown').dropdown({
 		values: [
 			{ name: 'Italian'},
@@ -160,5 +161,103 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 				$('.toggle-recipe-box-btn').show();
 			});			
 		}
-	}
+    }
+    
+    $(document).on('mouseup touchstart', function (e) {
+        var search_container = $(".search-dropdown");
+        if (!search_container.is(e.target) && search_container.has(e.target).length === 0)
+        {
+            search_container.hide();
+            $(".search-wrapper").hide();
+            $('body').removeClass('offscroll');
+        }        
+    });
+
+    $('.global-search').on('click', function () {
+        $('.search-wrapper, .search-dropdown').show();        
+        $('body').addClass('offscroll');
+    });
+
+    function regex_escape(str) {
+        return str.replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:;\\-\']', 'g'), '\\$&');
+    }
+
+    function addtags(tag){
+        var value = $('.ing-search-hdn-input').val();
+        var cnt = $('.ing-search-hdn-input').attr('data-cnt');        
+        if (cnt !== '3') {
+            if (value !== "") {
+                var array = $('.ing-search-hdn-input').val().split(",");
+                if ($.inArray(tag, array) === -1) {
+                    $('<a href="#" class="tag" style="float: left;transform: translate(7%,11%);" id="tag-' + tag.replace(/[^a-zA-Z0-9]/g, "") + '">' + tag.replace(/[^a-zA-Z0-9]/g, "") + '</a>').insertBefore($('.ing-search-input'));
+                    $('.ing-search-hdn-input').attr('data-cnt', cnt);
+                    $('.ing-search-hdn-input').val(value + ',' + tag.replace(/[^a-zA-Z0-9]/g, ""));
+                    $('.ing-search-input').focus();
+                    $('.ing-search-input').val('');
+                    cnt++;
+                    $('.ing-search-hdn-input').attr('data-cnt', cnt);
+                    var p = 3 - cnt;                                      
+                    $('.ing-search-input').attr('placeholder','add ingredients(' + p + ')');
+                    // if(cnt == 3) {
+                    //     $('.ing-search-input').blur();
+                    // }
+                }
+                else {
+                    //
+                }
+            }
+            else {
+                $('<a href="#" class="tag" style="float: left;transform: translate(7%,11%);" id="tag-' + tag.replace(/[^a-zA-Z0-9]/g, "") + '">' + tag.replace(/[^a-zA-Z0-9]/g, "") + '</a>').insertBefore($('.ing-search-input'));
+                $('.ing-search-hdn-input').val(tag.replace(/[^a-zA-Z0-9]/g, ""));
+                $('.ing-search-input').focus();
+                $('.ing-search-input').val('');
+                cnt++;
+                $('.ing-search-hdn-input').attr('data-cnt', cnt);
+                var p = 3 - cnt;                                      
+                    $('.ing-search-input').attr('placeholder','add ingredients(' + p + ')');
+                // if(cnt == 3) {
+                //     $('.ing-search-input').blur();
+                // }
+            }            
+        }
+        else{            
+            $('.ing-search-input').val('');            
+        }
+    }
+
+    $('.ing-search-input').bind('keydown', function (e) { 
+        var key = e.keyCode;        
+        if (key === 13) {            
+            if ($(this).val() !== "") {
+                addtags($(this).val());                
+            }
+            return false;
+        }
+        else if (key === 8 && $(this).val() === "") {
+            var array = $('.ing-search-hdn-input').val().split(",");
+            var cnt = $('.ing-search-hdn-input').attr('data-cnt');
+            var newstr = "";
+            $('.ing-search-input').parent().find('#tag-' + regex_escape(array[array.length - 1])).remove();
+            for (var i = 0; i < array.length - 1; i++) {
+                if (i === 0) {
+                    newstr = newstr + array[i];
+                }
+                else {
+                    newstr = newstr + "," + array[i];
+                }
+            }
+            cnt--;
+            $('.ing-search-hdn-input').attr('data-cnt', cnt);
+            $('.ing-search-hdn-input').val(newstr);
+            var p;
+            if(cnt == 2) 
+                p = 1;
+            else if(cnt == 1) 
+                p = 2;
+            else if(cnt == 0)
+                p = 3;
+            $('.ing-search-input').attr('placeholder','add ingredients(' + p + ')');
+            return false;
+        }
+    });
 });
