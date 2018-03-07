@@ -75,7 +75,20 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         }
 	});
 
-	
+    /**
+     * 
+     * DROPDOWNS
+     * 
+     */
+    
+    $('.search-filter-dropdown').dropdown({
+        action: 'combo',        
+    });
+
+    $('.search-filter-dropdown').on('click', '.item', function() {
+        toggleIngredientSearch();
+    });
+     
 	$('.headbar-user-dropdown').dropdown({
 		action: 'hide'
 	});
@@ -204,12 +217,10 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                     $('.ing-search-input').focus();
                     $('.ing-search-input').val('');
                     cnt++;
-                    $('.ing-search-hdn-input').attr('data-cnt', cnt);
-                    var p = 3 - cnt;                                      
-                    $('.ing-search-input').attr('placeholder','add ingredients(' + p + ')');
-                    // if(cnt == 3) {
-                    //     $('.ing-search-input').blur();
-                    // }
+                    $('.ing-search-hdn-input').attr('data-cnt', cnt);                    
+                    if(cnt == 3) {
+                        $('.ing-search-input').attr('placeholder','Press Enter to search');                             
+                    }
                 }
                 else {
                     //
@@ -221,28 +232,33 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                 $('.ing-search-input').focus();
                 $('.ing-search-input').val('');
                 cnt++;
-                $('.ing-search-hdn-input').attr('data-cnt', cnt);
-                var p = 3 - cnt;                                      
-                    $('.ing-search-input').attr('placeholder','add ingredients(' + p + ')');
-                // if(cnt == 3) {
-                //     $('.ing-search-input').blur();
-                // }
+                $('.ing-search-hdn-input').attr('data-cnt', cnt);                
+                if(cnt == 3) {
+                    $('.ing-search-input').attr('placeholder','Press Enter to search');                         
+                }
             }            
         }
         else{            
-            $('.ing-search-input').val('');            
+            $('.ing-search-input').val('');                   
         }
     }
 
     $('.ing-search-input').bind('keydown', function (e) { 
         var key = e.keyCode;        
-        if (key === 13) {            
+        if (key === 13) {  
+            if($('.ing-search-hdn-input').attr('data-cnt') == 3) {
+                processIngredientSearch();
+            }                  
             if ($(this).val() !== "") {
                 addtags($(this).val());                
             }
             return false;
         }
         else if (key === 8 && $(this).val() === "") {
+            if($('.ing-search-hdn-input').val() == '') {
+                $('.ing-search-hdn-input').attr('data-cnt','0');
+                return false;
+            } 
             var array = $('.ing-search-hdn-input').val().split(",");
             var cnt = $('.ing-search-hdn-input').attr('data-cnt');
             var newstr = "";
@@ -257,16 +273,30 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             }
             cnt--;
             $('.ing-search-hdn-input').attr('data-cnt', cnt);
-            $('.ing-search-hdn-input').val(newstr);
-            var p;
-            if(cnt == 2) 
-                p = 1;
-            else if(cnt == 1) 
-                p = 2;
-            else if(cnt == 0)
-                p = 3;
-            $('.ing-search-input').attr('placeholder','add ingredients(' + p + ')');
+            $('.ing-search-hdn-input').val(newstr);   
+            $('.ing-search-input').attr('placeholder','max(3)');                          
             return false;
         }        
+        if (key === 27) {
+            $(".search-dropdown,.search-wrapper").hide();
+            $(this).val('');
+            $('body').removeClass('noscroll');
+        }
     });
+
+    function toggleIngredientSearch() {
+        if($('.global-search-div').css('display') != 'none') {
+            $('.global-search-div').hide();
+            $('.ingredient-search-filter').show();   
+            $('.ing-search-input').focus();
+        } else {
+            $('.ingredient-search-filter').hide();   
+            $('.global-search-div').show();
+            $('.global-search').focus();
+        }
+    };
+
+    function processIngredientSearch() {
+        alert($('.ing-search-hdn-input').val());
+    }
 });

@@ -33,21 +33,21 @@
 					<h2 class="light fg-white">What's Cooking</h2>
 				</div>
               	<div class="pure-u-1 pure-u-md-1-2">
-					<div class="ui left icon fluid input">
+					<div class="ui left icon fluid input global-search-div">
                         <i class="search icon"></i>
                         <input type="text" class="global-search" placeholder="Search" style="padding: 7px;margin-top: 3px;" />
                         <div class="search-dropdown">
-                            <div class="ingredient-search-filter pure-g">
-                                <div class="pure-u-md-1-5">
-                                    <div class="label1">Ingredient Search</div>
+                            <!-- <div class="ingredient-search-filter pure-g">
+                                <div class="pure-u-md-1-6 text-center">
+                                    <div class="label1">Ingredients</div>
                                 </div>
-                                <div class="pure-u-md-4-5">
+                                <div class="pure-u-md-5-6">
                                     <div class="ing-search-input-div">
-                                        <input type="text" class="ing-search-input" placeholder="add ingredients(3)" autocomplete="off">
+                                        <input type="text" class="ing-search-input" placeholder="max(3)" autocomplete="off">
                                         <input type="hidden" name="ingsearchlist" class="ing-search-hdn-input" data-cnt="0">
                                     </div>
                                 </div>                                                                
-                            </div>
+                            </div> -->
                             <ul>
                                 <li>dasdsadsadasdasdsadsa</li>
                             </ul>
@@ -56,9 +56,26 @@
                                 Search all
                             </div>
                         </div>
-					</div>
+                    </div>
+                    <div class="ingredient-search-filter pure-g" style="display: none;">
+                        <div class="pure-u-md-1-6 text-center">
+                            <div class="label1">Ingredients</div>
+                        </div>
+                        <div class="pure-u-md-5-6">
+                            <div class="ing-search-input-div">
+                                <input type="text" class="ing-search-input" placeholder="max(3)" autocomplete="off">
+                                <input type="hidden" name="ingsearchlist" class="ing-search-hdn-input" data-cnt="0">
+                            </div>
+                        </div>                                                                
+                    </div>
 				</div>
-				<div class="pure-u-1 pure-u-md-1-6 icon-group hidden-for-mobile">						
+				<div class="pure-u-1 pure-u-md-1-5 icon-group hidden-for-mobile">						
+                    <div class="ui icon top right pointing dropdown search-filter-dropdown">
+                        <i class="filter icon fg-white"></i>
+                        <div class="menu">
+                            <div class="item">Ingredient Search</div>                            
+                        </div>
+                    </div>                    
 					<div class="ui icon top right pointing dropdown headbar-user-dropdown">
 						<i class="fa fa-th fg-white"></i>
 						<div class="menu">
@@ -84,7 +101,7 @@
 						</div>
 					</div>										
 				</div>
-				<div class="pure-u-1 pure-u-md-1-6 hidden-for-mobile">
+				<div class="pure-u-1 pure-u-md-1-8 hidden-for-mobile">
 					<!-- <div class="flt-right" style="padding: 7px 15px 0 0;cursor: pointer;">
 						<p class="fg-white" style="font-size: 18px;font-weight: 300;letter-spacing: 1px;">
 							<i class="fa fa-user"></i> Atharva
