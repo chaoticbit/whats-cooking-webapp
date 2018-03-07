@@ -169,13 +169,22 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         {
             search_container.hide();
             $(".search-wrapper").hide();
-            $('body').removeClass('offscroll');
+            $('body').removeClass('noscroll');
         }        
     });
 
     $('.global-search').on('click', function () {
         $('.search-wrapper, .search-dropdown').show();        
-        $('body').addClass('offscroll');
+        $('body').addClass('noscroll');
+    });
+
+    $('.global-search').bind('keydown', function(e) {
+        var key = e.keyCode;
+        if (key === 27) {
+            $(".search-dropdown,.search-wrapper").hide();
+            $(this).val('');
+            $('body').removeClass('noscroll');
+        }
     });
 
     function regex_escape(str) {
@@ -258,6 +267,6 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                 p = 3;
             $('.ing-search-input').attr('placeholder','add ingredients(' + p + ')');
             return false;
-        }
+        }        
     });
 });
