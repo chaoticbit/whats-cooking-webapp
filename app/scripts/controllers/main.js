@@ -81,13 +81,13 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
      * 
      */
     
-    $('.search-filter-dropdown').dropdown({
-        action: 'combo',        
-    });
+    // $('.search-filter-dropdown').dropdown({
+    //     action: 'combo',        
+    // });
 
-    $('.search-filter-dropdown').on('click', '.item', function() {
-        toggleIngredientSearch();
-    });
+    // $('.search-filter-dropdown').on('click', '.item', function() {
+    //     toggleIngredientSearch();
+    // });
      
 	$('.headbar-user-dropdown').dropdown({
 		action: 'hide'
@@ -284,7 +284,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         }
     });
 
-    function toggleIngredientSearch() {
+    $(document).on('click','.toggle-search-btn',function() {
         if($('.global-search-div').css('display') != 'none') {
             $('.global-search-div').hide();
             $('.ingredient-search-filter').show();   
@@ -294,7 +294,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             $('.global-search-div').show();
             $('.global-search').focus();
         }
-    };
+    });
 
     function processIngredientSearch() {
         alert($('.ing-search-hdn-input').val());
