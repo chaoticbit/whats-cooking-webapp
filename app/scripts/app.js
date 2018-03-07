@@ -83,5 +83,5 @@ var app = angular
 });
 
 app.run(function($rootScope, $timeout, $window, $location) {
-	$rootScope.isLoggedIn = false;
+	$rootScope.isLoggedIn = true;
 });
