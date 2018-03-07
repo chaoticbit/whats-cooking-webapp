@@ -197,7 +197,7 @@
 			</div>			
 		</div>
 	</div>
-	<div class="pure-u-1 pure-u-md-1-4">&nbsp;</div>
+	<!-- <div class="pure-u-1 pure-u-md-1-4">&nbsp;</div> -->
 	<div class="pure-u-1 pure-u-md-1-4 right-pane-fixed hidden-for-mobile-and-tablet">
 		<div style="padding: 15px 0 20px 20px;">
 			<p class="featured-tags-title">featured tags</p>
@@ -205,43 +205,23 @@
 		<div style="padding: 0px 20px;">
 			<a href="#" class="tag" ng-repeat="item in tags">{{item.name}}</a>
 		</div>
-		<div style="padding: 15px 0 20px 20px;">
-				<p class="featured-tags-title">featured recipes</p>
-			</div>
-		<div class="ui divided items top-recipe-list">
-			<div class="item recipe-item">
-				<div class="ui tiny image">
-					<img src="https://i0.wp.com/media.hungryforever.com/wp-content/uploads/2016/10/28132136/best-rajma-chawal-in-delhi.jpg">
-				</div>
-				<div class="content">
-					<a class="header">Chocolate cake</a>
-					<div class="description">						
-						<p></p>
-					</div>									
-				</div>
-			</div>	
-			<div class="item recipe-item">
-				<div class="ui tiny image">
-					<img src="https://i0.wp.com/media.hungryforever.com/wp-content/uploads/2016/10/28132136/best-rajma-chawal-in-delhi.jpg">
-				</div>
-				<div class="content">
-					<a class="header">Chocolate cake</a>
-					<div class="description">
-						<p>Many people also have their own barometers for what makes a cute dog.</p>
-					</div>									
-				</div>
-			</div>	
-			<div class="item recipe-item">
-				<div class="ui tiny image">
-					<img src="https://i0.wp.com/media.hungryforever.com/wp-content/uploads/2016/10/28132136/best-rajma-chawal-in-delhi.jpg">
-				</div>
-				<div class="content">
-					<a class="header">Chocolate cake</a>
-					<div class="description">
-						<p>Many people also have their own barometers for what makes a cute dog.</p>
-					</div>									
-				</div>
-			</div>	
-		</div>	
+		<div style="padding: 15px 0 10px 20px;">
+			<p class="featured-tags-title">featured recipes</p>
+        </div>
+        <div class="featured-recipes" style="padding: 0px 20px;">
+            <ul>
+                <li>
+                    <div class="round-count"><span class="upvotecnt">4.5</span></div>
+                    <div class="desc">
+                        <p class="recipe-title margin0">
+                            <a href="http://localhost/soapbox/Thread/1039">Chocolate cake</a>
+                        </p>
+                        <p class="recipe-user margin0">
+                            <a href="sipps7">Nikita Gokhale</a>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>		
 	</div>
 </div>
