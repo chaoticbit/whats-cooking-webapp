@@ -1,0 +1,36 @@
+.login-heading {
+    margin: 50px 0;
+    .header:first-child {
+        font-size: 2.7em;
+        margin-bottom:5px;
+        font-family: 'Open Sans';
+        font-weight: 900;
+    }
+    .header:last-child {
+        margin-top: 0;
+        margin-bottom: 30px;
+        font-family: 'Open Sans';
+        font-size: 20px !important;
+    }
+}
+
+.login-panel {
+    margin: auto;
+    background: #fff;
+    border-radius: 4px !important;
+    padding: 10px;
+
+    .tab {
+        border: 0 !important;
+        box-shadow: none !important;
+    }
+}
+
+.login-bg {
+    background: url('http://maxpixel.freegreatpicture.com/static/photo/1x/Eat-Cook-Kitchen-Image-Kitchen-Food-Background-366875.jpg') no-repeat top;
+    background-size: cover;
+    overflow: hidden;
+    // .container-fluid {
+    //     padding: 70px 0 0 0 !important;
+    // }
+}

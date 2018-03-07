@@ -1,1 +1,70 @@
-<p>This is the login view.</p>
+<div class="pure-g login-heading">
+	<div class="pure-u-1 pure-u-md-1 text-center" style="margin: auto;">
+	<div class="ui header huge fg-white light">Confused about what to cook?</div>
+	<div class="ui header large fg-white light">Just tell us what you have</div>
+	</div>
+</div>
+<div class="pure-g">
+	<div class="pure-u-1 pure-u-md-11-24 login-panel">
+		<div class="ui pointing secondary menu">
+  			<a class="item active pure-u-md-1-2 pure-u-1-2" data-tab="first">
+  				<span style="margin: auto;">LOGIN</span>
+  			</a>
+  			<a class="item pure-u-md-1-2 pure-u-1-2" data-tab="second">
+  				<span style="margin: auto;">SIGNUP</span>
+  			</a>
+		</div>
+		<div class="ui tab segment active" data-tab="first">
+			<form class="ui form" name="loginform" ng-submit="processLogin(login)">
+				<div class="field">
+					<div class="ui left icon input fluid">
+		  				<input type="text" placeholder="Username" required ng-model="login.username" autofocus>
+		  				<i class="user icon"></i>
+					</div>
+				</div>
+				<div class="field">
+					<div class="ui left icon input fluid">
+		  				<input type="password" placeholder="Password" required ng-model="login.password">
+		  				<i class="key icon"></i>
+					</div>
+				</div>
+				<div class="text-center" style="padding-bottom: 10px;" ng-show="!validUser">Invalid username or password</div>
+				<button class="ui button blue fluid login-btn" ng-disabled="loginform.$invalid">LOGIN</button>
+			</form>
+  		</div>
+  		<div class="ui tab segment" data-tab="second">
+			<form class="ui form" name="signupform" ng-submit="processSignup(signup)">
+				<div class="two fields">
+					<div class="field">
+						<div class="ui input">
+			  				<input type="text" placeholder="Username" required ng-model="signup.username" autofocus>
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui input">
+			  				<input type="password" placeholder="Password" required ng-model="signup.password">
+						</div>
+					</div>
+				</div>
+				<div class="two fields">
+					<div class="field">
+						<div class="ui input">
+			  				<input type="text" placeholder="First Name" required ng-model="signup.fname" maxlength="30">
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui input">
+			  				<input type="text" placeholder="Last Name" required ng-model="signup.lname" maxlength="30">
+						</div>
+					</div>
+				</div>
+				<div class="field">
+						<div class="ui input">
+			  				<input type="email" placeholder="Email" required ng-model="signup.email">
+						</div>
+					</div>
+				<button class="ui button blue fluid signup-btn" ng-disabled="signupform.$invalid">SIGNUP</button>
+			</form>
+  		</div>
+	</div>
+</div>
