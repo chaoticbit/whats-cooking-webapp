@@ -14,4 +14,9 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
         }
     });
     $scope.validUser = true;
+
+    $scope.processLogin = function(login) {
+        $rootScope.isLoggedIn = true;
+        $location.path('/');
+    };
 });

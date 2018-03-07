@@ -701,7 +701,10 @@ MEDIA QUERIES
 		width: calc(50% - 1em) !important;
 		margin-left: 9px !important; 
 		margin-right: 0px !important;
-	}
+    }
+    .login-panel {
+        margin: 10px;
+    }
 }
 
 /*--- Mobile landscape ---*/
