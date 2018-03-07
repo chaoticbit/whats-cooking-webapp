@@ -104,6 +104,58 @@ body {
 	.pure-g{
         padding-top: 8.5px;
 
+        .bubble-mobile {
+            top: 8px;
+            left: 30px;
+            z-index: 9999;
+        }
+
+        .toggle-sidebar {
+            margin: 18px 40px 8px 10px;
+        }
+        .nav-toggle span, .nav-toggle span:before, .nav-toggle span:after {
+            -webkit-transition: all 300ms ease-in-out;
+            transition: all 300ms ease-in-out;
+        }
+        .nav-toggle span:before {
+            top: -6px;
+        }
+        .nav-toggle span:after {
+            bottom: -6px;
+        }
+        .nav-toggle span, .nav-toggle span:before, .nav-toggle span:after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 25px;
+            height: 2px;
+            border-radius: 1px;
+            background: #fff;
+            cursor: pointer;
+        }
+        .nav-toggle.active span {
+            background-color: transparent;
+        }
+        .nav-toggle.active span:before, .nav-toggle.active span:after {
+            top: 0;
+        }
+
+        .nav-toggle.active span:before {
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .nav-toggle.active span:after {
+            top: 10px;
+            -webkit-transform: translateY(-10px) rotate(-45deg);
+            -ms-transform: translateY(-10px) rotate(-45deg);
+            transform: translateY(-10px) rotate(-45deg);
+        }
+        
+        .toggle-search-btn.mobile-btn {
+            margin: 9px 7px;
+        }
         .ingredient-search-filter {
             padding: 0px !important;
             border-bottom: 1px solid #eae9ed;
@@ -815,18 +867,61 @@ color: #eeeeee !important;
 	}
 }
 
+.sidebarwrapper {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    overflow: auto;
+    display: none;
+    z-index: 999;
+    .sidebar {
+        position: absolute;
+        margin-top: 50px;
+        left: -100%;
+        width: 100%;
+        ul {
+            list-style-type: none !important;
+            margin: 0 !important;
+            padding: 0px !important;
+            li {
+                display: block;
+                width: 100%;
+                border-bottom: 1px solid rgba(235,235,235,0.2);
+                a {
+                    display: block;
+                    padding: 15px;
+                    color: rgba(201, 212, 246, 0.86) !important;
+                    white-space: nowrap;
+                    font-size: 18px;
+                    i {
+                        font-size: 20px;
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 /**
 MEDIA QUERIES
 **/
 
-@media only screen and (min-width: 960px) and (max-width: 1199px) {
+.show-for-mobile { display: none !important;}
 
+@media only screen and (min-width: 960px) and (max-width: 1199px) {
+    .show-for-mobile { display: none !important;}
 }
 
 /*--- Mobile portrait ---*/
 @media only screen and (min-width : 0px) and (max-width : 480px) {
     .hidden-for-mobile { display: none !important; }
-	.hidden-for-mobile-and-tablet { display: none !important; }
+    .hidden-for-mobile-and-tablet { display: none !important; }
+    .show-for-mobile { display: block !important;}
 	.recipe-item { 
 		width: calc(50% - 1em) !important;
 		margin-left: 9px !important; 
@@ -838,21 +933,25 @@ MEDIA QUERIES
 }
 
 /*--- Mobile landscape ---*/
-@media only screen and (min-width : 480px) and (max-width : 595px) {
+@media only screen and (min-width : 480px) and (max-width : 640px) {
+    .show-for-mobile { display: none !important;}
 	.hidden-for-mobile-and-tablet { display: none !important; }
 }
 
 /*--- Tablet portrait ---*/
 @media only screen and (min-width : 640px) and (max-width : 800px) {
-	.hidden-for-mobile-and-tablet { display: none !important; }
+    .hidden-for-mobile-and-tablet { display: none !important; }
+    .show-for-mobile { display: none !important;}
 }
 
 /*--- Tablet portrait iPad Mini--- */
 @media only screen and (min-width : 769px) and (max-width : 1024px) {
-	.hidden-for-mobile-and-tablet { display: none !important; }
+    .hidden-for-mobile-and-tablet { display: none !important; }
+    .show-for-mobile { display: none !important;}
 }
 
 /*--- Tablet landscape --- */
 @media only screen and (min-width : 1024px) and (max-width : 1224px) {
-
+    .hidden-for-mobile-and-tablet { display: none !important; }
+    .show-for-mobile { display: none !important;}
 }

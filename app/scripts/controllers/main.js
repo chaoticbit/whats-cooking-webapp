@@ -9,6 +9,13 @@
  */
 angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $http, $timeout) {	
 
+    $('body').attr('ondragstart', 'return false');
+    $('body').attr('draggable', 'false');
+    $('body').attr('ondragenter', 'event.dataTransfer.dropEffect=\'none\'; event.stopPropagation(); event.preventDefault();');
+    $('body').attr('ondragenter', '');
+    $('body').attr('ondragover', 'event.dataTransfer.dropEffect=\'none\';event.stopPropagation(); event.preventDefault();');
+    $('body').attr('ondrop', 'event.dataTransfer.dropEffect=\'none\';event.stopPropagation(); event.preventDefault();');
+
 	var editor = new MediumEditor('.editable', {
 		imageDragging: false,
         fileDragging: false,
@@ -298,5 +305,36 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 
     function processIngredientSearch() {
         alert($('.ing-search-hdn-input').val());
+    }
+
+    if (screen.width < 480 || screen.width < 800) {
+        var h = screen.height;
+        $('.sidebar .pure-u-3-4').css('height', h + 'px');
+        $('.toggle-sidebar').on('click', function () {
+            if ($(this).attr('aria-expanded') === 'false') {
+                $('.sidebarwrapper').fadeIn(function () {
+                    $('.toggle-sidebar').addClass('active');
+                    $('.bubble-mobile').hide();                        
+                    $('.sidebar').animate({left: '0%'}, function () {                        
+                        $('.toggle-sidebar').attr('aria-expanded', 'true');
+                        $('body').addClass('noscroll');
+                        document.ontouchmove = function (event) {
+                            // event.preventDefault();
+                        };
+                    });
+                });
+            }
+            else {
+                $('.toggle-sidebar').removeClass('active');
+                $('.sidebar').animate({left: '-100%'}, function () {
+                    $('.bubble-mobile').show();
+                    $('.toggle-sidebar').attr('aria-expanded', 'false');
+                    $('.sidebarwrapper').hide();
+                    $('body').removeClass('noscroll');
+                    document.ontouchmove = function () {
+                    };
+                });
+            }
+        });
     }
 });
