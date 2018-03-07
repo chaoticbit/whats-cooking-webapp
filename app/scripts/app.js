@@ -83,5 +83,30 @@ var app = angular
 });
 
 app.run(function($rootScope, $timeout, $window, $location) {
-	$rootScope.isLoggedIn = true;
+    $rootScope.isLoggedIn = true;
+    
+    $rootScope.$on('$locationChangeStart', function(event, currentRoute, prevRoute) {        
+        var currentRoute = $location.path();
+        $('.toggle-sidebar').removeClass('active');
+        $('.sidebar').animate({left: '-100%'}, function () {
+            $('.bubble-mobile').show();
+            $('.toggle-sidebar').attr('aria-expanded', 'false');
+            $('.sidebarwrapper').hide();
+            $('body').removeClass('noscroll');
+            document.ontouchmove = function (event) {
+                event.preventDefault();
+            };
+        });
+        if (currentRoute.substring(1) === 'login') {
+            $('body').addClass('login-bg');
+        } else {
+            $('body').removeClass('login-bg');
+        }
+
+        if($rootScope.isLoggedIn){
+              //do something
+        }else{
+            $location.path('/login');
+        }
+    });  
 });

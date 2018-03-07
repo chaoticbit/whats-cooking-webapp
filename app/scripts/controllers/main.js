@@ -291,7 +291,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         }
     });
 
-    $(document).on('click','.toggle-search-btn',function() {
+    $(document).on('click touchstart','.toggle-search-btn',function() {
         if($('.global-search-div').css('display') != 'none') {
             $('.global-search-div').hide();
             $('.ingredient-search-filter').show();   
@@ -319,7 +319,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                         $('.toggle-sidebar').attr('aria-expanded', 'true');
                         $('body').addClass('noscroll');
                         document.ontouchmove = function (event) {
-                            // event.preventDefault();
+                            event.preventDefault();
                         };
                     });
                 });
@@ -331,10 +331,12 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                     $('.toggle-sidebar').attr('aria-expanded', 'false');
                     $('.sidebarwrapper').hide();
                     $('body').removeClass('noscroll');
-                    document.ontouchmove = function () {
+                    document.ontouchmove = function (event) {
+                        event.preventDefault();
                     };
                 });
             }
         });
+        
     }
 });

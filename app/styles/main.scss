@@ -131,21 +131,29 @@ body {
             border-radius: 1px;
             background: #fff;
             cursor: pointer;
+            transition: all 300ms ease-in-out;
+            -webkit-transition: all 300ms ease-in-out;
         }
         .nav-toggle.active span {
             background-color: transparent;
+            transition: all 300ms ease-in-out;
+            -webkit-transition: all 300ms ease-in-out;
         }
         .nav-toggle.active span:before, .nav-toggle.active span:after {
             top: 0;
         }
 
         .nav-toggle.active span:before {
+            transition: all 300ms ease-in-out;
+            -webkit-transition: all 300ms ease-in-out;
             -webkit-transform: rotate(45deg);
             -ms-transform: rotate(45deg);
             transform: rotate(45deg);
         }
 
         .nav-toggle.active span:after {
+            transition: all 300ms ease-in-out;
+            -webkit-transition: all 300ms ease-in-out;
             top: 10px;
             -webkit-transform: translateY(-10px) rotate(-45deg);
             -ms-transform: translateY(-10px) rotate(-45deg);
@@ -192,7 +200,7 @@ body {
             // position: relative;
             position: absolute;
             width: 100%;
-            top: 45px;
+            top: 56px;
             padding: 0px 0px 0px;
             border-radius: 3px;
             height: auto;
