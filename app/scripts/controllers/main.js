@@ -7,7 +7,9 @@
  * # MainCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $http, $timeout) {	
+angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $http, $timeout, localStorageService) {	
+    
+    $rootScope.userProfile = localStorageService.get('userProfile');
 
     $('body').attr('ondragstart', 'return false');
     $('body').attr('draggable', 'false');

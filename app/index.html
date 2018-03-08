@@ -96,7 +96,7 @@
 				<div class="pure-u-1 pure-u-md-1-8 hidden-for-mobile-and-tablet">					
 					<div class="ui floating top left pointing dropdown flt-right headbar-user-dropdown" style="padding: 8.5px 15px;">
 						<div class="fg-white">							
-							<p class="fg-white light" style="font-size: 17px;font-weight: 300;letter-spacing: 1px;">Atharva</p>
+							<p class="fg-white light" style="font-size: 17px;font-weight: 300;letter-spacing: 1px;">{{userProfile.fname + ' ' + userProfile.lname}}</p>
 						</div>						
 						<div class="menu">
 							<div class="item" ng-click="toggleNewRecipeBox(1)">
@@ -176,6 +176,7 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/constants/apiconfig.js"></script>
         <script src="scripts/services/authenticationservice.js"></script>
         <!-- endbuild -->
 </body>
