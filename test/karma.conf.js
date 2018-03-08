@@ -33,6 +33,7 @@ module.exports = function(config) {
       'bower_components/semantic/dist/semantic.js',
       'bower_components/medium-editor/dist/js/medium-editor.js',
       'bower_components/lodash/lodash.js',
+      'bower_components/angular-local-storage/dist/angular-local-storage.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

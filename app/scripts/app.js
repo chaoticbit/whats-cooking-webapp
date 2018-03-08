@@ -84,7 +84,7 @@ var app = angular
 
 app.run(function($rootScope, $timeout, $window, $location) {
     $rootScope.isLoggedIn = true;
-    
+    $rootScope.userProfile = {};
     $rootScope.$on('$locationChangeStart', function(event, currentRoute, prevRoute) {        
         var currentRoute = $location.path();
         $('.toggle-sidebar').removeClass('active');
@@ -109,4 +109,9 @@ app.run(function($rootScope, $timeout, $window, $location) {
             $location.path('/login');
         }
     });  
+
+    $rootScope.logout = function() {
+        $window.location.reload();
+        $rootScope.isLoggedIn = false;
+    };
 });
