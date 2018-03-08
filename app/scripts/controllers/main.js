@@ -98,9 +98,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     //     toggleIngredientSearch();
     // });
      
-	$('.headbar-user-dropdown').dropdown({
-		action: 'hide'
-	});
+	$('.headbar-user-dropdown').dropdown();
+    
 	$('.user-action-dropdown').dropdown();
 	$('.food-group-dropdown').dropdown({
 		useLabels: false
@@ -339,9 +338,5 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                 });
             }
         });        
-    }
-
-    function logout() {
-        $rootScope.logout();
-    }
+    }    
 });

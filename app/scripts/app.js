@@ -114,6 +114,10 @@ app.run(function($rootScope, $timeout, $window, $location, localStorageService) 
         }
     });  
 
+    function signOut() {
+        alert('ds');
+    }
+
     $rootScope.logout = function() {
         $window.location.reload();
         $rootScope.isLoggedIn = false;
