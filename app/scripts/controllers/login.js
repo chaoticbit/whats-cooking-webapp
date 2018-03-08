@@ -21,9 +21,22 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
     $scope.validUser = true;
     $scope.processLogin = function(login) {
         $('.login-btn').addClass('loading');
-
-        $rootScope.isLoggedIn = true;
-        $location.path('/');
+        
+        AuthenticationService.processLogin(login).then(function(data) {
+            if(data.success) {
+                localStorageService.set('userProfile', data.results);
+                $rootScope.isLoggedIn = true;
+                $location.path('/');
+            } else {
+                $scope.validUser = false;
+            }
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+            $('.login-btn').removeClass('loading');
+        });                        
     };
 
     $scope.processSignup = function(signup) {
@@ -36,8 +49,7 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
         };      
 
         $('.signup-btn').addClass('loading');
-        AuthenticationService.processSignup(o).then(function(data) {
-            console.log(data);            
+        AuthenticationService.processSignup(o).then(function(data) {                     
             if(data.success) {
                 localStorageService.set('userProfile', data.results);
                 $rootScope.isLoggedIn = true;
