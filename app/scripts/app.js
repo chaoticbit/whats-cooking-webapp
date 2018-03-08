@@ -17,9 +17,10 @@ var app = angular
 	'ngResource',
 	'ngRoute',
 	'ngSanitize',
-	'ngTouch'
+    'ngTouch',
+    'LocalStorageModule'
   ]);
-  app.config(function ($routeProvider, $httpProvider) {
+  app.config(function ($routeProvider, $httpProvider, localStorageServiceProvider) {
 	$routeProvider
 	  .when('/', {
 		templateUrl: 'views/main.html',
@@ -40,12 +41,14 @@ var app = angular
 		redirectTo: '/'
 	  });
 
-	  /**
-	   *
-	   * Custom http interceptors
-	   *
-	   */
+      /**
+       * Local Storage Init
+       */
+      localStorageServiceProvider.setPrefix('whats-cooking-app');
 
+	  /**	   
+	   * Custom http interceptors	   
+	   */
 	 $httpProvider.interceptors.push(function($q, $rootScope) {
 		return {
 
@@ -82,9 +85,10 @@ var app = angular
 	});
 });
 
-app.run(function($rootScope, $timeout, $window, $location) {
-    $rootScope.isLoggedIn = true;
-    $rootScope.userProfile = {};
+app.run(function($rootScope, $timeout, $window, $location, localStorageService) {
+    $rootScope.isLoggedIn = (localStorageService.length() == 0) ? false : true;
+    // $rootScope.isLoggedIn = true;   
+    $rootScope.userProfile = localStorageService.get('userProfile');
     $rootScope.$on('$locationChangeStart', function(event, currentRoute, prevRoute) {        
         var currentRoute = $location.path();
         $('.toggle-sidebar').removeClass('active');
@@ -113,5 +117,6 @@ app.run(function($rootScope, $timeout, $window, $location) {
     $rootScope.logout = function() {
         $window.location.reload();
         $rootScope.isLoggedIn = false;
+        localStorageService.remove('userProfile');
     };
 });

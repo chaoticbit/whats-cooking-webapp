@@ -336,7 +336,10 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                     };
                 });
             }
-        });
-        
+        });        
+    }
+
+    function logout() {
+        $rootScope.logout();
     }
 });
