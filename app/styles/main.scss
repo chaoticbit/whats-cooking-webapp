@@ -200,7 +200,7 @@ body {
             letter-spacing: normal;
             // position: relative;
             position: absolute;
-            width: 100%;
+            // width: 100%;
             top: 56px;
             padding: 0px 0px 0px;
             border-radius: 3px;
@@ -220,7 +220,7 @@ body {
                 line-height: 39px;
                 font-size: 15px;
                 height: 40px;
-                width: inherit;
+                width: 100%;
                 border-top: 1px solid rgba(235,235,235,0.6);
                 box-shadow: 0px 0px 1px rgba(205,205,205,0.3);
                 cursor: pointer;
@@ -938,12 +938,14 @@ MEDIA QUERIES
     .login-panel {
         margin: 10px;
     }
+    .search-dropdown { left: 0;}
 }
 
 /*--- Mobile landscape ---*/
 @media only screen and (min-width : 480px) and (max-width : 640px) {
     .show-for-mobile { display: none !important;}
-	.hidden-for-mobile-and-tablet { display: none !important; }
+    .hidden-for-mobile-and-tablet { display: none !important; }
+    .search-dropdown { left: 0;}
 }
 
 /*--- Tablet portrait ---*/
