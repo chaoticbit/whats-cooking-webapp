@@ -36,8 +36,9 @@
 			<form class="ui form" name="signupform" ng-submit="processSignup(signup)">
 				<div class="two fields">
 					<div class="field">
-						<div class="ui input">
-			  				<input type="text" placeholder="Username" required ng-model="signup.username" autofocus>
+						<div class="ui icon input s-username-input">
+                            <i class="icon" style="display: none;opacity: .99;"></i>
+			  				<input type="text" placeholder="Username" required ng-keyup="checkUsername($event)" ng-model="signup.username" autofocus>
 						</div>
 					</div>
 					<div class="field">
@@ -59,7 +60,8 @@
 					</div>
 				</div>
 				<div class="field">
-						<div class="ui input">
+						<div class="ui input s-email-input">
+                            <i class="cancel icon fg-red" style="display: none;"></i>
 			  				<input type="email" placeholder="Email" required ng-model="signup.email">
 						</div>
 					</div>

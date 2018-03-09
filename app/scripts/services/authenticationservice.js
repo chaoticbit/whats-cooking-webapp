@@ -21,5 +21,19 @@ angular.module('whatsCookingApp').service('AuthenticationService', function ($ht
 			url: ApiConfig.API_URL + '/Authentication/signup',
 			data: payload,			
 		});
-	}
+    };
+	this.checkUsername = function(payload) {
+		return $http({
+			method: 'POST',
+			url: ApiConfig.API_URL + '/Authentication/usernameExists',
+			data: payload,			
+		});
+    };
+	this.checkEmail = function(payload) {
+		return $http({
+			method: 'POST',
+			url: ApiConfig.API_URL + '/Authentication/emailExists',
+			data: payload,			
+		});
+    };
 });
