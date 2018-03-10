@@ -42,30 +42,30 @@
 						</div>
 					</div>
 					<div class="field">
-						<div class="ui input">
+						<div class="ui input s-pwd-input">
 			  				<input type="password" placeholder="Password" required ng-model="signup.password">
 						</div>
 					</div>
 				</div>
 				<div class="two fields">
 					<div class="field">
-						<div class="ui input">
+						<div class="ui input s-fname-input">
 			  				<input type="text" placeholder="First Name" required ng-model="signup.fname" maxlength="30">
 						</div>
 					</div>
 					<div class="field">
-						<div class="ui input">
+						<div class="ui input s-lname-input">
 			  				<input type="text" placeholder="Last Name" required ng-model="signup.lname" maxlength="30">
 						</div>
 					</div>
 				</div>
 				<div class="field">
-						<div class="ui input s-email-input">
-                            <i class="cancel icon fg-red" style="display: none;"></i>
+						<div class="ui icon input s-email-input">
+                            <i class="icon" style="opacity: .99;display: none;"></i>
 			  				<input type="email" placeholder="Email" required ng-model="signup.email">
 						</div>
 					</div>
-				<button class="ui button blue fluid signup-btn" ng-disabled="signupform.$invalid">SIGNUP</button>
+				<button class="ui button blue fluid signup-btn" disabled="disabled">SIGNUP</button>
 			</form>
   		</div>
 	</div>

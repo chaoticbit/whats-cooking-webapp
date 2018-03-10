@@ -18,6 +18,8 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
             $(this).find('input[type="text"]').first().focus();
         }
     });
+    $scope.validUsername = false;
+    $scope.validEmail = false;
     $scope.validUser = true;
     $scope.processLogin = function(login) {
         $('.login-btn').addClass('loading');
@@ -79,18 +81,22 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
                 $('.s-username-input').find('i').addClass('icon loading').show();
                 AuthenticationService.checkUsername({'username': username}).then(function(data) {
                     if(data.success) {
+                        $scope.validUsername = false;
                         $('.s-username-input').addClass('error');
-                        $('.s-username-input').find('i').removeClass().addClass('icon cancel fg-red').show();
+                        $('.s-username-input').find('i').removeClass().addClass('icon cancel fg-red').show();                        
+                        checkAllInputs();
                     } else {
+                        $scope.validUsername = true;
                         $('.s-username-input').removeClass('error');
-                        $('.s-username-input').find('i').removeClass().addClass('icon check fg-green').show();
+                        $('.s-username-input').find('i').removeClass().addClass('icon check fg-green').show();                        
+                        checkAllInputs();
                     }            
                 }, function(error) {
                                     
                 }).catch(function(e) {
                                     
                 }).finally(function() {
-    
+                    
                 });
             }
         } else {
@@ -100,4 +106,60 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
             }
         }
     });
+
+    $(".s-email-input input").bind('input', function () { 
+        var email = $.trim($(this).val());
+        if(email !== "") {
+            if(email.substring(email.length - 4) == '.com') {
+                $('.s-email-input').find('i').addClass('icon loading').show();
+                AuthenticationService.checkEmail({'email': email}).then(function(data) {
+                    if(data.success) {
+                        $scope.validEmail = false;
+                        $('.s-email-input').addClass('error');
+                        $('.s-email-input').find('i').removeClass().addClass('icon cancel fg-red').show();                        
+                        checkAllInputs();
+                    } else {
+                        $scope.validEmail = true;
+                        $('.s-email-input').removeClass('error');
+                        $('.s-email-input').find('i').removeClass().addClass('icon check fg-green').show();
+                        $('.signup-btn').removeAttr('disabled');
+                        checkAllInputs();
+                    }            
+                }, function(error) {
+                                    
+                }).catch(function(e) {
+                                    
+                }).finally(function() {
+                    
+                });
+            }            
+        }
+        else {
+            $('.s-email-input').removeClass('error');
+            $('.s-email-input').find('i').removeClass().hide();
+        }
+    });
+    
+    $('.s-pwd-input input').on('input', function() {
+        checkAllInputs();
+    });
+    $('.s-fname-input input').on('input', function() {
+        checkAllInputs();
+    });
+    $('.s-lname-input input').on('input', function() {
+        checkAllInputs();
+    });
+
+    function checkAllInputs() {            
+        if($.trim($('.s-username-input input').val()) === "" || 
+        $.trim($('.s-pwd-input input').val()) === "" ||
+        $.trim($('.s-fname-input input').val()) === "" ||
+        $.trim($('.s-lname-input input').val()) === "" ||
+        $.trim($('.s-email-input input').val()) === "" &&
+        !$scope.validUsername || !$scope.validEmail) {
+            $('.signup-btn').attr('disabled','disabled');
+        } else {
+            $('.signup-btn').removeAttr('disabled');
+        }
+    }
 });
