@@ -71,12 +71,12 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
         var username = $.trim($(this).val());
         
         if (/^[a-z][a-zA-Z0-9_.]{0,24}$/.test(username)) { 
-            if (username.length < 3) {
+            if (username.length < 5) {
                 $('.s-username-input').removeClass('error');
                 $('.s-username-input').find('i').removeClass().hide();
             }
-            if (username.length >= 3) { 
-                $('.s-username-input').find('i').addClass('loading').show();
+            if (username.length >= 5) { 
+                $('.s-username-input').find('i').addClass('icon loading').show();
                 AuthenticationService.checkUsername({'username': username}).then(function(data) {
                     if(data.success) {
                         $('.s-username-input').addClass('error');
@@ -95,6 +95,7 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
             }
         } else {
             if(username == "") {
+                $('.s-username-input').removeClass('error');
                 $('.s-username-input').find('i').removeClass().hide();
             }
         }

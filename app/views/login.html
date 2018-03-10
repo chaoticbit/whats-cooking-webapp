@@ -36,7 +36,7 @@
 			<form class="ui form" name="signupform" ng-submit="processSignup(signup)">
 				<div class="two fields">
 					<div class="field">
-						<div class="ui icon input s-username-input">
+						<div class="ui icon input s-username-input" data-tooltip="Minimum 5 characters" data-inverted="" data-position="left center">
                             <i class="icon" style="display: none;opacity: .99;"></i>
 			  				<input type="text" placeholder="Username" required ng-keyup="checkUsername($event)" ng-model="signup.username" autofocus>
 						</div>
