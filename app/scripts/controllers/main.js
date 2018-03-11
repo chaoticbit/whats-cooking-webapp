@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $cookies, $http, $timeout, localStorageService) {	
+angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $cookies, $http, $timeout, SettingService, localStorageService) {	
     
     $rootScope.userProfile = localStorageService.get('userProfile');
 
@@ -17,8 +17,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             onApprove: function () {
                 return false
             }
-          }).modal('show');
-        $cookies.remove('new-access');
+          }).modal('show');      
+        $cookies.remove('new-access');  
     }
 
     $('body').attr('ondragstart', 'return false');
@@ -60,11 +60,12 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $scope.spiciness = 1;	
     $scope.signUpModalProfile = {};
     $scope.signUpModalProfile.spiciness = 1;
+    $scope.modalFoodGrpVal = [];
 	$scope.listOfIngredients = [{
 		qty: '4 pieces',
 		name: 'Ginger',
 		notes: 'chopped'
-	}];              
+    }];                  
 
 	$scope.addItem = function() {
 		$scope.listOfIngredients.push({
@@ -94,7 +95,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         if (!element.text().trim().length) {
             element.empty();
         }
-	});
+	});    
 
     /**
      * 
@@ -113,7 +114,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 	$('.headbar-user-dropdown').dropdown();
     
 	$('.user-action-dropdown').dropdown();
-	$('.food-group-dropdown').dropdown({
+	$('.food-group-dropdown, .modal-food-group-dropdown').dropdown({
 		useLabels: false
     });	
     $('.ing-search-dropdown').dropdown();
@@ -329,28 +330,51 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     }
 
     $('.male-gender-btn').on('click', function() {
-        $scope.userProfile.gender = 'male';
+        $scope.signUpModalProfile.gender = 'male';
         $(this).attr('data-selected', true);
         $('.female-gender-btn').removeClass('female-gender-selected');
         $(this).addClass('male-gender-selected');
         $('.female-gender-btn').attr('data-selected', false);        
     });
     $('.female-gender-btn').on('click', function() {   
-            $scope.userProfile.gender = 'female';
+            $scope.signUpModalProfile.gender = 'female';
             $(this).attr('data-selected', true);
             $('.male-gender-btn').removeClass('male-gender-selected');
             $(this).addClass('female-gender-selected');
             $('.male-gender-btn').attr('data-selected', false);
     
-    });
+    });    
 
-    $scope.saveSignupUserProfile = function(signUpModalProfile) {
-        $scope.signUpModalProfile.foodGroup = computeFoodGroupValue($scope.modalFoodGrpVal);
-        signUpModalProfile.preferredCuisine = $('.modal-cuisine-dropdown .text').html();
-        console.log(signUpModalProfile);        
-        $('.save-signup-profile-btn').addClass('icon loading');
+    $scope.validateModalSignUpForm = function() {        
+        if($('.modal-cuisine-dropdown .text').html() == 'Cuisines' || !$scope.modalFoodGrpVal || $scope.modalFoodGrpVal.length == 0) {
+            return true;
+        } else {
+            return false;
+        }
     };
 
+    $scope.saveSignupUserProfile = function(signUpModalProfile) {
+        $scope.signUpModalProfile.food_group = computeFoodGroupValue($scope.modalFoodGrpVal);
+        signUpModalProfile.pref_cuisine = $('.modal-cuisine-dropdown .text').html();
+        signUpModalProfile.profile_imagepath = '';
+        $('.save-signup-profile-btn').addClass('icon loading');
+        SettingService.saveUserProfile(signUpModalProfile).then(function(data) {
+            if(data.success) {
+                $('.user-profile-signup-modal').modal('hide');
+                $('.status-msg-modal').modal('show', function() {
+                    onVisible: setTimeout(function() {
+                        $('.status-msg-modal').modal('hide');
+                    }, 1500)
+                });
+            }                  
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+
+        });
+    };    
 
     if (screen.width < 480 || screen.width < 800) {
         var h = screen.height;

@@ -270,13 +270,13 @@
 			<div class="two fields">
 				<div class="field">
 					<label>Preferred Cuisine</label>
-					<select class="ui fluid dropdown modal-cuisine-dropdown">
+					<select class="ui fluid dropdown modal-cuisine-dropdown" required>
 						<option value="">Cuisines</option>
 					</select>
 				</div>
 				<div class="field">
 					<label>Type</label>
-					<select name="food-group" ng-model="modalFoodGrpVal" multiple="" class="ui fluid dropdown food-group-dropdown">
+					<select name="food-group" ng-model="modalFoodGrpVal" required multiple="" class="ui fluid dropdown modal-food-group-dropdown">
 						<option value="">Food Group</option>
 						<option value="v">Vegetarian</option>
 						<option value="n">Non Vegetarian</option>
@@ -297,7 +297,7 @@
 				</div>
 				<div class="field">
 					<div class="ui input">
-						<input type="text" placeholder="Calorie restriction" ng-model="signUpModalProfile.calorieRestriction">
+						<input type="text" placeholder="Calorie restriction" ng-model="signUpModalProfile.calorie_intake">
 					</div>					
 				</div>												
 			</div>
@@ -305,6 +305,11 @@
 	</div>
 	<div class="actions">
 		<div class="ui black deny button light">Later</div>
-    	<div class="ui positive button save-signup-profile-btn" ng-click="saveSignupUserProfile(signUpModalProfile)">Save</div>    	    	
+    	<button class="ui positive button save-signup-profile-btn" ng-disabled="validateModalSignUpForm()" ng-click="saveSignupUserProfile(signUpModalProfile)">Save</button>    	    	
   	</div>
+</div>
+<div class="ui tiny modal status-msg-modal">    
+    <div class="content bg-green">
+        <p class="fg-white">Your profile has been updated successfully!</p>
+    </div>
 </div>
