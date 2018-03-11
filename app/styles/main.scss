@@ -724,26 +724,7 @@ color: #eeeeee !important;
 	.editable[contenteditable=true]:empty:focus:after {
 		// content: "";
 		color: #333;
-	}	
-	.spiciness-rate-box {
-		float: left;
-		padding-top: 10px;
-		input { 
-			display: none; 
-		} 		
-		label {
-			color: #ddd;
-			float: right;	
-			cursor: pointer;		
-		}
-		label:before {
-			margin: 0 5px;
-			font-size: 24px;			
-			display: inline-block;
-			font-family: Icons;
-			content: "\f06d";		
-		}		
-	}
+	}		
 	.upload-video-box {
 		margin-right: 20px;
 		.card {
@@ -765,16 +746,7 @@ color: #eeeeee !important;
 				}
 			}
 		}
-	}
-	
-	.spiciness-rate-box > input:checked ~ label, /* show gold star when clicked */
-	.spiciness-rate-box:not(:checked) > label:hover, /* hover current star */
-	.spiciness-rate-box:not(:checked) > label:hover ~ label { color: rgb(247, 81, 81);  } /* hover previous stars in list */
-
-	.spiciness-rate-box > input:checked + label:hover, /* hover current star when changing spiciness-rate-box */
-	.spiciness-rate-box > input:checked ~ label:hover,
-	.spiciness-rate-box > label:hover ~ input:checked ~ label, /* lighten current selection */
-	.spiciness-rate-box > input:checked ~ label:hover ~ label { color: rgb(241, 33, 33);  } 
+	}	
 }
 
 .feed-box {
@@ -915,6 +887,42 @@ color: #eeeeee !important;
     }
 }
 
+.male-gender-btn:focus {
+    background: #1ba1e2 !important;
+    color: #ffffff !important;
+}
+.female-gender-btn:focus {
+    background: #FF69B4 !important;
+    color: #fff !important;
+}
+.ui.dropdown .menu .active.item { font-family: 'Open Sans Bold' !important; }
+.spiciness-rate-box {
+    float: left;
+    padding-top: 10px;
+    input { 
+        display: none; 
+    } 		
+    label {
+        color: #ddd;
+        float: right;	
+        cursor: pointer;		
+    }
+    label:before {
+        margin: 0 5px;
+        font-size: 24px;			
+        display: inline-block;
+        font-family: Icons;
+        content: "\f06d";		
+    }		
+}
+.spiciness-rate-box > input:checked ~ label, /* show gold star when clicked */
+.spiciness-rate-box:not(:checked) > label:hover, /* hover current star */
+.spiciness-rate-box:not(:checked) > label:hover ~ label { color: rgb(247, 81, 81);  } /* hover previous stars in list */
+
+.spiciness-rate-box > input:checked + label:hover, /* hover current star when changing spiciness-rate-box */
+.spiciness-rate-box > input:checked ~ label:hover,
+.spiciness-rate-box > label:hover ~ input:checked ~ label, /* lighten current selection */
+.spiciness-rate-box > input:checked ~ label:hover ~ label { color: rgb(241, 33, 33);  } 
 /**
 MEDIA QUERIES
 **/

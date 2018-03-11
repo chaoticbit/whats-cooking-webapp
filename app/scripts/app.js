@@ -86,8 +86,7 @@ var app = angular
 });
 
 app.run(function($rootScope, $timeout, $window, $location, localStorageService) {
-    $rootScope.isLoggedIn = (localStorageService.length() == 0) ? false : true;
-    // $rootScope.isLoggedIn = true;   
+    $rootScope.isLoggedIn = (localStorageService.length() == 0) ? false : true;    
     $rootScope.userProfile = localStorageService.get('userProfile');
     $rootScope.$on('$locationChangeStart', function(event, currentRoute, prevRoute) {        
         var currentRoute = $location.path();

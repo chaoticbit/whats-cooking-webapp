@@ -105,7 +105,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		useLabels: false
     });	
     $('.ing-search-dropdown').dropdown();
-	$('.cuisine-dropdown').dropdown({
+	$('.cuisine-dropdown, .modal-cuisine-dropdown').dropdown({
 		values: [
 			{ name: 'Italian'},
 			{ name: 'Mediterrian'},
@@ -125,7 +125,10 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		filterRemoteData: false,
 		saveRemoteData:false,
 		maxSelections: 5
-	});	
+    });	
+
+    $('.user-profile-signup-modal').modal('show');
+
 	$('.post-recipe-btn').click(function() {
 		$scope.recipeFoodGroup = -1;
 		if($scope.foodGrpVal.length == 1) {			

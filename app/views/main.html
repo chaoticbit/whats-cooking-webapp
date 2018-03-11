@@ -1,10 +1,10 @@
 <div class="pure-g new-recipe-box" style="display: none;">
 	<div class="pure-u-1 pure-u-md-13-24">
-		<div style="padding: 10px 20px;">			
+		<div style="padding: 10px 20px;">
 			<!-- <p style="font-size: 23px;font-weight: 300;">Let everybody know what's cooking.</p>			 -->
 			<div class="ui fluid input">
 				<input type="text" ng-model="title" placeholder="Title" class="recipe-title-input" />
-			</div>			
+			</div>
 			<table class="ui small table custom-table">
 				<thead>
 					<tr>
@@ -23,9 +23,9 @@
 							<i class="remove icon" ng-click="removeItem($index)" style="text-align: left;cursor: pointer"></i>
 						</td>
 					</tr>
-				</tbody>				
+				</tbody>
 			</table>
-			<textarea class="editable" data-placeholder="How to make it"></textarea>			
+			<textarea class="editable" data-placeholder="How to make it"></textarea>
 		</div>
 	</div>
 	<div class="pure-u-1 pure-u-md-11-24" style="padding: 10px 15px;">
@@ -40,62 +40,62 @@
 				  	<label>Cuisines</label>
 				  	<select class="ui fluid dropdown cuisine-dropdown">
 						<option value="">Cuisines</option>
-						
+
 					</select>
 				</div>
 				<div class="field">
-					<label>Type</label>					
-					<select name="food-group" ng-model="foodGrpVal" multiple="" class="ui fluid dropdown food-group-dropdown">						
+					<label>Type</label>
+					<select name="food-group" ng-model="foodGrpVal" multiple="" class="ui fluid dropdown food-group-dropdown">
 						<option value="">Food Group</option>
 						<option value="v">Vegetarian</option>
 						<option value="n">Non Vegetarian</option>
 						<option value="ve">Vegan</option>
 					</select>
-				</div>	
+				</div>
 				<div class="field">
 					<label>Spiceness</label>
-					<div class="spiciness-rate-box">							
+					<div class="spiciness-rate-box">
 						<input type="radio" id="spicy5" ng-model="spiciness" name="spiciness" value="5"><label class="full" for="spicy5" title="Extremely spicy"></label>
 						<input type="radio" id="spicy4" ng-model="spiciness" name="spiciness" value="4"><label class="full" for="spicy4" title="Very spicy"></label>
 						<input type="radio" id="spicy3" ng-model="spiciness" name="spiciness" value="3"><label class="full" for="spicy3" title="Medium"></label>
 						<input type="radio" id="spicy2" ng-model="spiciness" name="spiciness" value="2"><label class="full" for="spicy2" title="Little spicy"></label>
-						<input type="radio" id="spicy1" ng-model="spiciness" name="spiciness" value="1"><label class="full" for="spicy1" title="No spicy"></label>						
+						<input type="radio" id="spicy1" ng-model="spiciness" name="spiciness" value="1"><label class="full" for="spicy1" title="No spicy"></label>
 					</div>
-				</div>			
+				</div>
 			</div>
 			<div class="four fields">
-				<div class="field">						  	
+				<div class="field">
 					<label>Prepartion Time</label>
 					<div class="ui input">
 						<input type="text" ng-model="prepTime" placeholder="25 mins" />
 					</div>
 				</div>
-				<div class="field">						  	
+				<div class="field">
 					<label>Cooking Time</label>
 					<div class="ui input">
 						<input type="text" ng-model="cookingTime" placeholder="1 hr 25 mins" />
 					</div>
 				</div>
-				<div class="field">						  	
+				<div class="field">
 					<label>Calorie count</label>
 					<div class="ui input">
 						<input type="text" ng-model="calorieCount" placeholder="200 cal" />
 					</div>
-				</div>				
+				</div>
 				<div class="field">
 					<label>No. of servings</label>
 					<div class="ui input">
 						<input type="text" ng-model="noOfServings" placeholder="4">
 					</div>
-				</div>				
-			</div>			
+				</div>
+			</div>
 			<div class="ui fluid multiple search selection dropdown tags-dropdown" style="margin-top: 20px;">
 				<input type="hidden" class="tags-hdn-input" name="tags" value="">
 				<i class="dropdown icon"></i>
 				<input class="search">
 				<div class="default text">Tags</div>
 				<div class="menu">
-					
+
 				</div>
 			</div>
 			<div class="pure-u-1" style="padding-top: 20px;">
@@ -141,21 +141,21 @@
 										<img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/white-image.png">
 									</div>
 								</a>
-							</div>	
+							</div>
 					</div>
-				</div>				
-			</div>	
+				</div>
+			</div>
 			<div class="ui fluid input" style="padding-top: 10px;">
 				<input type="text" ng-model="recipeDescription" maxlength="200" placeholder="Describe your recipe in few words" />
-			</div>		
+			</div>
 		</form>
 	</div>
 </div>
-<div class="pure-g feed-box" style="margin-top: 50px;">	
+<div class="pure-g feed-box" style="margin-top: 50px;">
 	<div class="pure-u-1 pure-u-md-3-4 left-pane">
-		<div class="ui four doubling cards recipe-card-list">			
+		<div class="ui four doubling cards recipe-card-list">
 			<div class="card recipe-item" ng-repeat="i in getNumber(number) track by $index">
-				<a class="ui top attached label grayLighter">
+				<a class="ui top attached label" style="background-color: #e8e8e861;">
 					<b class="bold">Indian</b>
 					<span class="right floated bold">25 m</span>
 				</a>
@@ -166,7 +166,7 @@
 					<div class="header">Rajma Chawal</div>
 					<div class="meta"><a><small>Nikita Gokhale</small></a></div>
 					<div class="description">
-						<p>A traditional punjabi dish.A traditional punjabi dish.</p> 
+						<p>A traditional punjabi dish.A traditional punjabi dish.</p>
 					</div>
 				</div>
 				<div class="extra content">
@@ -181,20 +181,20 @@
 					<span class="right floated">
 						<span style="font-size: 12px;font-family: sans-serif !important;color:green;border: 1px solid green;padding: 0 3px;">&#9679;</span>
 						<!-- <span style="color:red;border: 1px solid red;padding: 0 3px;">&#9679;</span> -->
-						<span class="fg-black" style="font-size: 12px;font-family: sans-serif !important;margin-left: 5px;padding: 1px 4px;border: 1px solid #000;border-radius: 100%;">V</span>						
+						<span class="fg-black" style="font-size: 12px;font-family: sans-serif !important;margin-left: 5px;padding: 1px 4px;border: 1px solid #000;border-radius: 100%;">V</span>
 					</span>
 				</div>
-				<div class="extra content">						
+				<div class="extra content">
 					<span class="spice-box left floated">
 						<i class="fire icon"></i>
 						<i class="fire icon"></i>
-						<i class="fire icon"></i>						
-					</span>	
+						<i class="fire icon"></i>
+					</span>
 					<span class="right floated">
 						<i class="fa fa-utensils" style="padding-right: 7px;"></i> 4
-					</span>				
+					</span>
 				</div>
-			</div>			
+			</div>
 		</div>
 	</div>
 	<!-- <div class="pure-u-1 pure-u-md-1-4">&nbsp;</div> -->
@@ -207,21 +207,104 @@
 		</div>
 		<div style="padding: 15px 0 10px 20px;">
 			<p class="featured-tags-title">featured recipes</p>
-        </div>
-        <div class="featured-recipes" style="padding: 0px 20px;">
-            <ul>
-                <li>
-                    <div class="round-count"><span class="upvotecnt">4.5</span></div>
-                    <div class="desc">
-                        <p class="recipe-title margin0">
-                            <a href="http://localhost/soapbox/Thread/1039">Chocolate cake</a>
-                        </p>
-                        <p class="recipe-user margin0">
-                            <a href="sipps7">Nikita Gokhale</a>
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </div>		
+		</div>
+		<div class="featured-recipes" style="padding: 0px 20px;">
+			<ul>
+				<li>
+					<div class="round-count"><span class="upvotecnt">4.5</span></div>
+					<div class="desc">
+						<p class="recipe-title margin0">
+							<a href="http://localhost/soapbox/Thread/1039">Chocolate cake</a>
+						</p>
+						<p class="recipe-user margin0">
+							<a href="sipps7">Nikita Gokhale</a>
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
+</div>
+
+<div class="ui small modal user-profile-signup-modal">
+	<div class="header bg-darkCyan">
+		<span class="fg-white light">Welcome to What's Cooking</span><br>
+		<span class="fg-white">
+			<small class="light" style="font-size: 70%;">
+				Fill your details to get a personalized recommendation of recipes.
+			</small>
+		</span>
+	</div>
+	<div class="scrolling content">
+		<form class="ui form">			
+			<div class="two fields">
+				<div class="field">					
+					<div class="ui input">
+						<input type="text" placeholder="City" ng-model="userPofile.city">
+				  	</div>					
+				</div>
+				<div class="field">
+					<div class="ui input">
+						<input type="text" placeholder="State" ng-model="userPofile.state">
+					</div>					
+				</div>
+			</div>			
+			<div class="two fields">
+				<div class="field">
+					<div class="ui input">
+						<input type="text" placeholder="Country" ng-model="userPofile.country">
+					</div>					
+				</div>				
+				<div class="field">					
+					<div class="ui buttons">
+						<button class="ui icon fluid button male male-gender-btn">
+							<i class="male icon"></i> Male
+						</button>
+						<div class="or"></div>
+						<button class="ui icon fluid button female-gender-btn">
+							<i class="female icon"></i> Female
+						</button>						
+					</div>										
+				</div>	
+			</div>				
+			<div class="two fields">
+				<div class="field">
+					<label>Preferred Cuisine</label>
+					<select class="ui fluid dropdown modal-cuisine-dropdown">
+						<option value="">Cuisines</option>
+					</select>
+				</div>
+				<div class="field">
+					<label>Type</label>
+					<select name="food-group" ng-model="userPofile.foodGrpVal" multiple="" class="ui fluid dropdown food-group-dropdown">
+						<option value="">Food Group</option>
+						<option value="v">Vegetarian</option>
+						<option value="n">Non Vegetarian</option>
+						<option value="ve">Vegan</option>
+					</select>
+				</div>				
+			</div>
+			<div class="two fields">
+				<div class="field">
+					<label class="flt-left" style="padding: 7px 5px 0 0;">Spiceness</label>
+					<div class="spiciness-rate-box" style="padding-top: 0px;">
+						<input type="radio" id="spicy5" ng-model="userPofile.spiciness" name="spiciness" value="5"><label class="full" for="spicy5" title="Extremely spicy"></label>
+						<input type="radio" id="spicy4" ng-model="userPofile.spiciness" name="spiciness" value="4"><label class="full" for="spicy4" title="Very spicy"></label>
+						<input type="radio" id="spicy3" ng-model="userPofile.spiciness" name="spiciness" value="3"><label class="full" for="spicy3" title="Medium"></label>
+						<input type="radio" id="spicy2" ng-model="userPofile.spiciness" name="spiciness" value="2"><label class="full" for="spicy2" title="Little spicy"></label>
+						<input type="radio" id="spicy1" ng-model="userPofile.spiciness" name="spiciness" value="1"><label class="full" for="spicy1" title="No spicy"></label>
+					</div>
+				</div>
+				<div class="field">
+					<div class="ui input">
+						<input type="text" placeholder="Calorie restriction" ng-model="userPofile.calorieRestriction">
+					</div>					
+				</div>												
+			</div>
+		</form>
+	</div>
+	<div class="actions">
+		<div class="ui black deny button light">Later</div>
+    	<div class="ui positive button">Save</div>    	    	
+  	</div>
 </div>
