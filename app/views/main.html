@@ -235,28 +235,28 @@
 			</small>
 		</span>
 	</div>
-	<div class="scrolling content">
+	<div class="content">
 		<form class="ui form">			
 			<div class="two fields">
 				<div class="field">					
 					<div class="ui input">
-						<input type="text" placeholder="City" ng-model="userPofile.city">
+						<input type="text" placeholder="City" ng-model="signUpModalProfile.city">
 				  	</div>					
 				</div>
 				<div class="field">
 					<div class="ui input">
-						<input type="text" placeholder="State" ng-model="userPofile.state">
+						<input type="text" placeholder="State" ng-model="signUpModalProfile.state">
 					</div>					
 				</div>
 			</div>			
 			<div class="two fields">
 				<div class="field">
 					<div class="ui input">
-						<input type="text" placeholder="Country" ng-model="userPofile.country">
+						<input type="text" placeholder="Country" ng-model="signUpModalProfile.country">
 					</div>					
 				</div>				
 				<div class="field">					
-					<div class="ui buttons">
+					<div class="ui buttons gender-btn-group">
 						<button class="ui icon fluid button male male-gender-btn">
 							<i class="male icon"></i> Male
 						</button>
@@ -276,7 +276,7 @@
 				</div>
 				<div class="field">
 					<label>Type</label>
-					<select name="food-group" ng-model="userPofile.foodGrpVal" multiple="" class="ui fluid dropdown food-group-dropdown">
+					<select name="food-group" ng-model="modalFoodGrpVal" multiple="" class="ui fluid dropdown food-group-dropdown">
 						<option value="">Food Group</option>
 						<option value="v">Vegetarian</option>
 						<option value="n">Non Vegetarian</option>
@@ -288,16 +288,16 @@
 				<div class="field">
 					<label class="flt-left" style="padding: 7px 5px 0 0;">Spiceness</label>
 					<div class="spiciness-rate-box" style="padding-top: 0px;">
-						<input type="radio" id="spicy5" ng-model="userPofile.spiciness" name="spiciness" value="5"><label class="full" for="spicy5" title="Extremely spicy"></label>
-						<input type="radio" id="spicy4" ng-model="userPofile.spiciness" name="spiciness" value="4"><label class="full" for="spicy4" title="Very spicy"></label>
-						<input type="radio" id="spicy3" ng-model="userPofile.spiciness" name="spiciness" value="3"><label class="full" for="spicy3" title="Medium"></label>
-						<input type="radio" id="spicy2" ng-model="userPofile.spiciness" name="spiciness" value="2"><label class="full" for="spicy2" title="Little spicy"></label>
-						<input type="radio" id="spicy1" ng-model="userPofile.spiciness" name="spiciness" value="1"><label class="full" for="spicy1" title="No spicy"></label>
+						<input type="radio" id="modal_spicy5" ng-model="signUpModalProfile.spiciness" name="spiciness" value="5"><label class="full" for="modal_spicy5" title="Extremely spicy"></label>
+						<input type="radio" id="modal_spicy4" ng-model="signUpModalProfile.spiciness" name="spiciness" value="4"><label class="full" for="modal_spicy4" title="Very spicy"></label>
+						<input type="radio" id="modal_spicy3" ng-model="signUpModalProfile.spiciness" name="spiciness" value="3"><label class="full" for="modal_spicy3" title="Medium"></label>
+						<input type="radio" id="modal_spicy2" ng-model="signUpModalProfile.spiciness" name="spiciness" value="2"><label class="full" for="modal_spicy2" title="Little spicy"></label>
+						<input type="radio" id="modal_spicy1" ng-model="signUpModalProfile.spiciness" name="spiciness" value="1"><label class="full" for="modal_spicy1" title="No spicy"></label>
 					</div>
 				</div>
 				<div class="field">
 					<div class="ui input">
-						<input type="text" placeholder="Calorie restriction" ng-model="userPofile.calorieRestriction">
+						<input type="text" placeholder="Calorie restriction" ng-model="signUpModalProfile.calorieRestriction">
 					</div>					
 				</div>												
 			</div>
@@ -305,6 +305,6 @@
 	</div>
 	<div class="actions">
 		<div class="ui black deny button light">Later</div>
-    	<div class="ui positive button">Save</div>    	    	
+    	<div class="ui positive button save-signup-profile-btn" ng-click="saveSignupUserProfile(signUpModalProfile)">Save</div>    	    	
   	</div>
 </div>

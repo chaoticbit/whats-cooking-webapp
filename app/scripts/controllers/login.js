@@ -7,7 +7,7 @@
  * # LoginCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, $scope, $location, localStorageService, AuthenticationService) {
+angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, $scope, $cookies, $location, localStorageService, AuthenticationService) {
 
     if($rootScope.isLoggedIn) {
         $location.path('/');
@@ -27,6 +27,7 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
         AuthenticationService.processLogin(login).then(function(data) {
             if(data.success) {
                 localStorageService.set('userProfile', data.results);
+                $cookies.put('new-access', true);
                 $rootScope.isLoggedIn = true;
                 $location.path('/');
             } else {
@@ -54,6 +55,7 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
         AuthenticationService.processSignup(o).then(function(data) {                     
             if(data.success) {
                 localStorageService.set('userProfile', data.results);
+
                 $rootScope.isLoggedIn = true;
                 $location.path('/');
             } else {

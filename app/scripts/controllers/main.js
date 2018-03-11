@@ -7,9 +7,19 @@
  * # MainCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $http, $timeout, localStorageService) {	
+angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $cookies, $http, $timeout, localStorageService) {	
     
     $rootScope.userProfile = localStorageService.get('userProfile');
+
+    if(!$cookies.get('new-access')) {
+        $('.user-profile-signup-modal').modal({
+            closable: false, 
+            onApprove: function () {
+                return false
+            }
+          }).modal('show');
+        $cookies.remove('new-access');
+    }
 
     $('body').attr('ondragstart', 'return false');
     $('body').attr('draggable', 'false');
@@ -47,7 +57,9 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 
 	$scope.selectedCuisine = '';
 	$scope.cookingTime = '';
-	$scope.spiciness = 1;	
+    $scope.spiciness = 1;	
+    $scope.signUpModalProfile = {};
+    $scope.signUpModalProfile.spiciness = 1;
 	$scope.listOfIngredients = [{
 		qty: '4 pieces',
 		name: 'Ginger',
@@ -125,29 +137,34 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		filterRemoteData: false,
 		saveRemoteData:false,
 		maxSelections: 5
-    });	
+    });	    
 
-    $('.user-profile-signup-modal').modal('show');
+    function computeFoodGroupValue(foodGroup) {
+        var computed;
+        if(foodGroup.length == 1) {			
+			if (foodGroup[0] == 'v') {
+				computed = '100';
+			} else if (foodGroup[0] == 'n') {
+				computed = '010';
+			} else if (foodGroup[0] == 've') {
+				computed = '001';
+			}
+		} else if(foodGroup.length == 2) {
+			if (foodGroup[0] == 'v' && foodGroup[1] == 'n') {
+				computed = '110';
+			} else if (foodGroup[0] == 'v' && foodGroup[1] == 've') {
+				computed = '101';
+			} 
+		} else if (foodGroup.length == 3) {
+			computed = '111';
+        }
+        return computed;
+    }
 
 	$('.post-recipe-btn').click(function() {
 		$scope.recipeFoodGroup = -1;
-		if($scope.foodGrpVal.length == 1) {			
-			if ($scope.foodGrpVal[0] == 'v') {
-				$scope.recipeFoodGroup = '100';
-			} else if ($scope.foodGrpVal[0] == 'n') {
-				$scope.recipeFoodGroup = '010';
-			} else if ($scope.foodGrpVal[0] == 've') {
-				$scope.recipeFoodGroup = '001';
-			}
-		} else if($scope.foodGrpVal.length == 2) {
-			if ($scope.foodGrpVal[0] == 'v' && $scope.foodGrpVal[1] == 'n') {
-				$scope.recipeFoodGroup = '110';
-			} else if ($scope.foodGrpVal[0] == 'v' && $scope.foodGrpVal[1] == 've') {
-				$scope.recipeFoodGroup = '101';
-			} 
-		} else if ($scope.foodGrpVal.length == 3) {
-			$scope.recipeFoodGroup = '111';
-		}
+        
+        $scope.recipeFoodGroup = computeFoodGroupValue($scope.foodGrpVal);
 
 		var cleanIngredientsList = [];
 		var listTag = '<ol>';
@@ -310,6 +327,30 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     function processIngredientSearch() {
         alert($('.ing-search-hdn-input').val());
     }
+
+    $('.male-gender-btn').on('click', function() {
+        $scope.userProfile.gender = 'male';
+        $(this).attr('data-selected', true);
+        $('.female-gender-btn').removeClass('female-gender-selected');
+        $(this).addClass('male-gender-selected');
+        $('.female-gender-btn').attr('data-selected', false);        
+    });
+    $('.female-gender-btn').on('click', function() {   
+            $scope.userProfile.gender = 'female';
+            $(this).attr('data-selected', true);
+            $('.male-gender-btn').removeClass('male-gender-selected');
+            $(this).addClass('female-gender-selected');
+            $('.male-gender-btn').attr('data-selected', false);
+    
+    });
+
+    $scope.saveSignupUserProfile = function(signUpModalProfile) {
+        $scope.signUpModalProfile.foodGroup = computeFoodGroupValue($scope.modalFoodGrpVal);
+        signUpModalProfile.preferredCuisine = $('.modal-cuisine-dropdown .text').html();
+        console.log(signUpModalProfile);        
+        $('.save-signup-profile-btn').addClass('icon loading');
+    };
+
 
     if (screen.width < 480 || screen.width < 800) {
         var h = screen.height;
