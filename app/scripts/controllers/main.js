@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $cookies, $http, $timeout, SettingService, localStorageService) {	
+angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $cookies, $http, $timeout, SettingService, UtilService, localStorageService) {	
     
     $rootScope.userProfile = localStorageService.get('userProfile');
 
@@ -53,7 +53,31 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 
 	$http.get('http://localhost/soapbox-api/Ajax_Controller/search_tags/').then(function(res) {
 		$scope.tags = res.results;		
-	});
+    });
+    
+    $scope.listOfCuisines = [];
+    UtilService.getCuisines().then(function(data) {
+        if(data.success) {
+            _.forEach(data.results, function(value, key) {
+                $scope.listOfCuisines.push({
+                    'name': value.name,
+                    'value': value.srno
+                });
+            });            
+            $('.modal-cuisine-dropdown').dropdown({
+                values: $scope.listOfCuisines,        
+                placeholder: 'Cuisines',
+                onChange: function(value) {
+                    $scope.signUpModalProfile.pref_cuisine = value;
+                }
+            });
+        }
+    }, function(error) {
+                          
+    }).catch(function(e) {
+                          
+    }).finally(function() {
+    }); 
 
 	$scope.selectedCuisine = '';
 	$scope.cookingTime = '';
@@ -118,16 +142,10 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		useLabels: false
     });	
     $('.ing-search-dropdown').dropdown();
-	$('.cuisine-dropdown, .modal-cuisine-dropdown').dropdown({
-		values: [
-			{ name: 'Italian'},
-			{ name: 'Mediterrian'},
-			{ name: 'Indian'},
-			{ name: 'American'},
-			{ name: 'French'}
-		],
+	$('.cuisine-dropdown').dropdown({		
 		placeholder: 'Cuisines'
-	});	
+    });	
+
 	$('.tags-dropdown').dropdown({		
 		allowAdditions: true,
 		action: 'combo',
@@ -354,8 +372,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     };
 
     $scope.saveSignupUserProfile = function(signUpModalProfile) {
-        $scope.signUpModalProfile.food_group = computeFoodGroupValue($scope.modalFoodGrpVal);
-        signUpModalProfile.pref_cuisine = $('.modal-cuisine-dropdown .text').html();
+        $scope.signUpModalProfile.food_group = computeFoodGroupValue($scope.modalFoodGrpVal);        
         signUpModalProfile.profile_imagepath = '';
         $('.save-signup-profile-btn').addClass('icon loading');
         SettingService.saveUserProfile(signUpModalProfile).then(function(data) {
@@ -373,7 +390,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                               
         }).finally(function() {
 
-        });
+        });                
     };    
 
     if (screen.width < 480 || screen.width < 800) {

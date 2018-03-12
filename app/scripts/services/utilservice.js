@@ -8,12 +8,20 @@
  * Service in the whatsCookingApp.
  */
 angular.module('whatsCookingApp').service('UtilService', function ($rootScope, $http, ApiConfig) {    
-    var token = $rootScope.userProfile.token;
-
+    var token = $rootScope.userProfile.token;    
+    
     this.getCuisines = function() {
         return $http({
-            method: 'GET',
+            method: 'POST',
             url: ApiConfig.API_URL + '/Util/getCuisines',            
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
+        });
+    }
+
+    this.getUserProfile = function() {
+        return $http({
+            method: 'GET',
+            url: ApiConfig.API_URL + '/Authentication/getData',            
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
         });
     }

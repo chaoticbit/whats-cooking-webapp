@@ -270,8 +270,9 @@
 			<div class="two fields">
 				<div class="field">
 					<label>Preferred Cuisine</label>
-					<select class="ui fluid dropdown modal-cuisine-dropdown" required>
-						<option value="">Cuisines</option>
+					<select class="ui fluid search selection dropdown modal-cuisine-dropdown" required id="modal-cuisine-dropdown">
+                        <option value="">Cuisines</option>
+                        <!-- <option ng-repeat="item in listOfCuisines" value="{{item.srno}}">{{item.name}}</option> -->
 					</select>
 				</div>
 				<div class="field">
