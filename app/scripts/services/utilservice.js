@@ -2,12 +2,19 @@
 
 /**
  * @ngdoc service
- * @name whatsCookingApp.utilservice
+ * @name whatsCookingApp.UtilService
  * @description
- * # utilservice
+ * # UtilService
  * Service in the whatsCookingApp.
  */
-angular.module('whatsCookingApp')
-  .service('utilservice', function () {
-    // AngularJS will instantiate a singleton by calling "new" on this function
-  });
+angular.module('whatsCookingApp').service('UtilService', function ($rootScope, $http, ApiConfig) {    
+    var token = $rootScope.userProfile.token;
+
+    this.getCuisines = function() {
+        return $http({
+            method: 'GET',
+            url: ApiConfig.API_URL + '/Util/getCuisines',            
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
+        });
+    }
+});

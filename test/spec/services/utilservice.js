@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: utilservice', function () {
+describe('Service: UtilService', function () {
 
   // load the service's module
   beforeEach(module('whatsCookingApp'));
 
   // instantiate service
-  var utilservice;
-  beforeEach(inject(function (_utilservice_) {
-    utilservice = _utilservice_;
+  var UtilService;
+  beforeEach(inject(function (_UtilService_) {
+    UtilService = _UtilService_;
   }));
 
   it('should do something', function () {
-    expect(!!utilservice).toBe(true);
+    expect(!!UtilService).toBe(true);
   });
 
 });
