@@ -19,7 +19,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             }
           }).modal('show');      
         $cookies.remove('new-access');  
-    }
+    }    
 
     $('body').attr('ondragstart', 'return false');
     $('body').attr('draggable', 'false');
@@ -55,17 +55,17 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		$scope.tags = res.results;		
     });
     
-    $scope.listOfCuisines = [];
+    $rootScope.listOfCuisines = [];
     UtilService.getCuisines().then(function(data) {
         if(data.success) {
             _.forEach(data.results, function(value, key) {
-                $scope.listOfCuisines.push({
+                $rootScope.listOfCuisines.push({
                     'name': value.name,
                     'value': value.srno
                 });
             });            
             $('.modal-cuisine-dropdown').dropdown({
-                values: $scope.listOfCuisines,        
+                values: $rootScope.listOfCuisines,        
                 placeholder: 'Cuisines',
                 onChange: function(value) {
                     $scope.signUpModalProfile.pref_cuisine = value;
@@ -136,7 +136,9 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     // });
      
 	$('.headbar-user-dropdown').dropdown();
-    
+    $('.cuisine-nav-dropdown').dropdown({
+        action: 'nothing'
+    });
 	$('.user-action-dropdown').dropdown();
 	$('.food-group-dropdown, .modal-food-group-dropdown').dropdown({
 		useLabels: false
