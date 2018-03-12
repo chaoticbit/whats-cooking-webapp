@@ -3,7 +3,7 @@
 		<div style="padding: 10px 20px;">
 			<!-- <p style="font-size: 23px;font-weight: 300;">Let everybody know what's cooking.</p>			 -->
 			<div class="ui fluid input">
-				<input type="text" ng-model="title" placeholder="Title" class="recipe-title-input" />
+				<input type="text" required ng-model="title" placeholder="Title" class="recipe-title-input" />
 			</div>
 			<table class="ui small table custom-table">
 				<thead>
@@ -38,14 +38,14 @@
 			<div class="three fields">
 				<div class="field">
 				  	<label>Cuisines</label>
-				  	<select class="ui fluid dropdown cuisine-dropdown">
+				  	<select required class="ui fluid search selection dropdown cuisine-dropdown">
 						<option value="">Cuisines</option>
 
 					</select>
 				</div>
 				<div class="field">
 					<label>Type</label>
-					<select name="food-group" ng-model="foodGrpVal" multiple="" class="ui fluid dropdown food-group-dropdown">
+					<select name="food-group" required ng-model="foodGrpVal" multiple="" class="ui fluid dropdown food-group-dropdown">
 						<option value="">Food Group</option>
 						<option value="v">Vegetarian</option>
 						<option value="n">Non Vegetarian</option>
@@ -67,25 +67,25 @@
 				<div class="field">
 					<label>Prepartion Time</label>
 					<div class="ui input">
-						<input type="text" ng-model="prepTime" placeholder="25 mins" />
+						<input type="text" required ng-model="prepTime" placeholder="25 mins" />
 					</div>
 				</div>
 				<div class="field">
 					<label>Cooking Time</label>
 					<div class="ui input">
-						<input type="text" ng-model="cookingTime" placeholder="1 hr 25 mins" />
+						<input type="text" required ng-model="cookingTime" placeholder="1 hr 25 mins" />
 					</div>
 				</div>
 				<div class="field">
 					<label>Calorie count</label>
 					<div class="ui input">
-						<input type="text" ng-model="calorieCount" placeholder="200 cal" />
+						<input type="text" required ng-model="calorieCount" placeholder="200 cal" />
 					</div>
 				</div>
 				<div class="field">
 					<label>No. of servings</label>
 					<div class="ui input">
-						<input type="text" ng-model="noOfServings" placeholder="4">
+						<input type="text" required ng-model="noOfServings" placeholder="4">
 					</div>
 				</div>
 			</div>

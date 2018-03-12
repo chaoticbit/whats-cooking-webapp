@@ -71,6 +71,13 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                     $scope.signUpModalProfile.pref_cuisine = value;
                 }
             });
+            $('.cuisine-dropdown').dropdown({
+                values: $rootScope.listOfCuisines,        
+                placeholder: 'Cuisines',
+                onChange: function(value) {
+                    $scope.selectedCuisine = value;
+                }
+            });
         }
     }, function(error) {
                           
@@ -143,10 +150,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 	$('.food-group-dropdown, .modal-food-group-dropdown').dropdown({
 		useLabels: false
     });	
-    $('.ing-search-dropdown').dropdown();
-	$('.cuisine-dropdown').dropdown({		
-		placeholder: 'Cuisines'
-    });	
+    $('.ing-search-dropdown').dropdown();	
 
 	$('.tags-dropdown').dropdown({		
 		allowAdditions: true,
@@ -190,7 +194,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		var cleanIngredientsList = [];
 		var listTag = '<ol>';
 		for(var i = 0; i < $scope.listOfIngredients.length; i++) {
-			cleanIngredientsList[i] = $scope.listOfIngredients[i].name;					
+			cleanIngredientsList[i] = ($scope.listOfIngredients[i].name).toLowerCase();					
 			listTag += '<li>' + $scope.listOfIngredients[i].qty + ' ' + $scope.listOfIngredients[i].name + ' ' + $scope.listOfIngredients[i].notes + '</li>';		 
 		}
 		listTag += '</ol>';
@@ -198,7 +202,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		console.log('Clean ing list ' + cleanIngredientsList);
 		console.log(listTag);		
 		console.log($('.editable').html());
-		console.log('Cuisine ' + $('.cuisine-dropdown .text').html());		
+		console.log('Cuisine ' + $scope.selectedCuisine);		
 		console.log('Food group ' + $scope.recipeFoodGroup);
 		console.log('Spiciness ' + $scope.spiciness);
 		console.log('Prep time ' + $scope.prepTime);
