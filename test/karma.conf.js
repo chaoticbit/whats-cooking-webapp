@@ -34,6 +34,7 @@ module.exports = function(config) {
       'bower_components/medium-editor/dist/js/medium-editor.js',
       'bower_components/lodash/lodash.js',
       'bower_components/angular-local-storage/dist/angular-local-storage.js',
+      'bower_components/ng-file-upload/ng-file-upload.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
