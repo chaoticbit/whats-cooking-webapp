@@ -163,37 +163,7 @@ body {
         
         .toggle-search-btn.mobile-btn {
             margin: 9px 7px;
-        }
-        .ingredient-search-filter {
-            padding: 0px !important;
-            border-bottom: 1px solid #eae9ed;
-            background: #ffffff;
-            border-radius: 4px;
-            .label1 {
-                font-size: 13px;
-                border-radius: 4px 0 0 4px !important;
-                display: block;
-                padding: 0 10px;
-                background-color: #f1f1f1;
-                line-height: 2.9;
-                box-shadow: 1px 0 1px -2px rgba(0, 0, 0, 0.9);
-                height: 100%;
-            }
-            .ing-search-input-div {
-                .ing-search-input {
-                    background: transparent;
-                    font-size: 14px;
-                    outline: 0 !important;
-                    border-radius: 0 4px 4px 0 !important;
-                    border: 1px solid transparent;
-                    float: left;
-                    padding: 7px 7px 7px 7px;
-                    margin-top: 3px;
-                    font-family: 'Open Sans';
-                    width: 183px;
-                }
-            }
-        }
+        }        
 
         .search-dropdown {
             display: none;
@@ -751,8 +721,56 @@ color: #eeeeee !important;
 
 .feed-box {
 	.left-pane {
+        .ingredient-search-box {
+            padding: 20px 20px 10px;
+            .ingredient-search-filter {
+                padding: 0px !important;
+                border: 1px solid #eae9ed;
+                background: #ffffff;
+                border-radius: 4px;
+                margin-top: 10px;
+                height: 40px;
+                .label1 {
+                    font-size: 13px;
+                    border-radius: 4px 0 0 4px !important;
+                    display: block;
+                    padding: 0 10px;
+                    background-color: #f1f1f1;
+                    line-height: 2.9;
+                    box-shadow: 1px 0 1px -2px rgba(0, 0, 0, 0.9);
+                    height: 100%;
+                }
+                .ing-search-input-div {
+                    .ing-search-input {
+                        background: transparent;
+                        font-size: 14px;
+                        outline: 0 !important;
+                        border-radius: 0 4px 4px 0 !important;
+                        border: 1px solid transparent;
+                        float: left;
+                        padding: 7px 7px 7px 7px;
+                        margin-top: 3px;
+                        font-family: 'Open Sans';
+                        width: 183px;
+                    }
+                }
+            }
+        }        
+        .ingredient-search-box.fixed {
+            position: fixed !important;
+            z-index: 9999 !important;
+            background: #fff !important;
+            box-shadow: 0px 0 7px -3px rgba(0, 0, 0, 0.9) !important;
+            border: 1px solid rgba(0,0,0,0.1) !important;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            perspective: 1000;
+            -webkit-perspective: 1000;            
+        }
 		.recipe-card-list {			
-			padding: 20px;			
+			padding: 10px 20px 20px;			
 			.content {
 				padding: 15px 10px 5px !important;
 				.header {

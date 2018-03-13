@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $cookies, $http, $timeout, SettingService, UtilService, localStorageService) {	
+angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $window, $cookies, $http, $timeout, SettingService, UtilService, localStorageService) {	
     
     $rootScope.userProfile = localStorageService.get('userProfile');
 
@@ -26,7 +26,15 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $('body').attr('ondragenter', 'event.dataTransfer.dropEffect=\'none\'; event.stopPropagation(); event.preventDefault();');
     $('body').attr('ondragenter', '');
     $('body').attr('ondragover', 'event.dataTransfer.dropEffect=\'none\';event.stopPropagation(); event.preventDefault();');
-    $('body').attr('ondrop', 'event.dataTransfer.dropEffect=\'none\';event.stopPropagation(); event.preventDefault();');
+    $('body').attr('ondrop', 'event.dataTransfer.dropEffect=\'none\';event.stopPropagation(); event.preventDefault();');    
+
+    // $(window).on('scroll', function(){
+    //     if ($(this).scrollTop() > 200) {
+    //         $('.ingredient-search-box').addClass('fixed pure-u-md-3-4');            
+    //     } else {
+    //         $('.ingredient-search-box').removeClass('fixed pure-u-md-3-4');            
+    //     }
+    // });
 
 	var editor = new MediumEditor('.editable', {
 		imageDragging: false,
