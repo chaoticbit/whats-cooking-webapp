@@ -7,7 +7,15 @@
  * # RecipeService
  * Service in the whatsCookingApp.
  */
-angular.module('whatsCookingApp')
-  .service('RecipeService', function () {
-    // AngularJS will instantiate a singleton by calling "new" on this function
-  });
+angular.module('whatsCookingApp').service('RecipeService', function ($rootScope, $http, ApiConfig) {
+    var token = $rootScope.userProfile.token;
+
+    this.postNewRecipe = function(payload) {
+        return $http({
+            method: 'POST',
+            url: ApiConfig.API_URL + '/Recipe/new',
+            data: payload,
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}
+        });
+    };
+});
