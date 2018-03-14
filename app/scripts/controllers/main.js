@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $window, $cookies, $http, $timeout, SettingService, UtilService, localStorageService) {	
+angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $window, $cookies, $http, $timeout, ApiConfig, SettingService, UtilService, localStorageService, Upload) {	
     
     $rootScope.userProfile = localStorageService.get('userProfile');
 
@@ -54,6 +54,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		}
 	});
 
+    $scope.imagesAccepted = 6;
+    $scope.imagesUploaded = 0;
 	$scope.number = 10;
 	$scope.getNumber = function(num) {
     	return new Array(num);   
@@ -219,7 +221,48 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		console.log('Servings ' + $scope.noOfServings);
 		console.log($('.tags-hdn-input').val());
 		console.log('Description ' + $scope.recipeDescription);
-	});
+    });
+    
+    $scope.uploadedFilesList = [];
+
+    $scope.uploadFiles = function (files) {
+        if($scope.imagesUploaded <= 6) {
+            if (files && files.length) {   
+                _.forEach(files, function() {
+                    $scope.imagesUploaded += 1;                
+                });                                   
+                Upload.upload({
+                    url: ApiConfig.API_URL + '/Util/upload',
+                    data: {
+                        token: $rootScope.userProfile.token,
+                        file: files
+                    }
+                }).then(function(data) {
+                    if(data.success) {
+                        $('.placeholder-image-upload-box').hide();
+                        // if($scope.uploadedFilesList.length == 0) {
+                        //     for(var i = 0; i < data.files.length; i++) {
+                        //         $scope.uploadedFilesList[i] = data.files[i];
+                        //     }
+                        // } else {
+                        for(var i = 0, j = $scope.uploadedFilesList.length; i < data.files.length; i++,j++) {
+                            $scope.uploadedFilesList[j] = data.files[i];
+                        }
+                        //}
+                        $('.uploaded-image-list').show();
+                        console.log($scope.uploadedFilesList);
+                        
+                    }                                                                                
+                }, function(error) {
+                                        
+                }).catch(function(e) {
+                                        
+                }).finally(function() {
+
+                });                            
+            }
+        }
+    }
 
 	$rootScope.toggleNewRecipeBox = function(val) {
 		if(val == 1) { //SlideDown

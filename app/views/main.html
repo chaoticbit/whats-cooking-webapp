@@ -1,4 +1,4 @@
-<div class="pure-g new-recipe-box" style="display: none;">
+<div class="pure-g new-recipe-box" style="display: block;">
 	<div class="pure-u-1 pure-u-md-13-24">
 		<div style="padding: 10px 20px;">
 			<!-- <p style="font-size: 23px;font-weight: 300;">Let everybody know what's cooking.</p>			 -->
@@ -108,29 +108,41 @@
 						</div>
 					</div>
 					<div class="pure-u-1 pure-u-md-5-8 upload-photos-box">
-                        <div class="ui card placeholder-image-upload-box">
+                        <div class="ui card placeholder-image-upload-box"
+                            ngf-select="uploadFiles($files)"
+                             ngf-drop="uploadFiles($files)"
+                             ngf-drag-over-class="'dragover'"
+                             ngf-multiple="true"
+                             ngf-pattern="'image/*'"
+                             ngf-max-files="{{imagesAccepted - imagesUploaded}}"                             
+                        >
                             <div class="ui small image">
                                 <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/white-image.png">
                                 <p class="text-center">Upload upto 6 images</p>
 							</div>
                         </div>
-						<!-- <div class="ui three cards">
-							<a class="red card">
-								<div class="image">
-									<img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/white-image.png">
+						<div class="ui three cards uploaded-image-list" style="padding-top: 7px;">
+							<div class="black card" ng-repeat="item in uploadedFilesList" style="height: 97.3px;float:left !important;">
+								<div class="image" style="height: 97.3px;">
+                                    <img src="http://localhost/whats-cooking-api/{{item}}" style="height: 100%;">									
 								</div>
-							</a>
-							<a class="orange card">
-								<div class="image">
-									<img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/white-image.png">
-								</div>
-							</a>
-							<a class="yellow card">
-								<div class="image">
-									<img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/white-image.png">
-								</div>
-							</a>
-						</div> -->
+                            </div>	                                                     	
+                            <div class="black card placeholder-image-upload-box-1"
+                                ngf-select="uploadFiles($files)"
+                                ngf-drop="uploadFiles($files)"
+                                ngf-drag-over-class="'dragover'"
+                                ngf-multiple="true"
+                                ngf-pattern="'image/*'"
+                                ngf-max-files="{{imagesAccepted - imagesUploaded}}"
+                                ng-hide="imagesUploaded == 6"
+                                style="max-height: 97.3px;float:left !important;"
+                            >  
+                            <div style="height: 70px;text-align:center;">
+                                <img src="https://semantic-ui.com/images/wireframe/white-image.png" style="max-height: 100%;height: auto;">
+                            </div>                                                     
+                            <small class="text-center">{{imagesAccepted - imagesUploaded}} remaining</small>
+                            </div>
+						</div>
 						<!-- <div class="ui three cards" style="margin-top: 0;">
                             <a class="red card">
                                 <div class="image">

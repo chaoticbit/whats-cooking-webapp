@@ -729,6 +729,12 @@ color: #eeeeee !important;
                 margin: auto;
             }
         }
+        .uploaded-image-list {
+            display: none;
+            .card {
+                margin: 7px 1em !important; 
+            }
+        }
     }	
 }
 
