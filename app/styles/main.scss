@@ -615,6 +615,10 @@ color: #eeeeee !important;
     -moz-transition: background 0.2s ease-in-out;
 }
 
+.selected-as-cover {
+    box-shadow: 0px 0px 1px 4px #000 !important;
+}
+
 .new-recipe-box {
 	margin-top: 60px;
 	height: 87vh;

@@ -97,6 +97,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     }); 
 
     $scope.recipes = [];
+    $scope.recipeCoverImage = '';
 
 	$scope.selectedCuisine = '';
 	$scope.cookingTime = '';
@@ -200,6 +201,13 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         return computed;
     }
 
+    $(document).on('click', '.uploaded-image-card', function() {
+        $('.uploaded-image-list').find('.black.card').removeClass('selected-as-cover');              
+        $(this).closest('.black.card').addClass('selected-as-cover');              
+        var img = $(this).data('name');
+        $scope.recipeCoverImage = img;              
+    });
+
 	$('.post-recipe-btn').click(function() {
 		$scope.recipeFoodGroup = -1;
         
@@ -216,11 +224,14 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         _.forEach($scope.uploadedFilesList, function(value, key) {
             gallery[key] = $scope.uploadedFilesList[key].split('/')[2];
         });
+        var uploadedImages = gallery.join(',');
+        var ingredients = cleanIngredientsList.join(',');
         var newRecipeObject = {
             'title': $scope.title,
-            'ingredients': cleanIngredientsList,
+            'ingredients': ingredients,
             'html_ingredients_list': listTag,
             'preparation': $('.editable').html(),
+            'cover_imagepath': $scope.recipeCoverImage,
             'cuisine': $scope.selectedCuisine,
             'food_group': $scope.recipeFoodGroup,
             'spiciness': $scope.spiciness,
@@ -230,14 +241,18 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             'no_of_servings': $scope.noOfServings,
             'tags_array': $('.tags-hdn-input').val(),
             'description': $scope.recipeDescription,
-            'uploaded_images': gallery,
-            'uploaded_video': $scope.uploadedVideo.split('/')[2]
+            'uploaded_images': uploadedImages,
+            'uploaded_video': $scope.uploadedVideo.split('/')[2] || ''
         };
         
         RecipeService.postNewRecipe(newRecipeObject).then(function(data) {
             if(data.success) {
                 console.log(data.results);                
                 $scope.recipes.push(data.results);
+                $('.new-recipe-box').slideUp(function() {
+                    $('.feed-box').css('margin-top', '70px');
+                    $('body').removeClass('noscroll');			                    
+                });		
             }                            
         }, function(error) {
                               
@@ -564,4 +579,11 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             }
         });        
     }    
+}).filter('range', function() {
+    return function(input, total) {
+      total = parseInt(total);
+      for (var i=0; i<total; i++)
+        input.push(i);
+      return input;
+    };
 });

@@ -136,7 +136,7 @@
 							</div>
                         </div>
 						<div class="ui three cards uploaded-image-list" ng-show="imagesUploaded > 0" style="padding-top: 7px;">
-							<div class="black card" ng-repeat="item in uploadedFilesList" style="height: 97.3px;float:left !important;">
+							<div class="black card" ng-repeat="item in uploadedFilesList" style="cursor: pointer;height: 97.3px;float:left !important;">
 								<div class="image" style="height: 97.3px;">
                                     <i class="icon close remove-image-icon" data-name="{{item}}"></i>
                                     <img src="http://localhost/whats-cooking-api/{{item}}" class="uploaded-image-card" data-name="{{item.split('/')[2]}}" style="height: 100%;">									                                    
@@ -203,14 +203,15 @@
 				</div>
 				<div class="content">
 					<div class="header">{{item.title}}</div>
-					<div class="meta"><a><small>{{item.fullname}}}</small></a></div>
+					<div class="meta"><a><small>{{item.fullname}}</small></a></div>
 					<div class="description">
 						<p>{{item.description}}</p>
 					</div>
 				</div>
 				<div class="extra content">
                     <span class="left floated rating-span">
-                        <i class="icon star yellow" ng-repeat="rating in [] | range: item.rating"></i>                        
+                        <small ng-if="item.rating == 0">No ratings</small>
+                        <i ng-if="item.rating != 0" class="icon star yellow" ng-repeat="n in [] | range: item.rating"></i>                        
                     </span>
 					<!-- <span class="left floated">
 						<i class="thumbs up icon"></i>
