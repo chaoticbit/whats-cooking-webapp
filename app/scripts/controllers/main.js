@@ -208,22 +208,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 			listTag += '<li>' + $scope.listOfIngredients[i].qty + ' ' + $scope.listOfIngredients[i].name + ' ' + $scope.listOfIngredients[i].notes + '</li>';		 
 		}
         listTag += '</ol>';
-        var gallery = [];
-		// console.log('Title ' + $scope.title);
-		// console.log('Clean ing list ' + cleanIngredientsList);
-		// console.log(listTag);		
-		// console.log($('.editable').html());
-		// console.log('Cuisine ' + $scope.selectedCuisine);		
-		// console.log('Food group ' + $scope.recipeFoodGroup);
-		// console.log('Spiciness ' + $scope.spiciness);
-		// console.log('Prep time ' + $scope.prepTime);
-		// console.log('Cooking time ' + $scope.cookingTime);
-		// console.log('Calorie count ' + $scope.calorieCount);
-		// console.log('Servings ' + $scope.noOfServings);
-		// console.log($('.tags-hdn-input').val());
-        // console.log('Description ' + $scope.recipeDescription);
-        // console.log('uploaded images' + gallery);
-        // console.log('uploaded video' + $scope.uploadedVideo);
+        var gallery = [];	
         _.forEach($scope.uploadedFilesList, function(value, key) {
             gallery[key] = $scope.uploadedFilesList[key].split('/')[2];
         });
