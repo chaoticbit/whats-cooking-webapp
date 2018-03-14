@@ -151,6 +151,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     // $('.search-filter-dropdown').on('click', '.item', function() {
     //     toggleIngredientSearch();
     // });
+
+    $('.recipe-card-rating').rating('disable');
      
 	$('.headbar-user-dropdown').dropdown();
     $('.cuisine-nav-dropdown').dropdown({

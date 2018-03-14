@@ -157,24 +157,7 @@
                             </div>                                                     
                             <small class="text-center">can add {{imagesAccepted - imagesUploaded}} more</small>
                             </div>
-						</div>
-						<!-- <div class="ui three cards" style="margin-top: 0;">
-                            <a class="red card">
-                                <div class="image">
-                                    <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/white-image.png">
-                                </div>
-                            </a>
-                            <a class="orange card">
-                                <div class="image">
-                                    <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/white-image.png">
-                                </div>
-                            </a>
-                            <a class="yellow card">
-                                <div class="image">
-                                    <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/white-image.png">
-                                </div>
-                            </a>
-						</div> -->
+						</div>						
 					</div>
 				</div>
 			</div>
@@ -195,10 +178,7 @@
                         <input type="text" name="searchkeyword" ng-model="searchKeyword" placeholder="Keyword">
                     </div>
                 </div>
-                <div class="ingredient-search-filter pure-u-1 pure-u-md-1-2">
-                    <!-- <div class="pure-u-md-1-6 text-center hidden-for-mobile">
-                        <div class="label1">Ingredients</div>
-                    </div> -->
+                <div class="ingredient-search-filter pure-u-1 pure-u-md-1-2">                    
                     <div class="pure-u-1">
                         <div class="ing-search-input-div">
                             <input type="text" class="ing-search-input" placeholder="ingredients" autocomplete="off">
@@ -210,10 +190,8 @@
                     <button class="ui button fluid blue">Search</button>
                 </div>
             </div>                   
-        </div>
-        <!-- <div style="padding: 0 20px;"> -->
-            <div class="ui divider"></div>
-        <!-- </div> -->
+        </div>        
+        <div class="ui divider"></div>        
 		<div class="ui four doubling cards recipe-card-list">
 			<div class="card recipe-item" ng-repeat="i in getNumber(number) track by $index">
 				<a class="ui top attached label" style="background-color: #e8e8e861;">
@@ -231,14 +209,21 @@
 					</div>
 				</div>
 				<div class="extra content">
-					<span class="left floated">
+                    <span class="left floated rating-span">
+                        <i class="icon star yellow"></i>
+                        <i class="icon star yellow"></i>
+                        <i class="icon star yellow"></i>
+                        <i class="icon star yellow"></i>
+                        <i class="icon star yellow"></i>
+                    </span>
+					<!-- <span class="left floated">
 						<i class="thumbs up icon"></i>
 						75
 					</span>
 					<span class="left floated" style="padding-left: 10px;">
 						<i class="comments outline icon"></i>
 						25
-					</span>
+					</span> -->
 					<span class="right floated">
 						<span style="font-size: 12px;font-family: sans-serif !important;color:green;border: 1px solid green;padding: 0 3px;">&#9679;</span>
 						<!-- <span style="color:red;border: 1px solid red;padding: 0 3px;">&#9679;</span> -->

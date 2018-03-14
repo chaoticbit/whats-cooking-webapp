@@ -812,7 +812,15 @@ color: #eeeeee !important;
 				}
 			}
 			.extra {
-				padding: 7px 10px !important;
+                padding: 7px 10px !important;
+                .rating-span {
+                    i {
+                        text-shadow: 0 -1px 0 #ddc507,-1px 0 0 #ddc507,0 1px 0 #ddc507,1px 0 0 #ddc507!important;
+                        color: #ffe623!important;
+                        margin-left: 0px;
+                        margin-right: 0px;
+                    }
+                }
 			}
 			.extra ~ .extra {
 				.spice-box {
