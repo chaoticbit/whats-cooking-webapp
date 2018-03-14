@@ -733,19 +733,20 @@ color: #eeeeee !important;
             
             .card {
                 margin: 7px 1em !important; 
-                .image {
-                    .remove-image-icon {
-                        position: absolute;
-                        color: #fff;
-                        cursor: pointer;
-                        font-size: 20px;
-                        top: 3px;
-                        right: 0;
-                    }
-                }
+                
             }
         }
     }	
+}
+
+.remove-image-icon, .remove-video-icon {
+    position: absolute;
+    color: #fff;
+    cursor: pointer !important;
+    font-size: 20px;
+    top: 3px;
+    right: 0;
+    z-index: 9999;
 }
 
 .feed-box {

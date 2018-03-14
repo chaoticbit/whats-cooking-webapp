@@ -207,7 +207,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 			cleanIngredientsList[i] = ($scope.listOfIngredients[i].name).toLowerCase();					
 			listTag += '<li>' + $scope.listOfIngredients[i].qty + ' ' + $scope.listOfIngredients[i].name + ' ' + $scope.listOfIngredients[i].notes + '</li>';		 
 		}
-		listTag += '</ol>';
+        listTag += '</ol>';
+        var gallery = [];
 		console.log('Title ' + $scope.title);
 		console.log('Clean ing list ' + cleanIngredientsList);
 		console.log(listTag);		
@@ -220,11 +221,44 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		console.log('Calorie count ' + $scope.calorieCount);
 		console.log('Servings ' + $scope.noOfServings);
 		console.log($('.tags-hdn-input').val());
-		console.log('Description ' + $scope.recipeDescription);
+        console.log('Description ' + $scope.recipeDescription);
+        _.forEach($scope.uploadedFilesList, function(key, value) {
+            gallery[key] = $scope.uploadedFilesList[key].split('/')[2];
+        });
+        console.log('uploaded images' + gallery);
     });
     
     $scope.uploadedFilesList = [];
+    $scope.uploadedVideo = '';
+    
+    $scope.uploadVideo = function(file) {
+        console.log('in upload video');
+        
+        if($scope.uploadedVideo == '') {
+            if(file) {
+                Upload.upload({
+                    url: ApiConfig.API_URL + '/Util/uploadvideo',
+                    data: {
+                        token: $rootScope.userProfile.token,
+                        file: file
+                    }
+                }).then(function(data) {
+                    if(data.success) {
+                        $scope.uploadedVideo = data.filename;
+                        console.log($scope.uploadedVideo);                        
+                        $('.video-select-box').hide();
+                        $('.video-preview-box').show();
+                    }
+                }, function(error) {
 
+                }).catch(function(e) {
+                                        
+                }).finally(function() {
+
+                }); 
+            }
+        }
+    };
     $scope.uploadFiles = function (files) {
         if($scope.imagesUploaded <= 6) {
             if (files && files.length) {   
@@ -268,6 +302,22 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                     $scope.uploadedFilesList.splice(index, 1);
                 }
                 $scope.imagesUploaded--;
+            }
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+        });
+    });
+    $(document).on('click','.remove-video-icon', function() {
+        console.log($(this).data('name'));        
+        var filename = $(this).data('name');
+        UtilService.removeUploadedImage({filename: filename}).then(function(data) {
+            if(data.success) {
+                $scope.uploadedVideo = '';
+                $('.video-preview-box').hide();
+                $('.video-select-box').show();                
             }
         }, function(error) {
                               
