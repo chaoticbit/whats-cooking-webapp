@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $window, $cookies, $http, $timeout, ApiConfig, SettingService, UtilService, localStorageService, Upload) {	
+angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $window, $cookies, $http, $timeout, ApiConfig, SettingService, RecipeService, UtilService, localStorageService, Upload) {	
     
     $rootScope.userProfile = localStorageService.get('userProfile');
 
@@ -95,6 +95,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                           
     }).finally(function() {
     }); 
+
+    $scope.recipes = [];
 
 	$scope.selectedCuisine = '';
 	$scope.cookingTime = '';
@@ -231,7 +233,19 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             'uploaded_images': gallery,
             'uploaded_video': $scope.uploadedVideo.split('/')[2]
         };
-        console.log(newRecipeObject);        
+        
+        RecipeService.postNewRecipe(newRecipeObject).then(function(data) {
+            if(data.success) {
+                console.log(data.results);                
+                $scope.recipes.push(data.results);
+            }                            
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+
+        });
     });
     
     $scope.uploadedFilesList = [];

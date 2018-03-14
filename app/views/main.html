@@ -193,28 +193,24 @@
         </div>        
         <div class="ui divider"></div>        
 		<div class="ui four doubling cards recipe-card-list">
-			<div class="card recipe-item" ng-repeat="i in getNumber(number) track by $index">
+			<div class="card recipe-item" ng-repeat="item in recipes track by $index">
 				<a class="ui top attached label" style="background-color: #e8e8e861;">
-					<b class="bold">Indian</b>
-					<span class="right floated bold">25 m</span>
+					<b class="bold">{{item.cname}}</b>
+					<span class="right floated bold">{{item.cooking_time}}</span>
 				</a>
 				<div class="image">
-					<img src="https://i0.wp.com/media.hungryforever.com/wp-content/uploads/2016/10/28132136/best-rajma-chawal-in-delhi.jpg" />
+					<img src="http://localhost/whats-cooking-api/{{item.cover_imagepath}}" />
 				</div>
 				<div class="content">
-					<div class="header">Rajma Chawal</div>
-					<div class="meta"><a><small>Nikita Gokhale</small></a></div>
+					<div class="header">{{item.title}}</div>
+					<div class="meta"><a><small>{{item.fullname}}}</small></a></div>
 					<div class="description">
-						<p>A traditional punjabi dish.A traditional punjabi dish.</p>
+						<p>{{item.description}}</p>
 					</div>
 				</div>
 				<div class="extra content">
                     <span class="left floated rating-span">
-                        <i class="icon star yellow"></i>
-                        <i class="icon star yellow"></i>
-                        <i class="icon star yellow"></i>
-                        <i class="icon star yellow"></i>
-                        <i class="icon star yellow"></i>
+                        <i class="icon star yellow" ng-repeat="rating in [] | range: item.rating"></i>                        
                     </span>
 					<!-- <span class="left floated">
 						<i class="thumbs up icon"></i>
@@ -224,20 +220,26 @@
 						<i class="comments outline icon"></i>
 						25
 					</span> -->
-					<span class="right floated">
-						<span style="font-size: 12px;font-family: sans-serif !important;color:green;border: 1px solid green;padding: 0 3px;">&#9679;</span>
-						<!-- <span style="color:red;border: 1px solid red;padding: 0 3px;">&#9679;</span> -->
-						<span class="fg-black" style="font-size: 12px;font-family: sans-serif !important;margin-left: 5px;padding: 1px 4px;border: 1px solid #000;border-radius: 100%;">V</span>
-					</span>
+					<span class="right floated" ng-if="item.food_group == 100">                        
+						<span style="font-size: 12px;font-family: sans-serif !important;color:green;border: 1px solid green;padding: 0 3px;">&#9679;</span>						
+                    </span>
+					<span class="right floated" ng-if="item.food_group == 010">                        
+						<span style="font-size: 12px;font-family: sans-serif !important;color:red;border: 1px solid red;padding: 0 3px;">&#9679;</span>						
+                    </span>
+					<span class="right floated" ng-if="item.food_group == 001">                        
+                            <span class="fg-black" style="font-size: 12px;font-family: sans-serif !important;margin-left: 5px;padding: 1px 4px;border: 1px solid #000;border-radius: 100%;">V</span>
+                    </span>                    					
+					<span class="right floated" ng-if="item.food_group == 101">                        
+                        <span style="font-size: 12px;font-family: sans-serif !important;color:green;border: 1px solid green;padding: 0 3px;">&#9679;</span>						
+                        <span class="fg-black" style="font-size: 12px;font-family: sans-serif !important;margin-left: 5px;padding: 1px 4px;border: 1px solid #000;border-radius: 100%;">V</span>
+                    </span>                    					
 				</div>
 				<div class="extra content">
 					<span class="spice-box left floated">
-						<i class="fire icon"></i>
-						<i class="fire icon"></i>
-						<i class="fire icon"></i>
+						<i class="fire icon" ng-repeat="n in [] | range: item.spicy"></i>						
 					</span>
 					<span class="right floated">
-						<i class="fa fa-utensils" style="padding-right: 7px;"></i> 4
+						<i class="fa fa-utensils" style="padding-right: 7px;"></i> {{item.servings}}
 					</span>
 				</div>
 			</div>
