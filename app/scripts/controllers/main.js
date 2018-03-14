@@ -239,17 +239,11 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                     }
                 }).then(function(data) {
                     if(data.success) {
-                        $('.placeholder-image-upload-box').hide();
-                        // if($scope.uploadedFilesList.length == 0) {
-                        //     for(var i = 0; i < data.files.length; i++) {
-                        //         $scope.uploadedFilesList[i] = data.files[i];
-                        //     }
-                        // } else {
+                        // $('.placeholder-image-upload-box').hide();                        
                         for(var i = 0, j = $scope.uploadedFilesList.length; i < data.files.length; i++,j++) {
                             $scope.uploadedFilesList[j] = data.files[i];
-                        }
-                        //}
-                        $('.uploaded-image-list').show();
+                        }                        
+                        // $('.uploaded-image-list').show();
                         console.log($scope.uploadedFilesList);
                         
                     }                                                                                
@@ -263,6 +257,25 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             }
         }
     }
+
+    $(document).on('click','.remove-image-icon', function() {
+        console.log($(this).data('name'));        
+        var filename = $(this).data('name');
+        UtilService.removeUploadedImage({filename: filename}).then(function(data) {
+            if(data.success) {
+                var index = $scope.uploadedFilesList.indexOf(filename);
+                if(index > -1) {
+                    $scope.uploadedFilesList.splice(index, 1);
+                }
+                $scope.imagesUploaded--;
+            }
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+        });
+    });
 
 	$rootScope.toggleNewRecipeBox = function(val) {
 		if(val == 1) { //SlideDown

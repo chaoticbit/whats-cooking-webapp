@@ -115,16 +115,18 @@
                              ngf-multiple="true"
                              ngf-pattern="'image/*'"
                              ngf-max-files="{{imagesAccepted - imagesUploaded}}"                             
+                             ng-hide="imagesUploaded > 0"
                         >
                             <div class="ui small image">
                                 <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/white-image.png">
                                 <p class="text-center">Upload upto 6 images</p>
 							</div>
                         </div>
-						<div class="ui three cards uploaded-image-list" style="padding-top: 7px;">
+						<div class="ui three cards uploaded-image-list" ng-show="imagesUploaded > 0" style="padding-top: 7px;">
 							<div class="black card" ng-repeat="item in uploadedFilesList" style="height: 97.3px;float:left !important;">
 								<div class="image" style="height: 97.3px;">
-                                    <img src="http://localhost/whats-cooking-api/{{item}}" style="height: 100%;">									
+                                    <i class="icon close remove-image-icon" data-name="{{item}}"></i>
+                                    <img src="http://localhost/whats-cooking-api/{{item}}" class="uploaded-image-card" data-name="{{item.split('/')[2]}}" style="height: 100%;">									                                    
 								</div>
                             </div>	                                                     	
                             <div class="black card placeholder-image-upload-box-1"
@@ -135,12 +137,12 @@
                                 ngf-pattern="'image/*'"
                                 ngf-max-files="{{imagesAccepted - imagesUploaded}}"
                                 ng-hide="imagesUploaded == 6"
-                                style="max-height: 97.3px;float:left !important;"
+                                style="max-height: 97.3px;float:left !important;cursor: pointer;"
                             >  
                             <div style="height: 70px;text-align:center;">
                                 <img src="https://semantic-ui.com/images/wireframe/white-image.png" style="max-height: 100%;height: auto;">
                             </div>                                                     
-                            <small class="text-center">{{imagesAccepted - imagesUploaded}} remaining</small>
+                            <small class="text-center">can add {{imagesAccepted - imagesUploaded}} more</small>
                             </div>
 						</div>
 						<!-- <div class="ui three cards" style="margin-top: 0;">

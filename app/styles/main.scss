@@ -730,9 +730,19 @@ color: #eeeeee !important;
             }
         }
         .uploaded-image-list {
-            display: none;
+            
             .card {
                 margin: 7px 1em !important; 
+                .image {
+                    .remove-image-icon {
+                        position: absolute;
+                        color: #fff;
+                        cursor: pointer;
+                        font-size: 20px;
+                        top: 3px;
+                        right: 0;
+                    }
+                }
             }
         }
     }	

@@ -25,4 +25,13 @@ angular.module('whatsCookingApp').service('UtilService', function ($rootScope, $
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
         });
     }
+
+    this.removeUploadedImage = function(payload) {
+        return $http({
+            method:'POST',
+            url: ApiConfig.API_URL + '/Util/removeUploadedImage',
+            data: payload,
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
+        });
+    }
 });
