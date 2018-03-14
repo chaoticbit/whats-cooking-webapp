@@ -209,23 +209,42 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		}
         listTag += '</ol>';
         var gallery = [];
-		console.log('Title ' + $scope.title);
-		console.log('Clean ing list ' + cleanIngredientsList);
-		console.log(listTag);		
-		console.log($('.editable').html());
-		console.log('Cuisine ' + $scope.selectedCuisine);		
-		console.log('Food group ' + $scope.recipeFoodGroup);
-		console.log('Spiciness ' + $scope.spiciness);
-		console.log('Prep time ' + $scope.prepTime);
-		console.log('Cooking time ' + $scope.cookingTime);
-		console.log('Calorie count ' + $scope.calorieCount);
-		console.log('Servings ' + $scope.noOfServings);
-		console.log($('.tags-hdn-input').val());
-        console.log('Description ' + $scope.recipeDescription);
-        _.forEach($scope.uploadedFilesList, function(key, value) {
+		// console.log('Title ' + $scope.title);
+		// console.log('Clean ing list ' + cleanIngredientsList);
+		// console.log(listTag);		
+		// console.log($('.editable').html());
+		// console.log('Cuisine ' + $scope.selectedCuisine);		
+		// console.log('Food group ' + $scope.recipeFoodGroup);
+		// console.log('Spiciness ' + $scope.spiciness);
+		// console.log('Prep time ' + $scope.prepTime);
+		// console.log('Cooking time ' + $scope.cookingTime);
+		// console.log('Calorie count ' + $scope.calorieCount);
+		// console.log('Servings ' + $scope.noOfServings);
+		// console.log($('.tags-hdn-input').val());
+        // console.log('Description ' + $scope.recipeDescription);
+        // console.log('uploaded images' + gallery);
+        // console.log('uploaded video' + $scope.uploadedVideo);
+        _.forEach($scope.uploadedFilesList, function(value, key) {
             gallery[key] = $scope.uploadedFilesList[key].split('/')[2];
         });
-        console.log('uploaded images' + gallery);
+        var newRecipeObject = {
+            'title': $scope.title,
+            'ingredients': cleanIngredientsList,
+            'html_ingredients_list': listTag,
+            'preparation': $('.editable').html(),
+            'cuisine': $scope.selectedCuisine,
+            'food_group': $scope.recipeFoodGroup,
+            'spiciness': $scope.spiciness,
+            'prep_time': $scope.prepTime,
+            'cooking_time': $scope.cookingTime,
+            'calorie_intake': $scope.calorieCount,
+            'no_of_servings': $scope.noOfServings,
+            'tags_array': $('.tags-hdn-input').val(),
+            'description': $scope.recipeDescription,
+            'uploaded_images': gallery,
+            'uploaded_video': $scope.uploadedVideo.split('/')[2]
+        };
+        console.log(newRecipeObject);        
     });
     
     $scope.uploadedFilesList = [];
