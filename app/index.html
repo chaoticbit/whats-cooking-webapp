@@ -57,8 +57,8 @@
 					<div class="ui icon top right pointing dropdown cuisine-nav-dropdown">
 						<i class="fa fa-th fg-white"></i>
 						<div class="menu" style="min-width: 300px;max-height: 400px;overflow:auto;">                            			
-                            <div class="item flt-left" ng-repeat="item in listOfCuisines track by $index" style="height: 80px;width: 100%;">
-                                <div class="flt-left" style="display: block;overflow:hidden;height: 100%;width: 30%;background: url('images/cuisine_indian.jpg') no-repeat center;background-size:cover;"></div>
+                            <div class="item flt-left" ng-repeat="item in listOfCuisines track by $index" style="height: 80px;width: 100%;">                                
+                                <div class="flt-left" style="display: block;overflow:hidden;height: 100%;width: 30%;background: url('{{apiurl}}/assets/images/cuisine_photos/{{item.imagepath}}') no-repeat center;background-size:cover;"></div>
                                 <div class="flt-left" style="padding-left: 10px;">
                                     <h3 class="light margin0">{{item.name}}</h3>
                                     <small class="fg-gray bold">29 recipes</small>

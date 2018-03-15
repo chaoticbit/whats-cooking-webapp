@@ -82,7 +82,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             _.forEach(data.results, function(value, key) {
                 $rootScope.listOfCuisines.push({
                     'name': value.name,
-                    'value': value.srno
+                    'value': value.srno,
+                    'imagepath': value.imagepath
                 });
             });            
             $('.modal-cuisine-dropdown').dropdown({
