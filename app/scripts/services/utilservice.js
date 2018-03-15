@@ -42,7 +42,7 @@ angular.module('whatsCookingApp').service('UtilService', function ($rootScope, $
     this.addToFavourites = function(payload) {
         return $http({
             method: 'POST',
-            url: ApiConfig.API_URL + '/Util/getTags',            
+            url: ApiConfig.API_URL + '/Util/addToFavourites',            
             data: payload,
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
         });

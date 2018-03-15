@@ -125,7 +125,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     function getRecipes() {
         RecipeService.getRecipes().then(function(data) {
             if(data.success) {
-                $scope.recipes = data.results;
+                $scope.recipes = data.results;                
             }                        
         }, function(error) {
                               
@@ -220,6 +220,25 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             $(this).closest('.recipe-item').find('.recipe-card-menu').fadeIn(300);
         });
     });
+
+    $scope.addToFavourites = function(rid, $event) {                
+        var elem = $event.currentTarget;        
+        if ($(elem).hasClass('added')) { //remove from favourites
+            $(elem).removeClass('fg-red added').addClass('outline');
+        } else { //add to            
+            UtilService.addToFavourites({rid: rid}).then(function(data) {
+                if(data.success) {
+                    $(elem).removeClass('outline').addClass('fg-red added');
+                }                   
+            }, function(error) {
+                                  
+            }).catch(function(e) {
+                                  
+            }).finally(function() {
+    
+            });        
+        }        
+    };
 
     function computeFoodGroupValue(foodGroup) {
         var computed;
