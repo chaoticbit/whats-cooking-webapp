@@ -25,6 +25,28 @@ angular.module('whatsCookingApp').service('UtilService', function ($rootScope, $
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
         });
     }
+    this.getFavourites = function() {
+        return $http({
+            method: 'POST',
+            url: ApiConfig.API_URL + '/Util/getFavourites',            
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
+        });
+    }
+    this.getFeaturedRecipes = function() {
+        return $http({
+            method: 'POST',
+            url: ApiConfig.API_URL + '/Util/getFeaturedRecipes',            
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
+        });
+    }
+    this.addToFavourites = function(payload) {
+        return $http({
+            method: 'POST',
+            url: ApiConfig.API_URL + '/Util/getTags',            
+            data: payload,
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
+        });
+    }
 
     this.getUserProfile = function() {
         return $http({
