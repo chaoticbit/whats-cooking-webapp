@@ -64,6 +64,17 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 	$http.get('http://localhost/soapbox-api/Ajax_Controller/search_tags/').then(function(res) {
 		$scope.tags = res.results;		
     });
+
+    RecipeService.getRecipes().then(function(data) {
+        if(data.success) {
+            $scope.recipes = data.results;
+        }                        
+    }, function(error) {
+                          
+    }).catch(function(e) {
+                          
+    }).finally(function() {
+    });
     
     $rootScope.listOfCuisines = [];
     UtilService.getCuisines().then(function(data) {
@@ -250,7 +261,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                 console.log(data.results);                
                 $scope.recipes.push(data.results);
                 $('.new-recipe-box').slideUp(function() {
-                    $('.feed-box').css('margin-top', '70px');
+                    $('.feed-box').css('margin-top', '50px');
                     $('body').removeClass('noscroll');			                    
                 });		
             }                            
@@ -371,7 +382,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 			});			
 		} else { //SlideUp
 			$('.new-recipe-box').slideUp(function() {
-				$('.feed-box').css('margin-top', '70px');
+				$('.feed-box').css('margin-top', '50px');
 				$('body').removeClass('noscroll');			
 				$('.toggle-recipe-box-btn').show();
 			});			
