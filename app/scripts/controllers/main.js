@@ -52,62 +52,13 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 			standardizeSelectionStart: false,
 			static: false,			
 		}
-	});
-
-    $scope.imagesAccepted = 6;
-    $scope.imagesUploaded = 0;
-	$scope.number = 10;
-	$scope.getNumber = function(num) {
-    	return new Array(num);   
-	}
-
-	$http.get('http://localhost/soapbox-api/Ajax_Controller/search_tags/').then(function(res) {
-		$scope.tags = res.results;		
-    });
-
-    RecipeService.getRecipes().then(function(data) {
-        if(data.success) {
-            $scope.recipes = data.results;
-        }                        
-    }, function(error) {
-                          
-    }).catch(function(e) {
-                          
-    }).finally(function() {
     });
     
     $rootScope.listOfCuisines = [];
-    UtilService.getCuisines().then(function(data) {
-        if(data.success) {
-            _.forEach(data.results, function(value, key) {
-                $rootScope.listOfCuisines.push({
-                    'name': value.name,
-                    'value': value.srno,
-                    'imagepath': value.imagepath
-                });
-            });            
-            $('.modal-cuisine-dropdown').dropdown({
-                values: $rootScope.listOfCuisines,        
-                placeholder: 'Cuisines',
-                onChange: function(value) {
-                    $scope.signUpModalProfile.pref_cuisine = value;
-                }
-            });
-            $('.cuisine-dropdown').dropdown({
-                values: $rootScope.listOfCuisines,        
-                placeholder: 'Cuisines',
-                onChange: function(value) {
-                    $scope.selectedCuisine = value;
-                }
-            });
-        }
-    }, function(error) {
-                          
-    }).catch(function(e) {
-                          
-    }).finally(function() {
-    }); 
-
+    $scope.imagesAccepted = 6;
+    $scope.imagesUploaded = 0;
+    $scope.number = 10;
+    
     $scope.recipes = [];
     $scope.recipeCoverImage = '';
 
@@ -121,7 +72,76 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		qty: '4 pieces',
 		name: 'Ginger',
 		notes: 'chopped'
-    }];                  
+    }];               
+
+	$scope.getNumber = function(num) {
+    	return new Array(num);   
+	}
+
+    function getTags () {
+        UtilService.getTags().then(function(data) {
+            if(data.success) {
+                $scope.tags = data.results;
+            }                        
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+        });
+    }
+
+    function getCuisines() {
+        UtilService.getCuisines().then(function(data) {
+            if(data.success) {
+                _.forEach(data.results, function(value, key) {
+                    $rootScope.listOfCuisines.push({
+                        'name': value.name,
+                        'value': value.srno,
+                        'imagepath': value.imagepath
+                    });
+                });            
+                $('.modal-cuisine-dropdown').dropdown({
+                    values: $rootScope.listOfCuisines,        
+                    placeholder: 'Cuisines',
+                    onChange: function(value) {
+                        $scope.signUpModalProfile.pref_cuisine = value;
+                    }
+                });
+                $('.cuisine-dropdown').dropdown({
+                    values: $rootScope.listOfCuisines,        
+                    placeholder: 'Cuisines',
+                    onChange: function(value) {
+                        $scope.selectedCuisine = value;
+                    }
+                });
+            }
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+        }); 
+    }
+
+    function getRecipes() {
+        RecipeService.getRecipes().then(function(data) {
+            if(data.success) {
+                $scope.recipes = data.results;
+            }                        
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+        });
+    }    
+
+    (function() {
+        getCuisines();
+        getRecipes();
+        getTags();
+    })();
 
 	$scope.addItem = function() {
 		$scope.listOfIngredients.push({

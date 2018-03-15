@@ -18,6 +18,14 @@ angular.module('whatsCookingApp').service('UtilService', function ($rootScope, $
         });
     }
 
+    this.getTags = function() {
+        return $http({
+            method: 'POST',
+            url: ApiConfig.API_URL + '/Util/getTags',            
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
+        });
+    }
+
     this.getUserProfile = function() {
         return $http({
             method: 'GET',

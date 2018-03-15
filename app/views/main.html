@@ -198,7 +198,7 @@
 					<b class="bold">{{item.cname}}</b>
 					<span class="right floated bold">{{item.cooking_time}}</span>
 				</a>
-				<div class="image">
+				<div class="image" ondblclick="alert('Added to favourites');">
 					<img src="http://localhost/whats-cooking-api/{{item.cover_imagepath}}" />
 				</div>
 				<div class="content">
@@ -252,7 +252,7 @@
 			<p class="featured-tags-title">featured tags</p>
 		</div>
 		<div style="padding: 0px 20px;">
-			<a href="#" class="tag" ng-repeat="item in tags">{{item.name}}</a>
+			<a href="#" class="tag" ng-repeat="item in tags | limitTo: 15">{{item.name}}</a>
 		</div>
 		<div style="padding: 15px 0 10px 20px;">
 			<p class="featured-tags-title">featured recipes</p>
