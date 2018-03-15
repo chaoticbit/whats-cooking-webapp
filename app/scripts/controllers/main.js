@@ -9,8 +9,6 @@
  */
 angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $window, $cookies, $http, $timeout, ApiConfig, SettingService, RecipeService, UtilService, localStorageService, Upload) {	
     
-    $rootScope.userProfile = localStorageService.get('userProfile');
-
     if($cookies.get('new-access')) {
         $('.user-profile-signup-modal').modal({
             closable: false, 

@@ -27,7 +27,7 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
         AuthenticationService.processLogin(login).then(function(data) {
             if(data.success) {
                 localStorageService.set('userProfile', data.results);
-                $cookies.put('new-access', true);
+                $rootScope.userProfile = localStorageService.get('userProfile');
                 $rootScope.isLoggedIn = true;
                 $location.path('/');
             } else {
@@ -55,7 +55,7 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
         AuthenticationService.processSignup(o).then(function(data) {                     
             if(data.success) {
                 localStorageService.set('userProfile', data.results);
-
+                $cookies.put('new-access', true);
                 $rootScope.isLoggedIn = true;
                 $location.path('/');
             } else {
