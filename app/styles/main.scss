@@ -232,19 +232,19 @@ body {
     font-weight: normal;
 }
 .text-center {
-	text-align: center;
+	text-align: center !important;
 }
 .text-left {
-	text-align: left;
+	text-align: left !important;
 }
 .text-right {
-	text-align: right;
+	text-align: right !important;
 }
 .flt-left {
-	float: left;
+	float: left !important;
 }
 .flt-right {
-	float: right;
+	float: right !important;
 }
 .bg-black {
 	background-color: #000000 !important;
@@ -618,6 +618,7 @@ color: #eeeeee !important;
 .selected-as-cover {
     box-shadow: 0px 0px 1px 4px #000 !important;
 }
+.pointer { cursor: pointer !important; }
 
 .new-recipe-box {
 	margin-top: 60px;

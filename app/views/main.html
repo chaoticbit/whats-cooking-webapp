@@ -194,15 +194,22 @@
         <div class="ui divider"></div>        
 		<div class="ui four doubling cards recipe-card-list">
 			<div class="card recipe-item" ng-repeat="item in recipes track by $index">
-				<a class="ui top attached label" style="background-color: #e8e8e861;">
+				<a class="ui top attached label recipe-card-menu" style="background-color: #e8e8e861;">
 					<b class="bold">{{item.cname}}</b>
 					<span class="right floated bold">{{item.cooking_time}}</span>
-				</a>
-				<div class="image" ondblclick="alert('Added to favourites');">
+                </a>
+                <div class="ui top attached label recipe-card-hover-menu" style="display:none;background-color: rgba(0,0,0,0.7);">
+                    <!-- <label class="fg-white light left floated" style="font-size: 13px;margin-top:-2px;">Favourites <i class="icon heart pointer"></i></label> -->
+                    <span class="right floated" style="font-size: 17px;margin-top:-4px;"><i class="icon ellipsis vertical fg-white pointer text-right"></i></span>
+                </div>
+				<div class="image" ondblclick="alert('Added to favourites');" style="margin-top: 2em;">
 					<img src="http://localhost/whats-cooking-api/{{item.cover_imagepath}}" />
 				</div>
 				<div class="content">
-					<div class="header">{{item.title}}</div>
+					<div class="header">
+                        <div style="width: 90%;" class="left floated">{{item.title}}</div> 
+                        <i class="icon heart outline right floated pointer" style="width: 7%;"></i>
+                    </div>
 					<div class="meta"><a><small>{{item.fullname}}</small></a></div>
 					<div class="description">
 						<p>{{item.description}}</p>

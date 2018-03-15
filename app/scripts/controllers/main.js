@@ -209,6 +209,18 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		maxSelections: 5
     });	    
 
+    $(document).on('mouseenter mouseover', '.recipe-item', function(e) {        
+        $(this).find('.recipe-card-menu').fadeOut(100, function() {
+            $(this).closest('.recipe-item').find('.recipe-card-hover-menu').fadeIn(300);
+        });
+    });
+
+    $(document).on('mouseleave', '.recipe-item', function() {
+        $(this).find('.recipe-card-hover-menu').fadeOut(100, function() {
+            $(this).closest('.recipe-item').find('.recipe-card-menu').fadeIn(300);
+        });
+    });
+
     function computeFoodGroupValue(foodGroup) {
         var computed;
         if(foodGroup.length == 1) {			
