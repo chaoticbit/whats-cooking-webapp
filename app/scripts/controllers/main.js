@@ -224,7 +224,17 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $scope.addToFavourites = function(rid, $event) {                
         var elem = $event.currentTarget;        
         if ($(elem).hasClass('added')) { //remove from favourites
-            $(elem).removeClass('fg-red added').addClass('outline');
+            UtilService.removeFromFavourites({rid: rid}).then(function(data) {
+                if(data.success) {
+                    $(elem).removeClass('fg-red added').addClass('outline');
+                }                   
+            }, function(error) {
+                                  
+            }).catch(function(e) {
+                                  
+            }).finally(function() {
+    
+            });              
         } else { //add to            
             UtilService.addToFavourites({rid: rid}).then(function(data) {
                 if(data.success) {

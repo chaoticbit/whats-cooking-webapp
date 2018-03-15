@@ -47,6 +47,14 @@ angular.module('whatsCookingApp').service('UtilService', function ($rootScope, $
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
         });
     }
+    this.removeFromFavourites = function(payload) {
+        return $http({
+            method: 'POST',
+            url: ApiConfig.API_URL + '/Util/removeFromFavourites',            
+            data: payload,
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
+        });
+    }
 
     this.getUserProfile = function() {
         return $http({
