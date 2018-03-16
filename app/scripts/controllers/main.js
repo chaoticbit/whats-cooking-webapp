@@ -59,7 +59,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     
     $scope.recipes = [];
     $scope.recipeCoverImage = '';
-
+    $rootScope.favourites = [];
 	$scope.selectedCuisine = '';
 	$scope.cookingTime = '';
     $scope.spiciness = 1;	
@@ -135,10 +135,24 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         });
     }    
 
+    function getFavourites() {
+        UtilService.getFavourites().then(function(data) {
+            if(data.success) {
+                $rootScope.favourites = data.results;                
+            }                        
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+        });
+    }    
+
     (function() {
         getCuisines();
         getRecipes();
         getTags();
+        getFavourites();
     })();
 
 	$scope.addItem = function() {
@@ -191,6 +205,9 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $('.cuisine-nav-dropdown').dropdown({
         action: 'nothing'
     });
+    $('.favourites-user-dropdown').dropdown({
+        action: 'nothing'
+    })
 	$('.user-action-dropdown').dropdown();
 	$('.food-group-dropdown, .modal-food-group-dropdown').dropdown({
 		useLabels: false
@@ -209,24 +226,40 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		maxSelections: 5
     });	    
 
-    $(document).on('mouseenter mouseover', '.recipe-item', function(e) {        
-        $(this).find('.recipe-card-menu').fadeOut(100, function() {
-            $(this).closest('.recipe-item').find('.recipe-card-hover-menu').fadeIn(300);
-        });
-    });
+    // $(document).on('mouseenter mouseover', '.recipe-item', function(e) {        
+    //     $(this).find('.recipe-card-menu').fadeOut(100, function() {
+    //         $(this).closest('.recipe-item').find('.recipe-card-hover-menu').fadeIn(300);
+    //     });
+    // });
 
-    $(document).on('mouseleave', '.recipe-item', function() {
-        $(this).find('.recipe-card-hover-menu').fadeOut(100, function() {
-            $(this).closest('.recipe-item').find('.recipe-card-menu').fadeIn(300);
-        });
-    });
+    // $(document).on('mouseleave mouseout', '.recipe-item', function() {
+    //     $(this).find('.recipe-card-hover-menu').fadeOut(100, function() {
+    //         $(this).closest('.recipe-item').find('.recipe-card-menu').fadeIn(300);
+    //     });
+    // });
 
-    $scope.addToFavourites = function(rid, $event) {                
+    $rootScope.addToFavourites = function(rid, $event) {                
         var elem = $event.currentTarget;        
-        if ($(elem).hasClass('added')) { //remove from favourites
+        if($(elem).hasClass('nav-menu-fav')) {
+            UtilService.removeFromFavourites({rid: rid}).then(function(data) {
+                if(data.success) {
+                    $(elem).closest('.item').fadeOut(300, function() {
+                        $(elem).closest('.item').remove();
+                    });
+                }                   
+            }, function(error) {
+                                  
+            }).catch(function(e) {
+                                  
+            }).finally(function() {
+    
+            });              
+        }
+        else if ($(elem).hasClass('added')) { //remove from favourites            
             UtilService.removeFromFavourites({rid: rid}).then(function(data) {
                 if(data.success) {
                     $(elem).removeClass('fg-red added').addClass('outline');
+                    getFavourites();
                 }                   
             }, function(error) {
                                   
@@ -239,6 +272,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             UtilService.addToFavourites({rid: rid}).then(function(data) {
                 if(data.success) {
                     $(elem).removeClass('outline').addClass('fg-red added');
+                    getFavourites();
                 }                   
             }, function(error) {
                                   
