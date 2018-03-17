@@ -19,6 +19,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         $cookies.remove('new-access');  
     }    
 
+    $('.user-profile-signup-modal').modal('show');
+
     $('body').attr('ondragstart', 'return false');
     $('body').attr('draggable', 'false');
     $('body').attr('ondragenter', 'event.dataTransfer.dropEffect=\'none\'; event.stopPropagation(); event.preventDefault();');
@@ -199,6 +201,43 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             element.empty();
         }
 	});    
+
+    $scope.addCuisine = function(cid, $event) {        
+        var elem = $event.currentTarget;               
+        var input = $('.selected-cuisines');
+        if ($(elem).hasClass('selected')) { 
+            var val = cid;
+            var array = input.val().split(",");
+            var newstr = "";
+            for (var i = 0; i < array.length; i++) {
+                if(array[i]===val)
+                    continue;
+                if (newstr==="") {
+                    newstr = newstr + array[i];
+                }
+                else {
+                    newstr = newstr + "," + array[i];
+                }
+            }
+            input.val(newstr);
+            $(elem).find('.defocus-panel').fadeOut(100);
+            $(elem).removeClass('selected');
+        } else {
+            var value = input.val();
+            if (value !== "") {
+                var array = input.val().split(",");
+                if ($.inArray(cid, array) === -1) {
+                    input.val(input.val() + ',' + cid);
+                }
+            }
+            else {
+                input.val(cid);
+            }
+            $(elem).find('.defocus-panel').fadeIn(100);
+            $(elem).addClass('selected');
+        }
+        console.log(input.val());        
+    };
 
     /**
      * 

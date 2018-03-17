@@ -296,7 +296,21 @@
 		</span>
 	</div>
 	<div class="content">
-		<form class="ui form">			
+        <div class="pure-u-1 cuisine-overflow-content">
+            Follow cuisines you love to get personalized content.
+            <div class="overflow-width">
+                <div class="flt-left thumb" ng-repeat="item in listOfCuisines track by $index">
+                    <div class="round" ng-click="addCuisine(item.value, $event)" style="background: url('{{apiurl}}/assets/images/cuisine_photos/{{item.imagepath}}') no-repeat center;">
+                        <div class="defocus-panel">
+                            <i class="icon check"></i>
+                        </div>
+                    </div>                    
+                    <label class="text-center block" style="padding: 5px 0;font-size: 12px;">{{item.name}}</label>                    
+                </div> 
+            </div>      
+            <input type="hidden" name="selected-cuisines" class="selected-cuisines">                 
+        </div>
+		<form class="ui form" style="padding-top: 15px;">			
 			<div class="two fields">
 				<div class="field">					
 					<div class="ui input">
