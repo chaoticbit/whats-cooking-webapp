@@ -42,20 +42,20 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
         });                        
     };
 
-    $scope.processSignup = function(signup) {
+    $scope.doSignup = function(signup) {
         var o = {
             'username': signup.username,
             'password': signup.password,
             'fname': signup.fname ,
             'lname': signup.lname,
             'email': signup.email
-        };      
-
+        };              
         $('.signup-btn').addClass('loading');
         AuthenticationService.processSignup(o).then(function(data) {                     
             if(data.success) {
                 localStorageService.set('userProfile', data.results);
                 $cookies.put('new-access', true);
+                $rootScope.userProfile = localStorageService.get('userProfile');
                 $rootScope.isLoggedIn = true;
                 $location.path('/');
             } else {

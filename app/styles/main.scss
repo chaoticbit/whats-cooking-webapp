@@ -989,16 +989,18 @@ color: #eeeeee !important;
 .cuisine-overflow-content {
     overflow-x: auto !important;
     .overflow-width {
-        width: 4150px;
+        width: 2095px;
         padding-top: 10px;
         height: 100px;
         white-space:nowrap; 
         .thumb {
             width: 60px;
             margin: 0 5px;
+            outline: none !important;
             cursor: pointer;
             .round {
                 background-size: cover !important;
+                outline: none !important;
                 border-radius: 50%;
                 height: 60px;
                 position: relative;
