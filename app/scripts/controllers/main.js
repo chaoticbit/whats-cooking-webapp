@@ -12,8 +12,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     if($cookies.get('new-access')) {
         $('.user-profile-signup-modal').modal({
             closable: false, 
-            onApprove: function () {
-                return false
+            onApprove: function () {                
+                return false                
             }
           }).modal('show');              
     }        
@@ -683,12 +683,11 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     };
 
     $scope.saveSignupUserProfile = function(signUpModalProfile) {
-        $scope.signUpModalProfile.food_group = computeFoodGroupValue($scope.modalFoodGrpVal);        
+        signUpModalProfile.food_group = computeFoodGroupValue($scope.modalFoodGrpVal);        
         signUpModalProfile.profile_imagepath = '';
-        signUpModalProfile.followedCuisines = $('.selected-cuisines').val();
-        console.log(signUpModalProfile);
-        
-        /* $('.save-signup-profile-btn').addClass('icon loading');
+        signUpModalProfile.followed_cuisines = $('.selected-cuisines').val();            
+
+        $('.save-signup-profile-btn').addClass('icon loading');
         SettingService.saveUserProfile(signUpModalProfile).then(function(data) {
             if(data.success) {
                 $('.user-profile-signup-modal').modal('hide');
@@ -697,6 +696,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                         $('.status-msg-modal').modal('hide');
                     }, 1500)
                 });
+                $cookies.remove('new-access');  
             }                  
         }, function(error) {
                               
@@ -704,7 +704,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                               
         }).finally(function() {
 
-        });                 */
+        });                
     };    
 
     if (screen.width < 480 || screen.width < 800) {
