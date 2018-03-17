@@ -60,6 +60,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $scope.recipes = [];
     $scope.recipeCoverImage = '';
     $rootScope.favourites = [];
+    $scope.featuredRecipes = [];
 	$scope.selectedCuisine = '';
 	$scope.cookingTime = '';
     $scope.spiciness = 1;	
@@ -146,6 +147,19 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                               
         }).finally(function() {
         });
+    }  
+
+    function getFeaturedRecipes() {
+        UtilService.getFeaturedRecipes().then(function(data) {
+            if(data.success) {
+                $scope.featuredRecipes = data.results;                
+            }                        
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+        });
     }    
 
     (function() {
@@ -153,6 +167,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         getRecipes();
         getTags();
         getFavourites();
+        getFeaturedRecipes();
     })();
 
 	$scope.addItem = function() {

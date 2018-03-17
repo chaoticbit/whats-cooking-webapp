@@ -193,7 +193,7 @@
         </div>        
         <div class="ui divider"></div>        
 		<div class="ui four doubling cards recipe-card-list">
-			<div class="card recipe-item" ng-repeat="item in recipes track by $index">
+			<div class="card recipe-item" ng-repeat="item in recipes track by $index">                
 				<a class="ui top attached label recipe-card-menu" style="background-color: #e8e8e861;">
 					<b class="bold">{{item.cname}}</b>
 					<span class="right floated bold">{{item.cooking_time}}</span>
@@ -202,7 +202,7 @@
                     <!-- <label class="fg-white light left floated" style="font-size: 13px;margin-top:-2px;">Favourites <i class="icon heart pointer"></i></label> -->
                     <span class="right floated" style="font-size: 17px;margin-top:-4px;"><i class="icon ellipsis vertical fg-white pointer text-right"></i></span>
                 </div>
-				<div class="image" ondblclick="alert('Added to favourites');" style="margin-top: 2em;">
+				<div class="ui image" style="margin-top: 2em;">                    
 					<img src="http://localhost/whats-cooking-api/{{item.cover_imagepath}}" />
 				</div>
 				<div class="content">
@@ -266,15 +266,18 @@
 			<p class="featured-tags-title">featured recipes</p>
 		</div>
 		<div class="featured-recipes" style="padding: 0px 20px;">
-			<ul>
-				<li>
-					<div class="round-count"><span class="upvotecnt">4.5</span></div>
+            <div ng-if="featuredRecipes.length == 0">
+                No Featured Recipes to show
+            </div>
+			<ul ng-if="featuredRecipes.length > 0">                
+				<li ng-repeat="item in featuredRecipes track by $index">
+					<div class="round-count"><span class="upvotecnt"><i class="icon star"></i></span></div>
 					<div class="desc">
 						<p class="recipe-title margin0">
-							<a href="http://localhost/soapbox/Thread/1039">Chocolate cake</a>
+							<a href="javascript:;">{{item.title}}</a>
 						</p>
 						<p class="recipe-user margin0">
-							<a href="sipps7">Nikita Gokhale</a>
+							<a href="javascript:;">{{item.fullname}}</a>
 						</p>
 					</div>
 				</li>
