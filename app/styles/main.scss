@@ -810,7 +810,10 @@ color: #eeeeee !important;
 			.content {
 				padding: 15px 10px 5px !important;
 				.header {
-					font-size: 16px !important;
+                    font-size: 16px !important;
+                    a:hover {
+                        text-decoration: underline !important;
+                    }
 				}
 				.description {
 					font-size: 12px !important;
@@ -827,7 +830,17 @@ color: #eeeeee !important;
                         margin-right: 0px;
                     }
                 }
-			}
+            }
+            .extra.stats {
+                div {
+                    width:33.33%;
+                    float:left;
+                    font-size: 13x !important;
+                    i {
+                        margin-right: 0px !important;
+                    }
+                }
+            }
 			.extra ~ .extra {
 				.spice-box {
 					i {
@@ -1032,7 +1045,6 @@ color: #eeeeee !important;
         }
     }
 }
-
 
 /**
 MEDIA QUERIES
