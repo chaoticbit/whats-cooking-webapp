@@ -64,6 +64,15 @@ angular.module('whatsCookingApp').service('UtilService', function ($rootScope, $
         });
     }
 
+    this.updateCuisine = function(payload) {
+        return $http({
+            method: 'POST',
+            url: ApiConfig.API_URL + '/Util/updateCuisine',            
+            data: payload,
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
+        });
+    };
+
     this.removeUploadedImage = function(payload) {
         return $http({
             method:'POST',

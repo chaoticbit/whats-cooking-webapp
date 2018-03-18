@@ -96,9 +96,11 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                     $rootScope.listOfCuisines.push({
                         'name': value.name,
                         'value': value.srno,
-                        'imagepath': value.imagepath
+                        'imagepath': value.imagepath,
+                        'uid': value.uid
                     });
-                });            
+                });                    
+                        
                 $('.modal-cuisine-dropdown').dropdown({
                     values: $rootScope.listOfCuisines,        
                     placeholder: 'Cuisines',
@@ -200,7 +202,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 	});    
 
     $scope.addCuisine = function(cid, $event) {        
-        var elem = $event.currentTarget;               
+        var elem = $event.currentTarget;          
         var input = $('.selected-cuisines');
         if ($(elem).hasClass('selected')) { 
             var val = cid;
@@ -235,6 +237,49 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         }
         console.log(input.val());        
     };
+
+    $(document).on('click', '.update-cuisine-btn', function() {
+        var cid = $(this).data('cid');
+        var uid = $rootScope.userProfile.userid; 
+        var addIndex = -1;                                           
+        var removeIndex = -1;
+        var list = $rootScope.listOfCuisines;
+        var i = 0;
+        var elem = $(this);
+
+        $(this).addClass('icon loading');
+        UtilService.updateCuisine({cid: cid}).then(function(data) {
+            if(data.success) {
+                $(elem).removeClass('icon loading');
+                for(i; i < list.length; i++) {
+                    if(list[i].uid === uid && list[i].value == cid) {
+                      removeIndex = i;
+                      break;
+                    }
+                    else if(list[i].uid === null && list[i].value == cid) {
+                        addIndex = i;
+                        break;
+                    }
+                }
+        
+                if(addIndex == -1) {            
+                    $rootScope.listOfCuisines[removeIndex].uid = null;
+                    $(elem).removeClass('followed');
+                    console.log($rootScope.listOfCuisines[removeIndex]);            
+                } else if(removeIndex == -1) {
+                    $rootScope.listOfCuisines[addIndex].uid = uid;
+                    $(elem).addClass('followed');
+                    console.log($rootScope.listOfCuisines[addIndex]);            
+                }
+                // $scope.$apply();
+            }                        
+        }, function(error) {
+                            
+        }).catch(function(e) {
+                            
+        }).finally(function() {
+        });                                    
+    });    
 
     /**
      * 
