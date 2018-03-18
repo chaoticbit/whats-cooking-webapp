@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $window, $cookies, $http, $timeout, ApiConfig, SettingService, RecipeService, UtilService, localStorageService, Upload) {	
+angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $window, $cookies, $http, $timeout, ApiConfig, SettingService, RecipeService, SearchService, UtilService, localStorageService, Upload) {	
     
     if($cookies.get('new-access')) {
         $('.user-profile-signup-modal').modal({
@@ -55,7 +55,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $scope.imagesAccepted = 6;
     $scope.imagesUploaded = 0;
     $scope.number = 10;
-    
+
+    $rootScope.quickSearchResults = [];
     $scope.recipes = [];
     $scope.recipeCoverImage = '';
     $rootScope.favourites = [];
@@ -75,6 +76,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 	$scope.getNumber = function(num) {
     	return new Array(num);   
 	}
+
+
 
     function getTags () {
         UtilService.getTags().then(function(data) {
@@ -281,6 +284,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         }).finally(function() {
         });                                    
     });    
+
+    
 
     /**
      * 
