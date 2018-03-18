@@ -19,7 +19,8 @@ angular.module('whatsCookingApp').service('AuthenticationService', function ($ht
 		return $http({
 			method: 'POST',
 			url: ApiConfig.API_URL + '/Authentication/signup',
-			data: payload,			
+            data: payload,	
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Content-Type': 'application/json'}
 		});
     };
 	this.checkUsername = function(payload) {

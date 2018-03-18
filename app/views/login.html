@@ -33,7 +33,7 @@
 			</form>
   		</div>
   		<div class="ui tab segment" data-tab="second">
-			<form class="ui form" name="signupform" ng-submit="doSignup(signup)">
+			<form class="ui form" name="signupform">
 				<div class="two fields">
 					<div class="field">
 						<div class="ui icon input s-username-input" data-tooltip="Minimum 5 characters" data-inverted="" data-position="left center">
@@ -65,7 +65,7 @@
 			  				<input type="email" placeholder="Email" required ng-model="signup.email">
 						</div>
 					</div>
-				<button class="ui button blue fluid signup-btn" disabled="disabled">SIGNUP</button>
+				<button class="ui button blue fluid signup-btn" ng-click="doSignup(signup)" disabled="disabled">SIGNUP</button>
 			</form>
   		</div>
 	</div>

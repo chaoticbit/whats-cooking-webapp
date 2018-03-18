@@ -43,7 +43,7 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
     };
 
     $scope.doSignup = function(signup) {
-        var o = {
+        var obj = {
             'username': signup.username,
             'password': signup.password,
             'fname': signup.fname ,
@@ -51,7 +51,7 @@ angular.module('whatsCookingApp').controller('LoginCtrl', function ($rootScope, 
             'email': signup.email
         };              
         $('.signup-btn').addClass('loading');
-        AuthenticationService.processSignup(o).then(function(data) {                     
+        AuthenticationService.processSignup(obj).then(function(data) {                     
             if(data.success) {
                 localStorageService.set('userProfile', data.results);
                 $cookies.put('new-access', true);
