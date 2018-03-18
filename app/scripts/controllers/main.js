@@ -97,7 +97,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                         'name': value.name,
                         'value': value.srno,
                         'imagepath': value.imagepath,
-                        'uid': value.uid
+                        'uid': value.uid,
+                        'count': value.count
                     });
                 });                    
                         
