@@ -203,7 +203,8 @@
                     <span class="right floated" style="font-size: 17px;margin-top:-4px;"><i class="icon ellipsis vertical fg-white pointer text-right"></i></span>
                 </div>
 				<div class="ui image" style="margin-top: 2em;">                    
-					<img src="http://localhost/whats-cooking-api/{{item.cover_imagepath}}" />
+					<img ng-if="item.cover_imagepath == ''" src="images/wireframe_image.png" />
+					<img ng-if="item.cover_imagepath != ''" src="http://localhost/whats-cooking-api/{{item.cover_imagepath}}" />
 				</div>
 				<div class="content">
 					<div class="header">

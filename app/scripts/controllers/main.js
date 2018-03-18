@@ -519,11 +519,11 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     });
 
 	$rootScope.toggleNewRecipeBox = function(val) {
-		if(val == 1) { //SlideDown
-			$('body').addClass('noscroll');
+		if(val == 1) { //SlideDown			
 			$('.new-recipe-box').slideDown(function() {					
 				$('.feed-box').css('margin-top', '10px');				
-				$('.toggle-recipe-box-btn').hide();		
+                $('.toggle-recipe-box-btn').hide();		
+                $('body').addClass('noscroll');
 			});			
 		} else { //SlideUp
 			$('.new-recipe-box').slideUp(function() {
