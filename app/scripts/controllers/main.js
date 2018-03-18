@@ -56,7 +56,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $scope.imagesUploaded = 0;
     $scope.number = 10;
 
-    $rootScope.quickSearchResults = [];
+    $rootScope.quickSearchResults = '';
     $scope.recipes = [];
     $scope.recipeCoverImage = '';
     $rootScope.favourites = [];
@@ -77,6 +77,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     	return new Array(num);   
 	}
 
+    
 
 
     function getTags () {
@@ -597,6 +598,32 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         }        
     });
 
+    $('.global-search').on('input', function () {
+        $(this).val($(this).val().replace(/^[!@#$%^&*()-+_='";:,.<>?/[\]{}']/g, ''));
+        $('.search-wrapper,.search-dropdown').show();
+        $('body').addClass('noscroll');
+        var val = $.trim($(this).val());
+        if ($.trim(val) === '') {               
+            $rootScope.quickSearchResults = '';         
+            $scope.$apply();
+            return;
+        }
+        else {
+            if (val.charAt(0) !== '>' && val.charAt(0) !== '<') { 
+                SearchService.quickSearch(val).then(function(data) {
+                    if(data.success) {
+                        $rootScope.quickSearchResults = data.results;
+                    }                                    
+                }, function(error) {
+                                      
+                }).catch(function(e) {
+                                      
+                }).finally(function() {
+                });
+            }
+        }
+    });
+
     $('.global-search').on('click', function () {
         $('.search-wrapper, .search-dropdown').show();        
         $('body').addClass('noscroll');
@@ -608,6 +635,9 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             $(".search-dropdown,.search-wrapper").hide();
             $(this).val('');
             $('body').removeClass('noscroll');
+        }
+        if(key === 8 && $(this).val() == '') {            
+            $rootScope.quickSearchResults = '';         
         }
     });
 
