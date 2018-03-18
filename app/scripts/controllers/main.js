@@ -603,6 +603,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         $('.search-wrapper,.search-dropdown').show();
         $('body').addClass('noscroll');
         var val = $.trim($(this).val());
+        var elem = $(this);
         if ($.trim(val) === '') {               
             $rootScope.quickSearchResults = '';         
             $scope.$apply();
@@ -610,15 +611,17 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         }
         else {
             if (val.charAt(0) !== '>' && val.charAt(0) !== '<') { 
+                $(elem).parent().addClass('loading');
                 SearchService.quickSearch(val).then(function(data) {
                     if(data.success) {
-                        $rootScope.quickSearchResults = data.results;
+                        $rootScope.quickSearchResults = data.results;                        
                     }                                    
                 }, function(error) {
                                       
                 }).catch(function(e) {
                                       
                 }).finally(function() {
+                    $(elem).parent().removeClass('loading');
                 });
             }
         }
