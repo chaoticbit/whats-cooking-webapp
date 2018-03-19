@@ -95,7 +95,7 @@ app.run(function($rootScope, $timeout, $window, $location, localStorageService) 
     $rootScope.apiurl = 'http://localhost/whats-cooking-api';
     $rootScope.isLoggedIn = (localStorageService.length() == 0) ? false : true;    
     $rootScope.userProfile = localStorageService.get('userProfile');
-    $rootScope.$on('$locationChangeStart', function(event, currentRoute, prevRoute) {        
+    $rootScope.$on('$locationChangeStart', function(event, currentRoute, prevRoute) {                        
         var currentRoute = $location.path();
         $('.toggle-sidebar').removeClass('active');
         $('.sidebar').animate({left: '-100%'}, function () {
@@ -106,11 +106,17 @@ app.run(function($rootScope, $timeout, $window, $location, localStorageService) 
             document.ontouchmove = function (event) {
                 event.preventDefault();
             };
-        });
+        });    
         if (currentRoute.substring(1) === 'login') {
             $('body').addClass('login-bg');
         } else {
             $('body').removeClass('login-bg');
+        }        
+        
+        if(currentRoute === '/') {                        
+            $rootScope.showRecipeBox = true;
+        } else {
+            $rootScope.showRecipeBox = false;
         }
 
         if($rootScope.isLoggedIn){
