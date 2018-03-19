@@ -167,7 +167,7 @@
 		</form>
 	</div>
 </div>
-<div class="pure-g feed-box" style="margin-top: 50px;">
+<div class="pure-g feed-box" style="margin-top: 50px;">            
 	<div class="pure-u-1 pure-u-md-3-4 left-pane">        
         <div class="pure-u-1 ingredient-search-box">
             <p class="light text-left" style="font-size: 20px;margin:0;">What's in your refrigarator?</p>
@@ -192,9 +192,11 @@
             </div>                   
         </div>        
         <div class="ui divider"></div>        
-		<div class="ui four doubling cards recipe-card-list">
-            <div class="ui inverted dimmer">
-                <div class="ui text loader">Loading</div>
+		<div class="ui four doubling cards recipe-card-list" style="position: relative;">            
+            <div class="pure-u-1 pure-u-md-1 loader-bg" style="display: none;z-index: 999;position: absolute;top:0;right:13px;height: 100%;background: rgba(255,255,255,0.7);">
+                <div style="margin: 25% 50%;">
+                    <i class="fa fa-circle-notch fa-pulse fg-gray fa-spin" style="font-size: 25px;width:25px;height:25px;"></i>
+                </div>
             </div>
 			<div class="card recipe-item" ng-repeat="item in recipes track by $index">                
 				<a class="ui top attached label recipe-card-menu" style="background-color: #e8e8e861;">
