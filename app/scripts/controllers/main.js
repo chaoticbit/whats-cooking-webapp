@@ -343,6 +343,23 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     //     });
     // });
 
+    $scope.upvoteRecipe = function(recipe_id, $event) {
+        var elem = $event.currentTarget;
+        var index = -1;
+        if($(elem).hasClass('upvoted')) { //remove upvote
+            $(elem).removeClass('upvoted');            
+        } else { //add upvote
+            $(elem).addClass('upvoted');
+            for(var i = 0; i < $scope.recipes.length; i++) {
+                if($scope.recipes[i].recipe_id == recipe_id) {
+                    index = i;
+                    break;
+                }
+            }
+            $scope.recipes[index].upvotes = $scope.recipes[index].upvotes + 1;
+        }
+    };
+
     $rootScope.addToFavourites = function(rid, $event) {                
         var elem = $event.currentTarget;        
         if($(elem).hasClass('nav-menu-fav')) {
