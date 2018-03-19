@@ -35,4 +35,12 @@ angular.module('whatsCookingApp').service('RecipeService', function ($rootScope,
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}
         });
     };
+
+    this.getRecipeById = function(rid) {
+        return $http({
+            method: 'GET',
+            url: ApiConfig.API_URL + '/Recipe/' + rid,             
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}
+        });
+    };
 });

@@ -7,11 +7,7 @@
  * # RecipeCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp')
-  .controller('RecipeCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $routeParams, $window, RecipeService, UtilService, localStorageService) {
+    $scope.rid = $routeParams.id;
+    alert($scope.rid);
+});
