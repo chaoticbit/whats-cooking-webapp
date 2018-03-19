@@ -38,6 +38,11 @@ var app = angular
 		controller: 'LoginCtrl',
 		controllerAs: 'login'
 	  })
+    .when('/recipe/:id', {
+        templateUrl: 'views/recipe.html',
+        controller: 'RecipeCtrl',
+        controllerAs: 'recipe'
+    })
 	  .otherwise({
 		redirectTo: '/'
 	  });
