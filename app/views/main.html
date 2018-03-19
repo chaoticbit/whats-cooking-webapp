@@ -254,7 +254,7 @@
                 </div>
                 <div class="extra content stats">
                     <div class="text-left">
-                        <i class="chevron up icon pointer" style="outline: none;" ng-click="upvoteRecipe(item.recipe_id, $event)"></i> {{item.upvotes}}						
+                        <i ng-class="{'upvoted': item.isUpvoted}" class="chevron up icon pointer" style="outline: none;" ng-click="upvoteRecipe(item.recipe_id, $event)"></i> {{item.upvotes}}						
                     </div>
                     <div class="text-center">
                         <i class="comment icon"></i> {{item.replies}}

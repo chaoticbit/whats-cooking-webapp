@@ -346,18 +346,28 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $scope.upvoteRecipe = function(recipe_id, $event) {
         var elem = $event.currentTarget;
         var index = -1;
-        if($(elem).hasClass('upvoted')) { //remove upvote
-            $(elem).removeClass('upvoted');            
-        } else { //add upvote
-            $(elem).addClass('upvoted');
-            for(var i = 0; i < $scope.recipes.length; i++) {
-                if($scope.recipes[i].recipe_id == recipe_id) {
-                    index = i;
-                    break;
+
+        RecipeService.upvote({rid: recipe_id}).then(function(data) {
+            if(data.success) {
+                if($(elem).hasClass('upvoted')) { //remove upvote
+                    $(elem).removeClass('upvoted');            
+                } else { //add upvote
+                    $(elem).addClass('upvoted');                    
+                }     
+                for(var i = 0; i < $scope.recipes.length; i++) {
+                    if($scope.recipes[i].recipe_id == recipe_id) {
+                        index = i;
+                        break;
+                    }
                 }
-            }
-            $scope.recipes[index].upvotes = $scope.recipes[index].upvotes + 1;
-        }
+                $scope.recipes[index].upvotes = data.results.upvote_cnt;
+            }                                
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+        });        
     };
 
     $rootScope.addToFavourites = function(rid, $event) {                
