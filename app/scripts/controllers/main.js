@@ -130,6 +130,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     }
 
     function getRecipes() {
+        $('.ui.dimmer').dimmer('show');
         RecipeService.getRecipes().then(function(data) {
             if(data.success) {
                 $scope.recipes = data.results;                
@@ -139,6 +140,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         }).catch(function(e) {
                               
         }).finally(function() {
+            $('.ui.dimmer').dimmer('hide');
         });
     }    
 
@@ -241,7 +243,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             $(elem).addClass('selected');
         }
         console.log(input.val());        
-    };
+    };      
 
     $(document).on('click', '.update-cuisine-btn', function() {
         var cid = $(this).data('cid');
@@ -276,6 +278,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                     $(elem).addClass('followed');
                     console.log($rootScope.listOfCuisines[addIndex]);            
                 }
+
+                getRecipes();
                 // $scope.$apply();
             }                        
         }, function(error) {

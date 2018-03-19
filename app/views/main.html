@@ -193,6 +193,9 @@
         </div>        
         <div class="ui divider"></div>        
 		<div class="ui four doubling cards recipe-card-list">
+            <div class="ui inverted dimmer">
+                <div class="ui text loader">Loading</div>
+            </div>
 			<div class="card recipe-item" ng-repeat="item in recipes track by $index">                
 				<a class="ui top attached label recipe-card-menu" style="background-color: #e8e8e861;">
 					<b class="bold">{{item.cname}}</b>
