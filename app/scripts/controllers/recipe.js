@@ -103,4 +103,24 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $ro
                 $(this).remove();
         }); 
     });
+
+    $('.views-to-thread').on('click',function(){                
+        $('<div class="modal-wrapper">\n\
+            <div class="pure-g">\n\
+            <div class="pure-u-1 pure-u-md-1-3 bg-white modal-content" style="margin-top: 50px;position: relative;">\n\n\
+            <span class="close-modal pointer" style="right: 10px;top: 38px;font-size: 18px;position:absolute;"><i class="fa fa-times fg-grayLighter"></i></span>\n\
+            <h5 class="fg-grayLight light" style="padding: 10px;border-bottom: 1px solid rgba(0,0,0,0.05);font-size: 16pt;">Views</h5>\n\
+            <ul class="modal-ul"></ul>\n\
+            </div>\n\
+            </div>\n\
+            </div>').insertAfter('.container-fluid').addClass('pop-in');
+            
+        $('body').addClass('noscroll');
+        $('.modal-content ul').html(result.content);                                    
+    });
+    $(document).on('click','.close-modal',function(){
+       $('.modal-wrapper').fadeOut(100,function(){
+           $(this).remove();
+       });
+    });
 });
