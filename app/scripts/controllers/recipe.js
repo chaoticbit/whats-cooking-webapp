@@ -7,23 +7,34 @@
  * # RecipeCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $routeParams, $window, RecipeService, UtilService, localStorageService) {
+angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sce, $routeParams, $window, RecipeService, UtilService, localStorageService) {
     $scope.rid = $routeParams.id;
+    $scope.recipe = {};
 
-    // $('.loader-bg').show();
-    // RecipeService.getRecipeById($scope.rid).then(function(data) {
-    //     if(data.success) {
-    //         console.log(data.results);
-    //     } else {
-    //         window.location.href = '/';
-    //     }                    
-    // }, function(error) {
+    $('.loader-bg').show();
+    RecipeService.getRecipeById($scope.rid).then(function(data) {
+        if(data.success) {
+            console.log(data.results);
+            $scope.recipe = data.results;
+            $scope.recipe.safeIngredients = $sce.trustAsHtml($scope.recipe.ingredients_html);
+            $scope.recipe.safePreparation = $sce.trustAsHtml($scope.recipe.preparation);
+            $scope.recipeVideo = '';
+            _.forEach($scope.recipe.gallery, function(value, key) {
+                if(value.type == 2) {
+                    $scope.recipeVideo = value.path;                    
+                }                
+            });                     
+            $scope.recipe.gallery = $scope.recipe.gallery.filter(image => image.type != '2');            
+        } else {
+            window.location.href = '/';
+        }                    
+    }, function(error) {
                             
-    // }).catch(function(e) {
+    }).catch(function(e) {
                             
-    // }).finally(function() {
-    //     $('.loader-bg').hide();
-    // });
+    }).finally(function() {
+        $('.loader-bg').hide();
+    });
 
     $('.ui.rating').rating('disable');
 
@@ -35,7 +46,7 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $ro
         return size + '%';
       }
 
-    var scaleUp = function(imagepath) {
+    var scaleUp = function(imagepath) {            
         var img = imagepath
         $('<div class="image-theatre-wrapper">\n\
             <div class="area-photo"><i class="fa fa-times fg-gray close-image-theatre pointer" style="font-size: 17px;z-index:99999;position: absolute;right:20px;top:10px;"></i>\n\
@@ -58,8 +69,11 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $ro
         });
     };
     
-    $('.thumbnail').bind('click', function(){
+    $('.thumbnail').bind('click', function() {
         scaleUp($(this).attr('data-image'));
+    });    
+    $(document).on('click', '.grid-img', function() {
+        scaleUp($(this).attr('data-img'));
     });    
 
     $(window).scroll(function(){
@@ -116,7 +130,7 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $ro
             </div>').insertAfter('.container-fluid').addClass('pop-in');
             
         $('body').addClass('noscroll');
-        $('.modal-content ul').html(result.content);                                    
+        // $('.modal-content ul').html(result.content);                                    
     });
     $(document).on('click','.close-modal',function(){
        $('.modal-wrapper').fadeOut(100,function(){

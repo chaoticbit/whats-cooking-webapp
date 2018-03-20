@@ -11,34 +11,20 @@
                 <h3 class="light">{{ 'Ingredients' | uppercase }}</h3>
             </div>
             <div class="pure-u-1 ing-list-desc" style="padding: 0 20px;">
-                <ol>
+                <!-- <ol>
                     <li>
                         <div class="align-top">
                             1 cup butter
                         </div>
-                    </li>
-                    <li>
-                        <div class="align-top">
-                            1 cup butter
-                        </div>
-                    </li>
-                    <li>
-                        <div class="align-top">
-                            1 cup butter
-                        </div>
-                    </li>
-                    <li>
-                        <div class="align-top">
-                            1 cup butter
-                        </div>
-                    </li>
-                </ol>
+                    </li>                    
+                </ol> -->
+                <div ng-bind-html="recipe.safeIngredients"></div>
             </div>
         </div>        
     </div>
-    <div class="pure-u-1 pure-u-md-12-24 recipe-container">        
-        <ul style="margin: 0;">
-            <li class="pure-u-1 recipe" data-rid="">
+    <div class="pure-u-1 pure-u-md-12-24 recipe-container" style="padding-bottom: 20px;">        
+        <ul>
+            <li class="pure-u-1 recipe" data-rid="recipe.srno">
                 <div class="pure-g">                        
                     <div class="pure-u-1">                            
                         <ul style="margin: 0;">                            
@@ -51,12 +37,12 @@
                                             </li>
                                             <li style="padding-left: 10px;">
                                                 <p>
-                                                    <a href="javascript:;">Atharva Dandekar</a>
+                                                    <a href="/#!/user/{{recipe.username}}">{{recipe.owner}}</a>
                                                     <br>
                                                     <small>
-                                                        <a href="javascript:;" class="fg-grayDark link">Indian</a>
+                                                        <a href="javascript:;" class="fg-grayDark link">{{recipe.cname}}</a>
                                                         <span class="dot-center"></span>
-                                                        <span title="2018-03-07 10:17:17">1 week ago</span>
+                                                        <span title="{{recipe.timestamp}}">{{recipe.time_elapsed}}</span>
                                                     </small>
                                                 </p>
                                             </li>
@@ -69,83 +55,94 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="pure-u-1 thumbnail pointer" data-image="http://localhost/soapbox/userdata/10002/8090331520435825.png" style="background-image: url('http://localhost/soapbox/userdata/10002/8090331520435825.png');background-position:0px -14px"></div>
-                    <!-- <div class="pure-u-1 thumbnail-video">
-                        <video src="http://localhost/whats-cooking-api/userdata/5/7920301521330897.mp4" width="100%" height="100%" controls controlsList="nodownload"></video>
-                    </div> -->
-                    <!-- <div class="pure-u-1 image-grid">
+                    <div ng-if="recipeVideo == ''" class="pure-u-1 thumbnail pointer" data-image="{{apiurl}}/userdata/{{recipe.uid}}/{{recipe.cover_imagepath}}" style="background-image: url('{{apiurl}}/userdata/{{recipe.uid}}/{{recipe.cover_imagepath}}');background-position:0px -14px"></div>
+                    <div class="pure-u-1 thumbnail-video">
+                        <video src="{{apiurl}}/userdata/{{recipe.uid}}/{{recipeVideo}}" width="100%" height="100%" controls controlsList="nodownload"></video>
+                    </div>
+                    <div ng-if="recipeVideo == '' && recipe.cover_imagepath == ''" class="pure-u-1 image-grid">
                         <div class="pure-g">
                             <div class="pure-u-1">
-                                <img style="width: 32.8%" src="/images/wireframe_image.png">
-                                <img style="width: 32.8%" src="/images/wireframe_image.png">
-                                <img style="width: 32.8%" src="/images/wireframe_image.png">
-                            </div>
-                            <div class="pure-u-1">
-                                    <img style="width: 32.8%" src="/images/wireframe_image.png">
-                                    <img style="width: 32.8%" src="/images/wireframe_image.png">
-                                    <img style="width: 32.8%" src="/images/wireframe_image.png">
+                                <img style="width: 32.8%;height:68px;" ng-repeat="img in recipe.gallery" ng-if="img.type != 2" src="{{apiurl}}/userdata/{{recipe.uid}}/{{img.path}}">                                
                             </div>
                         </div>                                                        
-                    </div> -->
+                    </div>
                     <div class="pure-u-1 ttitle" style="padding: 10px 0;">
-                        <h2 class="black flt-left" style="color: rgba(0,0,0,0.8);width: 90%;">Macaroni pasta</h2>
-                        <div style="width: 10%;float: right;text-align:right;">
+                        <h2 class="black flt-left" style="color: rgba(0,0,0,0.8);width: 90%;">{{recipe.title}}</h2>
+                        <div ng-if="recipe.food_group == 100" style="width: 10%;float: right;text-align:right;">
                             <span class="food-group-icon veg-icon">&#9679;</span>
                         </div>
+                        <div ng-if="recipe.food_group == 010" style="width: 10%;float: right;text-align:right;">
+                                <span class="food-group-icon nonveg-icon">&#9679;</span>
+                        </div>
+                        <div ng-if="recipe.food_group == 001" style="width: 10%;float: right;text-align:right;">
+                            <span class="fg-black food-group-icon vegan-icon">V</span>
+                        </div>
+                        <div ng-if="item.food_group == 101" style="width: 10%;float: right;text-align:right;">
+                            <span class="food-group-icon veg-icon">&#9679;</span>
+                            <span class="fg-black food-group-icon vegan-icon">V</span>
+                        </div>                        
                     </div>
                     <div class="pure-u-1 recipe-desc">
-                        <ol style="margin:0;padding:0;">
+                        <!-- <ol style="margin:0;padding:0;">
                             <li>
                                 <div class="align-top">
                                     Been few days started with design and database. Lot is remaining in terms of thought and implementation. 
                                 </div>
-                            </li>
-                            <li>
-                                <div class="align-top">
-                                    Been few days started with design and database. Lot is remaining in terms of thought and implementation. 
-                                </div>
-                            </li>
-                            <li>
-                                <div class="align-top">
-                                    Been few days started with design and database. Lot is remaining in terms of thought and implementation. 
-                                </div>
-                            </li>
-                            <li>
-                                <div class="align-top">
-                                    Been few days started with design and database. Lot is remaining in terms of thought and implementation. 
-                                </div>
-                            </li>
-                            <li>
-                                <div class="align-top">
-                                    Been few days started with design and database. Lot is remaining in terms of thought and implementation. 
-                                </div>
-                            </li>                            
-                        </ol>
+                            </li>                                                     
+                        </ol> -->
+                        <div ng-bind-html="recipe.safePreparation"></div>
                     </div>
                     <div class="pure-u-1 recipe-tags">
-                        <a href="http://localhost/soapbox/Tag/Programming" class="tag">Programming</a>
-                        <a href="http://localhost/soapbox/Tag/Programming" class="tag">Programming</a>
-                        <a href="http://localhost/soapbox/Tag/Programming" class="tag">Programming</a>
+                        <a ng-repeat="tag in recipe.tags" href="/#!/tag/{{tag.name}}" class="tag">{{tag.name}}</a>                        
                     </div>
                 </div>
             </li>
         </ul>
+        <div class="ui divider pure-u-1 margin0"></div>
+        <div class="pure-g">
+            <div class="pure-u-1" style="padding: 0 20px;">
+                <div class="ui comments">
+                    <div class="comment">
+                        <a class="avatar">
+                        <img src="/images/wireframe_image.png">
+                        </a>
+                        <div class="content">
+                            <a class="author">Mihir Karandikar</a>
+                            <div class="metadata">
+                                <div class="date">1 day ago</div>
+                                <!-- <div class="rating">
+                                <i class="star icon"></i>
+                                5 Faves
+                                </div> -->
+                            </div>                        
+                            <div class="text" style="font-size: 13px;">
+                                Ramnath chi jasta bhari aste >_< 
+                            </div>
+                            <div class="actions">
+                                <a class="reply">Reply</a>
+                            </div>
+                            <form class="ui reply form">
+                                <div class="field">
+                                    <textarea></textarea>
+                                </div>
+                                <div class="ui primary submit labeled icon button">
+                                    <i class="icon edit"></i> Add Reply
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="pure-u-md-6-24">&nbsp;</div>
     <div class="pure-u-md-6-24 hidden-for-mobile stats-action-container">
         <div class="pure-g">
-            <div class="pure-u-1 image-grid" style="padding: 20px;">
+            <div ng-if="recipeVideo != '' || recipe.cover_imagepath != ''" class="pure-u-1 image-grid" style="padding: 20px;">
                 <h3 class="light">Recipe images</h3>
                 <div class="pure-g">
                     <div class="pure-u-1">
-                        <img style="width: 32%" src="/images/wireframe_image.png">
-                        <img style="width: 32%" src="/images/wireframe_image.png">
-                        <img style="width: 32%" src="/images/wireframe_image.png">
-                    </div>
-                    <div class="pure-u-1">
-                        <img style="width: 32%" src="/images/wireframe_image.png">
-                        <img style="width: 32%" src="/images/wireframe_image.png">
-                        <img style="width: 32%" src="/images/wireframe_image.png">
+                        <img class="grid-img" style="width: 32%;height: 68px;padding:0 5px;cursor: -webkit-zoom-in" data-img="{{apiurl}}/userdata/{{recipe.uid}}/{{img.path}}" ng-repeat="img in recipe.gallery" src="{{apiurl}}/userdata/{{recipe.uid}}/{{img.path}}">                     
                     </div>
                 </div>                 
             </div>
@@ -155,7 +152,7 @@
                     <div>
                         <img height="20px" class="first" src="https://image.ibb.co/jpMUXa/stars_blank.png" alt="img">
                     </div>
-                    <div class="cornerimage" ng-style="{ 'width': getStars(3.5) }">
+                    <div class="cornerimage" ng-style="{ 'width': getStars(recipe.rating) }">
                         <img height="20px" src="https://image.ibb.co/caxgdF/stars_full.png" alt="">
                     </div>                
                 </div>                        
@@ -165,17 +162,17 @@
                     <li>                        
                         <i class="fa fa-cut"></i>
                         <br>
-                        <span>20 mins</span>
+                        <span>{{recipe.prep_time}}</span>
                     </li>
                     <li>
                         <i class="icon alarm clock"></i>
                         <br>
-                        <span>30 mins</span>
+                        <span>{{recipe.cooking_time}}</span>
                     </li>
                     <li>
                         <i class="fa fa-utensils"></i>
                         <br>
-                        <span>4</span>
+                        <span>{{recipe.servings}}</span>
                     </li>
                 </ul>
             </div>
@@ -183,19 +180,19 @@
             <div class="pure-u-1 recipe-user-stats" style="padding: 0 20px;">
                 <ul>
                     <li>                        
-                        <i class="chevron up icon pointer"></i>
+                        <i ng-class="{'upvoted': recipe.isUpvoted}" style="outline: none;" class="chevron up icon pointer"></i>
                         <br>
-                        <span style="margin-left: -6px;">20</span>
+                        <span style="margin-left: -6px;">{{recipe.upvotes}}</span>
                     </li>
                     <li>
                         <i class="comment icon"></i>
                         <br>
-                        <span style="margin-left: -6px;">30</span>
+                        <span style="margin-left: -6px;">{{recipe.replies}}</span>
                     </li>
                     <li class="views-to-thread pointer">
                         <i class="eye icon"></i>
                         <br>
-                        <span style="margin-left: -6px;">129</span>
+                        <span style="margin-left: -6px;">{{recipe.views}}</span>
                     </li>
                 </ul>
             </div>   
@@ -205,14 +202,14 @@
                     <span class="text-center">Spiciness</span>
                     <br>
 					<div style="margin-top: 7px;">
-                        <i class="fire icon" ng-repeat="n in [] | range: 5"></i>						
+                        <i class="fire icon" ng-repeat="n in [] | range: recipe.spicy"></i>						
                     </div>
                 </span>
                 <span class="flt-right text-left">
                     <span class="text-center">Calorie Intake</span>
                     <br>
                     <div style="margin-top: 7px;text-align: center;">
-                        <i class="heartbeat icon fg-gray" style="font-size: 18px;"></i> 200 
+                        <i class="heartbeat icon fg-gray" style="font-size: 18px;"></i> {{recipe.calorie_intake}}
                     </div>
                 </span>
             </div>       

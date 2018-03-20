@@ -15,7 +15,7 @@
         color:green;
         border: 1px solid green;
     }
-    .non-veg-icon {
+    .nonveg-icon {
         color:red;
         border: 1px solid red;
     }
@@ -39,7 +39,7 @@
                     margin-bottom: 15px;    
                     position: relative;     
                     .align-top {                        
-                        margin-top: 4px;
+                        margin-top: 2px;
                         font-size: 13px;
                     }               		
                 }
@@ -48,6 +48,7 @@
                     display: inline-block;
                     position: absolute;
                     left: 0px;
+                    top: 1px;
                     width: 30px;
                     height: 30px;
                     line-height: 1.9;
@@ -145,7 +146,8 @@
                         padding: 5px 0 5px 35px;
                         text-align: justify !important; 
                         counter-increment: step-counter;
-                        margin-bottom: 15px;    
+                        margin-bottom: 15px;
+                        display: block;    
                         position: relative;     
                         .align-top {
                             margin-top: -3px;
@@ -156,6 +158,7 @@
                         display: inline-block;
                         position: absolute;
                         left: 0px;
+                        top: 2px;
                         width: 25px;
                         height: 25px;
                         line-height: 1.6;
