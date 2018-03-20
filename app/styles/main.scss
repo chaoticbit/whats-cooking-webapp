@@ -2,6 +2,7 @@
 @import "components-font-awesome/scss/fontawesome.scss";
 // endbower
 @import "login.scss";
+@import "recipe.scss";
 
 $spiciness-level-color: rgb(247, 81, 81);
 
@@ -787,6 +788,19 @@ color: #eeeeee !important;
     top: 3px;
     right: 0;
     z-index: 9999;
+}
+
+.loader-bg {
+    display: none;
+    z-index: 999;
+    position: absolute;
+    top:0;
+    right:13px;
+    height: 100%;
+    background: rgba(255,255,255,0.7);
+    div {
+        margin: 25% 50%;
+    }
 }
 
 .feed-box {
