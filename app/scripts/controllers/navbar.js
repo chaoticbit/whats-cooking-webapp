@@ -13,6 +13,10 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
     $scope.favourites = [];
     $rootScope.showRecipeBox = false;
     
+    if($rootScope.isLogged) {
+        
+    }
+
     function getCuisines() {
         UtilService.getCuisines().then(function(data) {
             if(data.success) {

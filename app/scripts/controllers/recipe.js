@@ -9,5 +9,7 @@
  */
 angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $routeParams, $window, RecipeService, UtilService, localStorageService) {
     $scope.rid = $routeParams.id;
-    alert($scope.rid);
+    
+   
+
 });

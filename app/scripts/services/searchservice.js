@@ -8,7 +8,7 @@
  * Service in the whatsCookingApp.
  */
 angular.module('whatsCookingApp').service('SearchService', function ($rootScope, $http, ApiConfig) {
-    var token = $rootScope.userProfile.token;    
+    var token = $rootScope.userProfile.token;
     
     this.quickSearch = function(key) {
         return $http({
