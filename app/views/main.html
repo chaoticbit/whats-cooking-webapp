@@ -213,7 +213,7 @@
 				</div>
 				<div class="content">
 					<div class="header">
-                        <div style="width: 90%;" class="left floated"><a href="javascript:;" class="fg-gray">{{item.title}}</a></div> 
+                        <div style="width: 90%;" class="left floated"><a href="/#!/recipe/{{item.recipe_id}}" class="fg-gray">{{item.title}}</a></div> 
                         <i ng-if="item.addedToFavourites" class="icon heart right floated pointer added fg-red" style="width: 7%;" ng-click="addToFavourites(item.recipe_id, $event)"></i>
                         <i ng-if="!item.addedToFavourites" class="icon heart outline right floated pointer" style="width: 7%;" ng-click="addToFavourites(item.recipe_id, $event)"></i>
                     </div>
