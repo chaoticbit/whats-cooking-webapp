@@ -649,6 +649,9 @@ color: #eeeeee !important;
     -webkit-transition: background 0.2s ease-in-out;
     -moz-transition: background 0.2s ease-in-out;
 }
+.tag:hover {
+    background: rgba(235,235,235,0.5);
+}
 
 .selected-as-cover {
     box-shadow: 0px 0px 1px 4px #000 !important;
@@ -790,8 +793,7 @@ color: #eeeeee !important;
     z-index: 9999;
 }
 
-.loader-bg {
-    display: none;
+.loader-bg {    
     z-index: 999;
     position: absolute;
     top:0;
@@ -972,7 +974,12 @@ color: #eeeeee !important;
         }		
 	}
 }
-
+.spice-box {
+    i {
+        margin: 0 !important;
+        color: $spiciness-level-color;
+    }
+}
 .sidebarwrapper {
     position: fixed;
     height: 100%;

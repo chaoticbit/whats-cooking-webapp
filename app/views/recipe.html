@@ -1,22 +1,221 @@
 <div class="pure-g recipe-main-page">
-    <div class="pure-u-1 pure-u-md-1 loader-bg" style="right:0;">
+    <div class="pure-u-1 pure-u-md-1 loader-bg" style="right:0;display: none;">
         <div>
             <i class="fa fa-circle-notch fa-pulse fg-gray fa-spin" style="font-size: 25px;width:25px;height:25px;"></i>
         </div>
     </div>
-    <div class="pure-u-md-6-24 bg-gray">&nbsp;</div>
-    <div class="pure-u-md-6-24 bg-gray hidden-for-mobile" style="position: fixed;left:0;top: 50px;height: 100%;">7-24</div>
-    <div class="pure-u-1 pure-u-md-12-24 bg-cyan">        
-        <h1 class="light">Main recipe content</h1><br>
-        <h1 class="light">Main recipe content</h1><br>
-        <h1 class="light">Main recipe content</h1><br>
-        <h1 class="light">Main recipe content</h1><br>
-        <h1 class="light">Main recipe content</h1><br>
-        <h1 class="light">Main recipe content</h1><br>
-        <h1 class="light">Main recipe content</h1><br>
-        <h1 class="light">Main recipe content</h1><br>
-        <h1 class="light">Main recipe content</h1><br>
+    <div class="pure-u-md-6-24">&nbsp;</div>
+    <div class="pure-u-md-6-24 hidden-for-mobile ingredients-container">
+        <div class="pure-g">
+            <div class="pure-u-1" style="padding: 20px 20px 10px 20px;">
+                <h3 class="light">{{ 'Ingredients' | uppercase }}</h3>
+            </div>
+            <div class="pure-u-1 ing-list-desc" style="padding: 0 20px;">
+                <ol>
+                    <li>
+                        <div class="align-top">
+                            1 cup butter
+                        </div>
+                    </li>
+                    <li>
+                        <div class="align-top">
+                            1 cup butter
+                        </div>
+                    </li>
+                    <li>
+                        <div class="align-top">
+                            1 cup butter
+                        </div>
+                    </li>
+                    <li>
+                        <div class="align-top">
+                            1 cup butter
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>        
     </div>
-    <div class="pure-u-md-6-24 bg-teal">&nbsp;</div>
-    <div class="pure-u-md-6-24 bg-teal hidden-for-mobile" style="position: fixed;right:0;top: 50px;height: 100%;">6-24</div>
+    <div class="pure-u-1 pure-u-md-12-24 recipe-container">        
+        <ul style="margin: 0;">
+            <li class="pure-u-1 recipe" data-rid="">
+                <div class="pure-g">                        
+                    <div class="pure-u-1">                            
+                        <ul style="margin: 0;">                            
+                            <li class="pure-u-1">                                    
+                                <div class="pure-g">
+                                    <div class="pure-u-1" style="margin-bottom: 10px;">
+                                        <ul>
+                                            <li>
+                                                <div class="avatar" style="background-image: url('images/wireframe_image.png');"></div>
+                                            </li>
+                                            <li style="padding-left: 10px;">
+                                                <p>
+                                                    <a href="javascript:;">Atharva Dandekar</a>
+                                                    <br>
+                                                    <small>
+                                                        <a href="javascript:;" class="fg-grayDark link">Indian</a>
+                                                        <span class="dot-center"></span>
+                                                        <span title="2018-03-07 10:17:17">1 week ago</span>
+                                                    </small>
+                                                </p>
+                                            </li>
+                                            <li class="flt-right">
+                                                <i class="fa fa-chevron-down fg-grayLighter pointer fg-grayLight"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pure-u-1 thumbnail pointer" data-image="http://localhost/soapbox/userdata/10002/8090331520435825.png" style="background-image: url('http://localhost/soapbox/userdata/10002/8090331520435825.png');background-position:0px -14px"></div>
+                    <!-- <div class="pure-u-1 thumbnail-video">
+                        <video src="http://localhost/whats-cooking-api/userdata/5/7920301521330897.mp4" width="100%" height="100%" controls controlsList="nodownload"></video>
+                    </div> -->
+                    <!-- <div class="pure-u-1 image-grid">
+                        <div class="pure-g">
+                            <div class="pure-u-1">
+                                <img style="width: 32.8%" src="/images/wireframe_image.png">
+                                <img style="width: 32.8%" src="/images/wireframe_image.png">
+                                <img style="width: 32.8%" src="/images/wireframe_image.png">
+                            </div>
+                            <div class="pure-u-1">
+                                    <img style="width: 32.8%" src="/images/wireframe_image.png">
+                                    <img style="width: 32.8%" src="/images/wireframe_image.png">
+                                    <img style="width: 32.8%" src="/images/wireframe_image.png">
+                            </div>
+                        </div>                                                        
+                    </div> -->
+                    <div class="pure-u-1 ttitle" style="padding: 10px 0;">
+                        <h2 class="black flt-left" style="color: rgba(0,0,0,0.8);width: 90%;">Macaroni pasta</h2>
+                        <div style="width: 10%;float: right;text-align:right;">
+                            <span class="food-group-icon veg-icon">&#9679;</span>
+                        </div>
+                    </div>
+                    <div class="pure-u-1 recipe-desc">
+                        <ol style="margin:0;padding:0;">
+                            <li>
+                                <div class="align-top">
+                                    Been few days started with design and database. Lot is remaining in terms of thought and implementation. 
+                                </div>
+                            </li>
+                            <li>
+                                <div class="align-top">
+                                    Been few days started with design and database. Lot is remaining in terms of thought and implementation. 
+                                </div>
+                            </li>
+                            <li>
+                                <div class="align-top">
+                                    Been few days started with design and database. Lot is remaining in terms of thought and implementation. 
+                                </div>
+                            </li>
+                            <li>
+                                <div class="align-top">
+                                    Been few days started with design and database. Lot is remaining in terms of thought and implementation. 
+                                </div>
+                            </li>
+                            <li>
+                                <div class="align-top">
+                                    Been few days started with design and database. Lot is remaining in terms of thought and implementation. 
+                                </div>
+                            </li>                            
+                        </ol>
+                    </div>
+                    <div class="pure-u-1 recipe-tags">
+                        <a href="http://localhost/soapbox/Tag/Programming" class="tag">Programming</a>
+                        <a href="http://localhost/soapbox/Tag/Programming" class="tag">Programming</a>
+                        <a href="http://localhost/soapbox/Tag/Programming" class="tag">Programming</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="pure-u-md-6-24">&nbsp;</div>
+    <div class="pure-u-md-6-24 hidden-for-mobile stats-action-container">
+        <div class="pure-g">
+            <div class="pure-u-1 image-grid" style="padding: 20px;">
+                <h3 class="light">Recipe images</h3>
+                <div class="pure-g">
+                    <div class="pure-u-1">
+                        <img style="width: 32%" src="/images/wireframe_image.png">
+                        <img style="width: 32%" src="/images/wireframe_image.png">
+                        <img style="width: 32%" src="/images/wireframe_image.png">
+                    </div>
+                    <div class="pure-u-1">
+                        <img style="width: 32%" src="/images/wireframe_image.png">
+                        <img style="width: 32%" src="/images/wireframe_image.png">
+                        <img style="width: 32%" src="/images/wireframe_image.png">
+                    </div>
+                </div>                 
+            </div>
+            <div class="pure-u-1 stars-div" style="padding: 0px 20px;">                
+                <h3 class="flt-left light" style="padding-right: 10px;">Recipe rating</h3>
+                <div class="stars-container-div">
+                    <div>
+                        <img height="20px" class="first" src="https://image.ibb.co/jpMUXa/stars_blank.png" alt="img">
+                    </div>
+                    <div class="cornerimage" ng-style="{ 'width': getStars(3.5) }">
+                        <img height="20px" src="https://image.ibb.co/caxgdF/stars_full.png" alt="">
+                    </div>                
+                </div>                        
+            </div>
+            <div class="pure-u-1 recipe-prep-stats" style="padding: 10px 20px;">
+                <ul>
+                    <li>                        
+                        <i class="fa fa-cut"></i>
+                        <br>
+                        <span>20 mins</span>
+                    </li>
+                    <li>
+                        <i class="icon alarm clock"></i>
+                        <br>
+                        <span>30 mins</span>
+                    </li>
+                    <li>
+                        <i class="fa fa-utensils"></i>
+                        <br>
+                        <span>4</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="ui divider pure-u-1" style="margin: 10px 20px;"></div>
+            <div class="pure-u-1 recipe-user-stats" style="padding: 0 20px;">
+                <ul>
+                    <li>                        
+                        <i class="chevron up icon pointer"></i>
+                        <br>
+                        <span style="margin-left: -6px;">20</span>
+                    </li>
+                    <li>
+                        <i class="comment icon"></i>
+                        <br>
+                        <span style="margin-left: -6px;">30</span>
+                    </li>
+                    <li>
+                        <i class="eye icon"></i>
+                        <br>
+                        <span style="margin-left: -6px;">129</span>
+                    </li>
+                </ul>
+            </div>   
+            <div class="ui divider pure-u-1" style="margin: 20px 20px 10px;"></div>  
+            <div class="pure-u-1" style="padding: 0px 50px;">
+                <span class="spice-box flt-left text-center">
+                    <span class="text-center">Spiciness</span>
+                    <br>
+					<div style="margin-top: 7px;">
+                        <i class="fire icon" ng-repeat="n in [] | range: 5"></i>						
+                    </div>
+                </span>
+                <span class="flt-right text-left">
+                    <span class="text-center">Calorie Intake</span>
+                    <br>
+                    <div style="margin-top: 7px;text-align: center;">
+                        <i class="heartbeat icon fg-gray" style="font-size: 18px;"></i> 200 
+                    </div>
+                </span>
+            </div>       
+        </div>
+    </div>
 </div>
