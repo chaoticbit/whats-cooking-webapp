@@ -109,28 +109,44 @@
         </ul>
         <div class="ui divider pure-u-1 margin0"></div>
         <div class="pure-g">
-            <div class="pure-u-1" style="padding: 0 20px;">
-                <div class="ui comments">
+            <div class="pure-u-1" style="padding: 0 20px;">                
+                <button class="ui button basic blue reply-box-toggle-btn">Post a reply...</button>
+                <div class="ui comments self-reply-box" style="display: none;margin-top:0;">
                     <div class="comment">
                         <a class="avatar">
-                        <img src="/images/wireframe_image.png">
+                            <img src="/images/wireframe_image.png">
                         </a>
                         <div class="content">
-                            <a class="author">Mihir Karandikar</a>
+                            <a class="author">{{userProfile.fname + ' ' + userProfile.lname}}</a>                                                                      
+                            <form class="ui reply form">
+                                <div class="field">
+                                    <textarea style="height:112px" class="reply-desc"></textarea>
+                                </div>
+                                <div class="ui primary submit labeled icon button post-reply-btn">
+                                    <i class="icon edit"></i> Add Reply
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="light text-center" ng-if="recipe.list_of_replies.length == 0">No replies</div>
+                <div class="ui comments" ng-if="recipe.list_of_replies.length > 0">
+                    <div class="comment" ng-repeat="reply in recipe.list_of_replies" ng-cloak>
+                        <a class="avatar">
+                            <img src="/images/wireframe_image.png">
+                        </a>
+                        <div class="content">
+                            <a class="author">{{reply.fullname}}</a>
                             <div class="metadata">
-                                <div class="date">1 day ago</div>
-                                <!-- <div class="rating">
-                                <i class="star icon"></i>
-                                5 Faves
-                                </div> -->
+                                <div class="date">{{reply.time_elapsed}}</div>                                
                             </div>                        
                             <div class="text" style="font-size: 13px;">
-                                Ramnath chi jasta bhari aste >_< 
+                                {{reply.description}}
                             </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
+                            <div class="actions" ng-if="recipe.uid == userProfile.userid">
+                                <a class="reply toggle-reply-box">Reply</a>
                             </div>
-                            <form class="ui reply form">
+                            <form class="ui reply form" style="display: none;">
                                 <div class="field">
                                     <textarea style="height:112px"></textarea>
                                 </div>

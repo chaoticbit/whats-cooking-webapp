@@ -10,8 +10,8 @@
 angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sce, $routeParams, $window, RecipeService, UtilService, localStorageService) {
     $scope.rid = $routeParams.id;
     $scope.recipe = {};
-    $scope.rating = 0;
-    
+    $scope.rating = 0;    
+
     $('.loader-bg').show();
     RecipeService.getRecipeById($scope.rid).then(function(data) {
         if(data.success) {
@@ -154,6 +154,18 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
         $(this).removeClass('fg-grayLight').addClass('fg-grayDark');
     });
 
+    $(document).on('click','.toggle-reply-box', function() {
+        var replyFormElem = $(this).closest('.content').find('.form');
+        if($(replyFormElem).css('display') === 'none') {
+            $(replyFormElem).slideDown(function() {
+                $(this).find('textarea').focus();
+            });
+        } else {
+            $(replyFormElem).slideUp(function() {
+            });
+        }
+    });
+
     $scope.upvoteRecipe = function($event) {
         var elem = $event.currentTarget;
 
@@ -223,4 +235,30 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
         }).finally(function() {
         });
     }
+
+    $(document).on('click','.reply-box-toggle-btn', function() {
+        $(this).fadeOut(300, function() {
+            $('.self-reply-box').fadeIn(300, function() {
+                $('.self-reply-box').find('textarea').focus();
+            });
+        })        
+    });
+
+    $(document).on('click', '.post-reply-btn', function() {
+        var reply = {
+            'rid': $scope.recipe.srno,
+            'description': $('.reply-desc').val()
+        };        
+        RecipeService.postReply(reply).then(function(data) {
+            if(data.success) {                                
+                $scope.recipe.list_of_replies.push(data.results);
+                $('.reply-desc').val('');
+            }                            
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+        });
+    });
 });
