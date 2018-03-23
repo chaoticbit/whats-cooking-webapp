@@ -138,8 +138,9 @@
                         <div class="content">
                             <a class="author">{{reply.fullname}}</a>
                             <div class="metadata">
-                                <div class="date">{{reply.time_elapsed}}</div>                                
+                                <div class="date">{{reply.time_elapsed}}</div>                                                                
                             </div>                        
+                            <div class="date"><i ng-if="reply.uid == userProfile.userid" class="icon close flt-right fg-grayLight pointer delete-reply-icon" style="display: none;margin-top: -17px;"></i></div>                                
                             <div class="text" style="font-size: 13px;">
                                 {{reply.description}}
                             </div>

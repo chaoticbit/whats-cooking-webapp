@@ -244,6 +244,14 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
         })        
     });
 
+    $(document).on('mouseover', '.comments .comment', function() {
+        $(this).find('.delete-reply-icon').show();
+    });
+
+    $(document).on('mouseout', '.comments .comment', function() {
+        $(this).find('.delete-reply-icon').hide();
+    });
+
     $(document).on('click', '.post-reply-btn', function() {
         var reply = {
             'rid': $scope.recipe.srno,
