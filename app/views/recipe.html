@@ -55,8 +55,8 @@
                             </li>
                         </ul>
                     </div>
-                    <div ng-if="recipeVideo == ''" class="pure-u-1 thumbnail pointer" data-image="{{apiurl}}/userdata/{{recipe.uid}}/{{recipe.cover_imagepath}}" style="background-image: url('{{apiurl}}/userdata/{{recipe.uid}}/{{recipe.cover_imagepath}}');background-position:0px -14px"></div>
-                    <div class="pure-u-1 thumbnail-video">
+                    <div ng-if="!recipeVideo || recipeVideo == ''" class="pure-u-1 thumbnail pointer" data-image="{{apiurl}}/userdata/{{recipe.uid}}/{{recipe.cover_imagepath}}" style="background-image: url('{{apiurl}}/userdata/{{recipe.uid}}/{{recipe.cover_imagepath}}');background-size: cover;"></div>
+                    <div ng-if="recipeVideo" class="pure-u-1 thumbnail-video">
                         <video src="{{apiurl}}/userdata/{{recipe.uid}}/{{recipeVideo}}" width="100%" height="100%" controls controlsList="nodownload"></video>
                     </div>
                     <div ng-if="recipeVideo == '' && recipe.cover_imagepath == ''" class="pure-u-1 image-grid">

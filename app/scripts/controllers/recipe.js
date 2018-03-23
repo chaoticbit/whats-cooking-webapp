@@ -18,13 +18,16 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
             $scope.recipe = data.results;
             $scope.recipe.safeIngredients = $sce.trustAsHtml($scope.recipe.ingredients_html);
             $scope.recipe.safePreparation = $sce.trustAsHtml($scope.recipe.preparation);
-            $scope.recipeVideo = '';
+            $scope.recipeVideo = '';            
             _.forEach($scope.recipe.gallery, function(value, key) {
                 if(value.type == 2) {
-                    $scope.recipeVideo = value.path;                    
+                    $scope.recipeVideo = value.path || '';                    
                 }                
-            });                     
+            });                          
             $scope.recipe.gallery = $scope.recipe.gallery.filter(image => image.type != '2');            
+            if($scope.recipeVideo == '') {
+                $scope.recipeVideo = false;
+            }
         } else {
             window.location.href = '/';
         }                    
@@ -68,10 +71,10 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
             });          
         });
     };
-    
-    $('.thumbnail').bind('click', function() {
+        
+    $(document).on('click', '.thumbnail', function() {
         scaleUp($(this).attr('data-image'));
-    });    
+    }); 
     $(document).on('click', '.grid-img', function() {
         scaleUp($(this).attr('data-img'));
     });    
