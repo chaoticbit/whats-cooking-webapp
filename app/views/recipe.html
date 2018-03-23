@@ -55,14 +55,14 @@
                             </li>
                         </ul>
                     </div>
-                    <div ng-if="!recipeVideo || recipeVideo == ''" class="pure-u-1 thumbnail pointer" data-image="{{apiurl}}/userdata/{{recipe.uid}}/{{recipe.cover_imagepath}}" style="background-image: url('{{apiurl}}/userdata/{{recipe.uid}}/{{recipe.cover_imagepath}}');background-size: cover;"></div>
+                    <div ng-if="!recipeVideo || recipeVideo == ''" class="pure-u-1 thumbnail pointer" data-image="{{apiurl}}/userdata/{{recipe.uid}}/{{recipe.cover_imagepath}}" style="background-image:url('{{apiurl}}/userdata/{{recipe.uid}}/{{recipe.cover_imagepath}}');background-size:cover" ng-cloak></div>
                     <div ng-if="recipeVideo" class="pure-u-1 thumbnail-video">
-                        <video src="{{apiurl}}/userdata/{{recipe.uid}}/{{recipeVideo}}" width="100%" height="100%" controls controlsList="nodownload"></video>
+                        <video ng-cloak ng-src="{{apiurl}}/userdata/{{recipe.uid}}/{{recipeVideo}}" width="100%" height="100%" controls controlsList="nodownload"></video>
                     </div>
                     <div ng-if="recipeVideo == '' && recipe.cover_imagepath == ''" class="pure-u-1 image-grid">
                         <div class="pure-g">
                             <div class="pure-u-1">
-                                <img style="width: 32.8%;height:68px;" ng-repeat="img in recipe.gallery" ng-if="img.type != 2" src="{{apiurl}}/userdata/{{recipe.uid}}/{{img.path}}">                                
+                                <img style="width: 32.8%;height:68px;" ng-repeat="img in recipe.gallery" ng-if="img.type != 2" ng-src="{{apiurl}}/userdata/{{recipe.uid}}/{{img.path}}" ng-cloak>                                
                             </div>
                         </div>                                                        
                     </div>
@@ -144,13 +144,13 @@
                 <h3 class="light">Recipe images</h3>
                 <div class="pure-g">
                     <div class="pure-u-1">
-                        <img class="grid-img" style="width: 32%;height: 68px;padding:0 5px;cursor: -webkit-zoom-in" data-img="{{apiurl}}/userdata/{{recipe.uid}}/{{img.path}}" ng-repeat="img in recipe.gallery" src="{{apiurl}}/userdata/{{recipe.uid}}/{{img.path}}">                     
+                        <img class="grid-img" style="width: 32%;height: 68px;padding:0 5px;cursor: -webkit-zoom-in" data-img="{{apiurl}}/userdata/{{recipe.uid}}/{{img.path}}" ng-repeat="img in recipe.gallery" ng-src="{{apiurl}}/userdata/{{recipe.uid}}/{{img.path}}" ng-cloak>                     
                     </div>
                 </div>                 
             </div>
             <div class="pure-u-1 stars-div" style="padding: 0px 20px;">                
                 <h3 class="flt-left light" style="padding-right: 10px;">Recipe rating</h3>
-                <div ng-hide="true">{{outOf = (getStars(recipe.rating).split('')[0])/100 * 5.0}}</div>
+                <div ng-hide="true">{{outOf = getStars(recipe.rating).split('%')[0]/100 * 5.0}}</div>
                 <div class="stars-container-div" title="{{outOf}} out of 5.0">
                     <div>
                         <img height="20px" class="first" src="https://image.ibb.co/jpMUXa/stars_blank.png" alt="img">
@@ -219,7 +219,7 @@
             <div class="ui divider pure-u-1" style="margin: 20px 20px 10px;"></div>  
             <div class="pure-u-1" style="padding: 0 20px;">
                 <div style="font-size: 16px;">
-                    Rate this recipe: <div class="ui star rating" data-rating="0" data-max-rating="5"></div>
+                    Rate this recipe: <div class="ui star rating" data-max-rating="5"></div>
                 </div>
             </div>     
         </div>

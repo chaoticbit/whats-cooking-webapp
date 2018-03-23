@@ -47,7 +47,8 @@ angular.module('whatsCookingApp').service('RecipeService', function ($rootScope,
     this.rateRecipe = function(payload) {
         return $http({
             method: 'POST',
-            url: ApiConfig.API_URL + '/Recipe/get/' + rid,             
+            url: ApiConfig.API_URL + '/Recipe/rate/',             
+            data: payload,
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}
         });
     }

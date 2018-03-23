@@ -29,6 +29,13 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
             if($scope.recipeVideo == '') {
                 $scope.recipeVideo = false;
             }
+            $('.ui.rating').rating({
+                initialRating: parseInt($scope.recipe.user_rating),
+                onRate: function(value) {
+                    $scope.rating = value;     
+                    rateRecipe();       
+                }
+            });
         } else {
             window.location.href = '/';
         }                    
@@ -38,13 +45,7 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
                             
     }).finally(function() {
         $('.loader-bg').hide();
-    });
-
-    $('.ui.rating').rating({
-        onRate: function(value) {
-            $scope.rating = value;            
-        }
-    });
+    });    
 
     $scope.getStars = function(rating) {
         // Get the value
@@ -205,6 +206,8 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
         RecipeService.rateRecipe({rid: $scope.recipe.srno, rating_id: $scope.recipe.rating_id, rating: $scope.rating}).then(function(data) {
             if(data.success) {
                 $scope.recipe.rating = data.results.rating;
+                var width = $scope.getStars(data.results.rating);
+                $('.cornerimage').css('width', width);
             }                            
         }, function(error) {
                               
