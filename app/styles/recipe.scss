@@ -3,26 +3,7 @@
     ul, ol{
         margin: 0 !important;
         padding: 0 !important;
-    }
-    .food-group-icon {
-        display: inline-block;
-        padding: 0px 4px;    
-        margin-top: 2px;
-        font-size: 20px;
-        font-family: sans-serif !important;
-    }
-    .veg-icon {        
-        color:green;
-        border: 1px solid green;
-    }
-    .nonveg-icon {
-        color:red;
-        border: 1px solid red;
-    }
-    .vegan-icon {
-        border-radius: 100%;
-        border: 1px solid #000;
-    }
+    }    
     .ingredients-container {
         position: fixed;
         left:0;

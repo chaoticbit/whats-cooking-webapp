@@ -43,16 +43,16 @@ var app = angular
         controller: 'RecipeCtrl',
         controllerAs: 'recipe'
     })
-.when('/user', {
-  templateUrl: 'views/user.html',
-  controller: 'UserCtrl',
-  controllerAs: 'user'
-})
-.when('/settings', {
-  templateUrl: 'views/settings.html',
-  controller: 'SettingsCtrl',
-  controllerAs: 'settings'
-})
+    .when('/user/:username', {
+    templateUrl: 'views/user.html',
+    controller: 'UserCtrl',
+    controllerAs: 'user'
+    })
+    .when('/settings', {
+    templateUrl: 'views/settings.html',
+    controller: 'SettingsCtrl',
+    controllerAs: 'settings'
+    })
 	  .otherwise({
 		redirectTo: '/'
 	  });
