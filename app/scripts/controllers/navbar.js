@@ -7,15 +7,11 @@
  * # NavbarCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope, $scope, $location, SearchService, UtilService) {
+angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope, $window, $scope, $location, SearchService, UtilService) {
     $rootScope.listOfCuisines = [];
     $scope.quickSearchResults = '';
     $scope.favourites = [];
-    $rootScope.showRecipeBox = false;
-    
-    if($rootScope.isLogged) {
-        
-    }    
+    $rootScope.showRecipeBox = false;    
 
     function getCuisines() {
         UtilService.getCuisines().then(function(data) {
@@ -29,14 +25,15 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
                         'count': value.count
                     });
                 });                    
-                        
+                
                 $('.modal-cuisine-dropdown').dropdown({
                     values: $rootScope.listOfCuisines,        
                     placeholder: 'Cuisines',
                     onChange: function(value) {
                         $scope.signUpModalProfile.pref_cuisine = value;
                     }
-                });
+                });                
+
                 $('.cuisine-dropdown').dropdown({
                     values: $rootScope.listOfCuisines,        
                     placeholder: 'Cuisines',
@@ -117,14 +114,14 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
     });   
 
     $(document).ready(function() {
-        $('.headbar-user-dropdown').dropdown();
-        $('.cuisine-nav-dropdown').dropdown({
-            action: 'nothing'
-        });
+        $('.headbar-user-dropdown').dropdown();        
         $('.favourites-user-dropdown').dropdown({
             action: 'nothing'
         })
-        $('.user-action-dropdown').dropdown();
+        $('.user-action-dropdown').dropdown();   
+        $('.cuisine-nav-dropdown').dropdown({
+            action: 'nothing'
+        });
     });    
 
     $rootScope.addToFavourites = function(rid, $event) {                

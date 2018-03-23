@@ -30,7 +30,7 @@
       <div class="pure-u-1 headbar bg-dark" ng-controller="NavbarCtrl">
           <div class="pure-g">
               	<div class="pure-u-1 pure-u-md-1-6 hidden-for-mobile">
-					<h2 class="light fg-white pointer" onclick="window.location.href='/#!/'">What's Cooking</h2>
+					<a href="/#!/"><h2 class="light fg-white pointer" style="outline: 0;">What's Cooking</h2></a>
                 </div>
                 <!-- <i class="bars icon large show-for-mobile fg-white floated left toggle-sidemenu-btn"></i> -->
                 <span class="bubble-mobile"></span>
@@ -50,7 +50,8 @@
                             <a href="/#!/recipe/{{item.srno}}">
                                 <div class="flt-left round hidden-for-mobile" style="background:url('{{apiurl}}/userdata/{{item.uid}}/{{item.cover_imagepath}}') no-repeat center;"></div>
                                 <div class="flt-left desc">
-                                    <div class="margin0">{{item.title}}</div>                                             
+                                    <div class="margin0">{{item.title}}</div>  
+                                    <div class="ui star rating" data-rating="{{item.rating}}"></div>                                           
                                 </div>
                             </a>
                         </div>                        
@@ -95,7 +96,7 @@
                             </div>
 						</div>
 					</div>
-					<div class="ui icon top right pointing dropdown headbar-user-dropdown">
+					<div class="ui icon top right pointing dropdown notification-nav-dropdown">
 						<i class="fa fa-bell fg-white"></i>
 						<div class="menu">
 							<div class="item">Comfortable</div>
@@ -150,7 +151,7 @@
     </div>
     <div class="container-fluid">
         <div ng-view=""></div>
-    </div>    
+    </div>        
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){

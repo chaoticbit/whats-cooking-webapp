@@ -12,6 +12,12 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
     $scope.recipe = {};
     $scope.rating = 0;    
 
+    if($('.search-dropdown').css('display') !== 'none') {
+        $(".search-dropdown,.search-wrapper").hide();
+        $(".global-search").val('');
+        $('body').removeClass('noscroll');
+    }
+
     $('.loader-bg').show();
     RecipeService.getRecipeById($scope.rid).then(function(data) {
         if(data.success) {
