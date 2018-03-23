@@ -143,7 +143,7 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
 
     $scope.upvoteRecipe = function($event) {
         var elem = $event.currentTarget;
-        
+
         RecipeService.upvote({rid: $scope.recipe.srno}).then(function(data) {
             if(data.success) {
                 if($(elem).hasClass('upvoted')) { //remove upvote
@@ -161,4 +161,38 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
         }).finally(function() {
         });        
     };   
+
+    $scope.updateFavourite = function($event) {
+        var elem = $event.currentTarget;
+
+        if ($(elem).hasClass('added')) { //remove from favourites            
+            UtilService.removeFromFavourites({rid: $scope.recipe.srno}).then(function(data) {
+                if(data.success) {
+                    $(elem).removeClass('fg-red added').addClass('outline');
+                    getFavourites();
+                    $scope.recipe.is_favourite = 0;
+                }                   
+            }, function(error) {
+                                  
+            }).catch(function(e) {
+                                  
+            }).finally(function() {
+    
+            });              
+        } else { //add to            
+            UtilService.addToFavourites({rid: $scope.recipe.srno}).then(function(data) {
+                if(data.success) {
+                    $(elem).removeClass('outline').addClass('fg-red added');
+                    getFavourites();
+                    $scope.recipe.is_favourite = 1;
+                }                   
+            }, function(error) {
+                                  
+            }).catch(function(e) {
+                                  
+            }).finally(function() {
+    
+            });        
+        }   
+    }
 });

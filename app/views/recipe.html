@@ -67,20 +67,22 @@
                         </div>                                                        
                     </div>
                     <div class="pure-u-1 ttitle" style="padding: 10px 0;">
-                        <h2 class="black flt-left" style="color: rgba(0,0,0,0.8);width: 90%;">{{recipe.title}}</h2>
-                        <div ng-if="recipe.food_group == 100" style="width: 10%;float: right;text-align:right;">
+                        <h2 class="black flt-left" style="color: rgba(0,0,0,0.8);width: 87%;">{{recipe.title}}</h2>                        
+                        <div ng-if="recipe.food_group == 100" style="width: 8%;float: right;text-align:right;">
                             <span class="food-group-icon veg-icon">&#9679;</span>
                         </div>
-                        <div ng-if="recipe.food_group == 010" style="width: 10%;float: right;text-align:right;">
+                        <div ng-if="recipe.food_group == 010" style="width: 8%;float: right;text-align:right;">
                                 <span class="food-group-icon nonveg-icon">&#9679;</span>
                         </div>
-                        <div ng-if="recipe.food_group == 001" style="width: 10%;float: right;text-align:right;">
+                        <div ng-if="recipe.food_group == 001" style="width: 8%;float: right;text-align:right;">
                             <span class="fg-black food-group-icon vegan-icon">V</span>
                         </div>
-                        <div ng-if="item.food_group == 101" style="width: 10%;float: right;text-align:right;">
+                        <div ng-if="item.food_group == 101" style="width: 8%;float: right;text-align:right;">
                             <span class="food-group-icon veg-icon">&#9679;</span>
                             <span class="fg-black food-group-icon vegan-icon">V</span>
-                        </div>                        
+                        </div>
+                        <i ng-if="recipe.is_favourite == 1" class="icon heart flt-right pointer added fg-red" style="width: 0%;padding: 4px;font-size: 21px;" ng-click="updateFavourite($event)"></i>
+                        <i ng-if="recipe.is_favourite != 1" class="icon heart outline flt-right pointer" style="width: 0%;padding: 4px;font-size: 21px;" ng-click="updateFavourite($event)"></i>                        
                     </div>
                     <div class="pure-u-1 recipe-desc">
                         <!-- <ol style="margin:0;padding:0;">
