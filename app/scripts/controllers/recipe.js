@@ -10,7 +10,8 @@
 angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sce, $routeParams, $window, RecipeService, UtilService, localStorageService) {
     $scope.rid = $routeParams.id;
     $scope.recipe = {};
-
+    $scope.rating = 0;
+    
     $('.loader-bg').show();
     RecipeService.getRecipeById($scope.rid).then(function(data) {
         if(data.success) {
@@ -39,7 +40,11 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
         $('.loader-bg').hide();
     });
 
-    $('.ui.rating').rating('disable');
+    $('.ui.rating').rating({
+        onRate: function(value) {
+            $scope.rating = value;            
+        }
+    });
 
     $scope.getStars = function(rating) {
         // Get the value
@@ -194,5 +199,18 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
     
             });        
         }   
+    }
+
+    function rateRecipe() {
+        RecipeService.rateRecipe({rid: $scope.recipe.srno, rating_id: $scope.recipe.rating_id, rating: $scope.rating}).then(function(data) {
+            if(data.success) {
+                $scope.recipe.rating = data.results.rating;
+            }                            
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+        });
     }
 });

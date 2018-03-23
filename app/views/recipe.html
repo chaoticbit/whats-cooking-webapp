@@ -150,7 +150,8 @@
             </div>
             <div class="pure-u-1 stars-div" style="padding: 0px 20px;">                
                 <h3 class="flt-left light" style="padding-right: 10px;">Recipe rating</h3>
-                <div class="stars-container-div">
+                <div ng-hide="true">{{outOf = (getStars(recipe.rating).split('')[0])/100 * 5.0}}</div>
+                <div class="stars-container-div" title="{{outOf}} out of 5.0">
                     <div>
                         <img height="20px" class="first" src="https://image.ibb.co/jpMUXa/stars_blank.png" alt="img">
                     </div>
@@ -214,7 +215,13 @@
                         <i class="heartbeat icon fg-gray" style="font-size: 18px;"></i> {{recipe.calorie_intake}}
                     </div>
                 </span>
-            </div>       
+            </div>  
+            <div class="ui divider pure-u-1" style="margin: 20px 20px 10px;"></div>  
+            <div class="pure-u-1" style="padding: 0 20px;">
+                <div style="font-size: 16px;">
+                    Rate this recipe: <div class="ui star rating" data-rating="0" data-max-rating="5"></div>
+                </div>
+            </div>     
         </div>
     </div>
 </div>
