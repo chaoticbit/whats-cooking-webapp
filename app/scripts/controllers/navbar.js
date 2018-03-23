@@ -15,7 +15,7 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
     
     if($rootScope.isLogged) {
         
-    }
+    }    
 
     function getCuisines() {
         UtilService.getCuisines().then(function(data) {
@@ -215,7 +215,7 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
                     $(elem).parent().addClass('loading');
                     SearchService.quickSearch(val).then(function(data) {
                         if(data.success) {
-                            $scope.quickSearchResults = data.results;                        
+                            $scope.quickSearchResults = data.results;                                                                                                            
                         }                                    
                     }, function(error) {
                                           
@@ -226,8 +226,8 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
                     });
                 }
             }
-        });
-    
+        });                
+
         $('.global-search').on('click', function () {
             $('.search-wrapper, .search-dropdown').show();        
             $('body').addClass('noscroll');
