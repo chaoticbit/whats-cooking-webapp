@@ -147,6 +147,13 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
        });
     });
 
+    $(document).on('click', '.toggle-thread-options', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).closest('li').find('.thread-options-dropdown-parent').toggle();        
+        $(this).removeClass('fg-grayLight').addClass('fg-grayDark');
+    });
+
     $scope.upvoteRecipe = function($event) {
         var elem = $event.currentTarget;
 

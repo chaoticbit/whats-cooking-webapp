@@ -206,6 +206,30 @@
     color: #1ba1e2 !important;
 }
 
+.dropdown.thread-options-dropdown {
+    position: absolute;
+    display: block;
+    width: 175px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    background: #fff;
+}
+.dropdown.thread-options-dropdown > ul > li{
+    display: block !important;
+}
+.dropdown.thread-options-dropdown > ul > li > a {
+    padding: 5px 7px 5px 13px;
+    color: inherit !important;
+    font-size: 10pt;
+    display: block;
+    border-bottom: 1px solid rgba(235,235,235,0.3);
+    transition: all 2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;    
+}
+.dropdown.thread-options-dropdown > ul > li > a:hover{
+    background: rgba(235,235,235,0.7);
+}
+
 .scaleUp{
     opacity: .99 !important;
     transform-style: preserve-3d;
