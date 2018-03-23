@@ -140,4 +140,25 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
            $(this).remove();
        });
     });
+
+    $scope.upvoteRecipe = function($event) {
+        var elem = $event.currentTarget;
+        
+        RecipeService.upvote({rid: $scope.recipe.srno}).then(function(data) {
+            if(data.success) {
+                if($(elem).hasClass('upvoted')) { //remove upvote
+                    $(elem).removeClass('upvoted');            
+                } else { //add upvote
+                    $(elem).addClass('upvoted');                    
+                }     
+                $scope.recipe.upvotes = data.results.upvote_cnt;
+                $scope.recipe.is_upvoted = 1;            
+            }                                
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+        });        
+    };   
 });
