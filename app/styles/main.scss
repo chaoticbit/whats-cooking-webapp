@@ -1175,8 +1175,14 @@ MEDIA QUERIES
             }
         }
     }
-    .avatar-settings {
-        margin: 0 auto !important;
+    .settings-page {
+        button { width: 100%; }
+        .avatar-settings {
+            margin: 0 auto !important;
+        }
+        .adjust-on-mobile {
+            padding-right: 0px !important;
+        }
     }
 }
 
@@ -1198,8 +1204,14 @@ MEDIA QUERIES
             }
         }
     }
-    .avatar-settings {
-        margin: 0 auto !important;
+    .settings-page {
+        button { width: 100%; }
+        .avatar-settings {
+            margin: 0 auto !important;
+        }
+        .adjust-on-mobile {
+            padding-right: 0px !important;
+        }
     }
 }
 
