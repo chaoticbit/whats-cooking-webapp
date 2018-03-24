@@ -4,6 +4,7 @@
 @import "login.scss";
 @import "recipe.scss";
 @import "profile.scss";
+@import "settings.scss";
 
 $spiciness-level-color: rgb(247, 81, 81);
 
@@ -1174,6 +1175,9 @@ MEDIA QUERIES
             }
         }
     }
+    .avatar-settings {
+        margin: 0 auto !important;
+    }
 }
 
 /*--- Mobile landscape ---*/
@@ -1193,6 +1197,9 @@ MEDIA QUERIES
                 padding-left: 20px;
             }
         }
+    }
+    .avatar-settings {
+        margin: 0 auto !important;
     }
 }
 
