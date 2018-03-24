@@ -2,5 +2,127 @@
     ul, ol{
         margin: 0 !important;
         padding: 0 !important;
+        li {
+            a {
+                color: #333;
+            }
+        }
+    }
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: absolute;
+        left: 50%;
+        z-index: 99999;
+        background: #f0f0f0;
+        transform: translate(-50%,-50%);
+        background-size: cover;
+        border-radius: 50%;
+        box-shadow: 0px 0px 2px rgba(63,63,63,0.3);
+    }
+    .stat-ul {
+        padding: 10px 0;
+        li {
+            display: inline-block;
+            padding: 0 10px;
+            font-size: 15pt;
+            color: #666;
+            span {
+                color: #666;
+            }
+        }
+        li:hover {
+            color: #333;
+            span {
+                color: #333;
+            }
+        }
+    }
+    .top-recipes {
+        ul {
+            li {
+                display: block;
+                width: auto;
+                padding: 10px 0 15px;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                cursor: pointer;
+                .round-count {
+                    float: left;
+                    width: 40px;
+                    height: 40px;
+                    line-height: 1;
+                    background-color: rgba(255,255,255,0.97);
+                    border: 1px solid rgba(0,0,0,0.05);
+                    border-radius: 100%;
+                    color: rgba(0,0,0,0.44);
+                    overflow: hidden;
+                    span {
+                        text-align: center;
+                        display: block;
+                        line-height: 39px;
+                    }
+                    .transDown {
+                        transform: translateY(0%);
+                        -webkit-transform: translateY(0%);
+                        -moz-transform: translateY(0%);
+                        transform-style: preserve-3d;
+                        -webkit-transform-style: preserve-3d;
+                        -moz-transform-style: preserve-3d;
+                        transition-duration: 0.5s;
+                        -webkit-transition-duration: 0.5s;
+                        -moz-transition-duration: 0.5s;
+                    }
+                    .transUp {
+                        transform: translateY(-100%);
+                        -webkit-transform: translateY(-100%);
+                        -moz-transform: translateY(0%);
+                        transform-style: preserve-3d;
+                        -webkit-transform-style: preserve-3d;
+                        -moz-transform-style: preserve-3d;
+                        transition-duration: 0.5s;
+                        -webkit-transition-duration: 0.5s;
+                        -moz-transition-duration: 0.5s;
+                    }
+                }
+                .desc {
+                    float: none;
+                    display: block;
+                    margin-left: 65px;
+                    .recipe-title {
+                        letter-spacing: -0.02em;
+                        font-style: normal;
+                        color: rgba(0,0,0,0.8);
+                        font-size: 14px;
+                        font-weight: 400;
+                        max-width: 96%;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        margin: 0;
+                        a {
+                            color: inherit !important;
+                        }
+                        a:hover {
+                            text-decoration: underline !important;
+                        }
+                    }
+                    .recipe-user {
+                        font-size: 14px;
+                        margin-right: 20px;
+                        margin-bottom: 0;
+                        color: rgba(0,0,0,0.3);
+                        a {
+                            color: inherit !important;
+                        }         
+                        a:hover {
+                            text-decoration: underline !important;
+                        }               
+                    }
+                }
+            }
+        }
     }
 }
