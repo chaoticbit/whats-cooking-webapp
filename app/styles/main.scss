@@ -1161,6 +1161,19 @@ MEDIA QUERIES
         margin: 10px;
     }
     .search-dropdown { left: 0;}
+    .bg-img {
+        height: 200px !important;
+        background-position: 0% 0% !important;
+        background-size: contain !important;
+    }
+    .profile-center-content { 
+        padding: 20px 10px !important;
+        .p-info-list {
+            .pure-u-15-24 {
+                padding-left: 20px;
+            }
+        }
+    }
 }
 
 /*--- Mobile landscape ---*/
@@ -1168,6 +1181,19 @@ MEDIA QUERIES
     .show-for-mobile { display: none !important;}
     .hidden-for-mobile-and-tablet { display: none !important; }
     .search-dropdown { left: 0;}
+    .bg-img {
+        height: 200px !important;
+        background-position: 0% 0% !important;
+        background-size: contain !important;
+    }
+    .profile-center-content { 
+        padding: 20px 10px !important;
+        .p-info-list {
+            .pure-u-15-24 {
+                padding-left: 20px;
+            }
+        }
+    }
 }
 
 /*--- Tablet portrait ---*/

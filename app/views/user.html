@@ -3,21 +3,23 @@
             <i class="fa fa-circle-notch fa-pulse fg-gray fa-spin" style="font-size: 25px;width:25px;height:25px;"></i>
         </div>
     </div>
-    <div class="bg-img" style="background: url('images/Eat-Cook-Kitchen-Image-Kitchen-Food-Background-366875.jpg') bottom;"></div>
+    <div class="bg-img" style="background-image: url('images/Eat-Cook-Kitchen-Image-Kitchen-Food-Background-366875.jpg');background-position-y: -400px;"></div>
 <div class="pure-g user-profile-page" style="margin-top: 55px;">
     <div class="pure-u-1 bg-white">
         <div class="pure-g">
             <div class="pure-u-1">
-                <div class="profile-avatar" style="background-image: url('images/elliot.jpg')"></div>
+                <div ng-if="userprofile.profile_imagepath == '' && userprofile.gender == 'male'" class="profile-avatar" style="background-image: url('images/elliot.jpg')"></div>
+                <div ng-if="userprofile.profile_imagepath == '' && userprofile.gender == 'female'" class="profile-avatar" style="background-image: url('images/stevie.jpg')"></div>
+                <div ng-if="userprofile.profile_imagepath !== ''" class="profile-avatar" style="background-image: url('userprofile.profile_imagepath')"></div>
             </div>
             <div class="pure-u-1" style="margin-top: 65px;">
-                <h1 class="light text-center margin0">Atharva Dandekar</h1>
-                <h3 class="text-center margin0 light" style="padding: 7px 0 10px;">From India</h3>
+                <h1 class="light text-center margin0">{{userprofile.fullname}}</h1>
+                <h3 class="text-center margin0 light" style="padding: 7px 0 10px;">From {{userprofile.country}}</h3>
                 <ul class="text-center stat-ul">
                     <li>
                         <span class="light">
                             Recipes <br>
-                            <span class="block text-center" style="padding-top: 8px;">16</span>
+                            <span class="block text-center" style="padding-top: 8px;">{{userprofile.recipe_count}}</span>
                         </span>
                     </li>
                     <li>
@@ -28,7 +30,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="pure-u-1" style="padding: 20px 40px;">
+            <div class="pure-u-1 profile-center-content">
                 <div class="pure-g">
                     <div class="pure-u-1 pure-u-md-1-5"></div>
                     <div class="pure-u-1 pure-u-md-3-5">
@@ -36,18 +38,18 @@
                         <div class="pure-g">
                             <div class="pure-u-1 top-recipes" style="padding: 10px 0;">
                                 <ul>
-                                    <li>
+                                    <li ng-repeat="item in userprofile.top_rated_recipes">
                                         <div class="round-count">
                                             <span class="star transDown">
                                                 <i class="fa fa-star fg-yellow"></i>
                                             </span>
-                                            <span class="upvotecnt transDown">2</span>
+                                            <span class="upvotecnt transDown">{{item.rating}}</span>
                                         </div>
                                         <div class="desc">
                                             <p class="recipe-title margin0">
-                                                <a href="http://localhost/soapbox/Thread/1028">Puneri misal pav</a>
+                                                <a href="/#!/recipe/{{item.recipe_id}}">{{item.title}}</a>
                                             </p>
-                                            <p class="recipe-user margin0"><a href="sipps7" class="">Atharva Dandekar</a></p>
+                                            <p class="recipe-user margin0"><a href="/#!/user/{{item.username}}" class="">{{item.fullname}}</a></p>
                                         </div>
                                     </li>                                    
                                 </ul>
@@ -56,12 +58,47 @@
                         <p class="featured-tags-title">Personal Info</p>
                         <div class="pure-g">
                             <div class="pure-u-1" style="padding: 10px 0;">
-                                <div class="pure-u-1">
-                                    <div class="pure-u-md-1-4 pure-u-8-24">
-                                        <p class="bold margin0 fg-grayDarker" style="padding: 10px 0;font-size: 13px;">GENDER</p>
+                                <div class="pure-u-1 p-info-list">
+                                    <div class="pure-u-8-24 pure-u-md-1-4">
+                                        <p class="bold margin0 fg-grayDarker" ng-repeat="item in titles">{{item | uppercase}}</p>
                                     </div>
-                                    <div class="pure-u-md-1-2 pure-u-16-24">
-                                        <p class="bold margin0 fg-gray" style="padding: 10px 0;font-size: 13px;">Male</p>
+                                    <div class="pure-u-15-24 pure-u-md-1-2">
+                                        <p class="bold margin0 fg-gray">{{userprofile.gender}}</p>
+                                        <p class="bold margin0 fg-gray">{{userprofile.email}}</p>
+                                        <p class="bold margin0 fg-gray">{{userprofile.city}}</p>
+                                        <p class="bold margin0 fg-gray">{{userprofile.state}}</p>
+                                        <p class="bold margin0 fg-gray">{{userprofile.country}}</p>
+                                        <p class="bold margin0 fg-gray">{{userprofile.cname}}</p>
+                                        <p class="bold margin0 fg-gray">
+                                            <span ng-if="userprofile.food_group == 100">
+                                                <span class="food-group-icon veg-icon">&#9679;</span>
+                                            </span>
+                                            <span ng-if="userprofile.food_group == 010">
+                                                <span class="food-group-icon nonveg-icon">&#9679;</span>
+                                            </span>
+                                            <span ng-if="userprofile.food_group == 001">
+                                                <span class="food-group-icon vegan-icon">V</span>
+                                            </span>                                        
+                                            <span ng-if="userprofile.food_group == 110">
+                                                <span class="food-group-icon veg-icon">&#9679;</span>
+                                                <span class="food-group-icon nonveg-icon">&#9679;</span>
+                                            </span>    
+                                            <span ng-if="userprofile.food_group == 101">
+                                                <span class="food-group-icon veg-icon">&#9679;</span>
+                                                <span class="food-group-icon vegan-icon">V</span>
+                                            </span>    
+                                            <span ng-if="userprofile.food_group == 111">
+                                                <span class="food-group-icon veg-icon">&#9679;</span>
+                                                <span class="food-group-icon nonveg-icon">&#9679;</span>
+                                                <span class="food-group-icon vegan-icon">V</span>
+                                            </span>    
+                                        </p>
+                                        <p class="bold margin0 fg-gray">
+                                            <span class="spice-box">
+                                                <i class="fire icon" ng-repeat="n in [] | range: userprofile.spiciness"></i>						
+                                            </span>                                            
+                                        </p>
+                                        <p class="bold margin0 fg-gray">{{userprofile.calorie_intake}} cal</p>
                                     </div>
                                 </div>
                             </div>
