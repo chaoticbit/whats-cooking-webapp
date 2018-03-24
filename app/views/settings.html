@@ -1,3 +1,8 @@
+<div class="pure-u-1 pure-u-md-1 loader-bg" style="right:0;display: none;">
+    <div>
+        <i class="fa fa-circle-notch fa-pulse fg-gray fa-spin" style="font-size: 25px;width:25px;height:25px;"></i>
+    </div>
+</div>
 <div class="pure-g settings-page">
     <div class="pure-u-1 pure-u-md-1-5"></div>
     <div class="pure-u-1 pure-u-md-3-5" style="margin-top: 20px;padding: 0 10px;">
@@ -19,13 +24,13 @@
                         <li>
                             <div class="field">
                                 <label>First Name</label>
-                                <input type="text" placeholder="First name" />
+                                <input type="text" placeholder="First name" ng-model="profile.fname" />
                             </div>
                         </li>
                         <li>
                             <div class="field">
                                 <label>Last Name</label>
-                                <input type="text" placeholder="Last name" />
+                                <input type="text" placeholder="Last name" ng-model="profile.lname" />
                             </div>
                         </li>
                     </ul>                
@@ -40,13 +45,13 @@
                     <li>
                         <div class="field">
                             <label>Username</label>
-                            <input type="text" placeholder="Username" />
+                            <input type="text" placeholder="Username" ng-model="profile.username" />
                         </div>
                     </li>         
                     <li>
                         <div class="field">
                             <label>Email</label>
-                            <input type="text" placeholder="Email" />
+                            <input type="text" placeholder="Email" ng-model="profile.email" />
                         </div>
                     </li>           
                 </ul>      
@@ -56,7 +61,7 @@
                     <li>
                         <div class="field">
                             <label>Password</label>
-                            <input type="password" placeholder="Password" />
+                            <input type="password" placeholder="Password" ng-model="profile.password" />
                         </div>
                     </li>
                     <li class="conf-pwd" style="display: none;">
@@ -76,29 +81,29 @@
                     <li>
                         <div class="field">
                             <label>City</label>
-                            <input type="text" placeholder="City" />
+                            <input type="text" placeholder="City" ng-model="profile.city" />
                         </div>
                     </li>         
                     <li>
                         <div class="field">
                             <label>State</label>
-                            <input type="text" placeholder="State" />
+                            <input type="text" placeholder="State" ng-model="profile.state" />
                         </div>
                     </li> 
                     <li>
                         <div class="field">
-                            <label>Username</label>
-                            <input type="text" placeholder="Country" />
+                            <label>Country</label>
+                            <input type="text" placeholder="Country" ng-model="profile.country" />
                         </div>
                     </li>         
                     <li style="margin-top: 35px;">
                         <div class="field">					
 					        <div class="ui buttons gender-btn-group">
-						        <button class="ui icon fluid button male male-gender-btn">
+						        <button ng-class="{'male-gender-selected': profile.gender == 'male'}" class="ui icon fluid button male male-gender-btn">
 							        <i class="male icon"></i> Male
 						        </button>
 						        <div class="or"></div>
-						        <button class="ui icon fluid button female-gender-btn">
+						        <button ng-class="{'female-gender-selected': profile.gender == 'female'}" class="ui icon fluid button female-gender-btn">
 							        <i class="female icon"></i> Female
 						        </button>						
 					        </div>										
@@ -120,11 +125,11 @@
                     <li>
                         <div class="field">
                             <label>Type</label>
-                            <select name="food-group" ng-model="modalFoodGrpVal" required multiple="" class="ui fluid dropdown modal-food-group-dropdown">
+                            <select name="food-group" required multiple="" ng-model="foodGrpVal" class="ui fluid dropdown food-group-dropdown" placeholder="Food Group">
                                 <option value="">Food Group</option>
-                                <option value="v">Vegetarian</option>
-                                <option value="n">Non Vegetarian</option>
-                                <option value="ve">Vegan</option>
+                                <option value="v" class="veg-option">Vegetarian</option>
+                                <option value="n" class="nonveg-option">Non Vegetarian</option>
+                                <option value="ve" class="vegan-option">Vegan</option>
                             </select>
                         </div>				                        
                     </li>   
@@ -132,18 +137,18 @@
                         <div class="field">
                             <!-- <label class="flt-left" style="padding: 7px 5px 0 0;">Spiceness</label> -->
                             <div class="spiciness-rate-box" style="padding-top: 0px;">
-                                <input type="radio" id="modal_spicy5" name="spiciness" value="5"><label class="full" for="modal_spicy5" title="Extremely spicy"></label>
-                                <input type="radio" id="modal_spicy4" name="spiciness" value="4"><label class="full" for="modal_spicy4" title="Very spicy"></label>
-                                <input type="radio" id="modal_spicy3" name="spiciness" value="3"><label class="full" for="modal_spicy3" title="Medium"></label>
-                                <input type="radio" id="modal_spicy2" name="spiciness" value="2"><label class="full" for="modal_spicy2" title="Little spicy"></label>
-                                <input type="radio" id="modal_spicy1" name="spiciness" value="1"><label class="full" for="modal_spicy1" title="No spicy"></label>
+                                <input type="radio" id="modal_spicy5" name="spiciness" ng-model="profile.spiciness" value="5"><label class="full" for="modal_spicy5" title="Extremely spicy"></label>
+                                <input type="radio" id="modal_spicy4" name="spiciness" ng-model="profile.spiciness" value="4"><label class="full" for="modal_spicy4" title="Very spicy"></label>
+                                <input type="radio" id="modal_spicy3" name="spiciness" ng-model="profile.spiciness" value="3"><label class="full" for="modal_spicy3" title="Medium"></label>
+                                <input type="radio" id="modal_spicy2" name="spiciness" ng-model="profile.spiciness" value="2"><label class="full" for="modal_spicy2" title="Little spicy"></label>
+                                <input type="radio" id="modal_spicy1" name="spiciness" ng-model="profile.spiciness" value="1"><label class="full" for="modal_spicy1" title="No spicy"></label>
                             </div>
                         </div>
                     </li>
                     <li>
                         <div class="field">
                             <label>Calorie Intake</label>
-						    <input type="text" placeholder="Calorie intake">
+						    <input type="text" placeholder="Calorie intake" ng-model="profile.calorie_intake" />
 					    </div>	
                     </li>
                 </ul>
