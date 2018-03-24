@@ -603,39 +603,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         }).finally(function() {
 
         });                
-    };    
-
-    if (screen.width < 480 || screen.width < 800) {
-        var h = screen.height;
-        $('.sidebar .pure-u-3-4').css('height', h + 'px');
-        $('.toggle-sidebar').on('click', function () {
-            if ($(this).attr('aria-expanded') === 'false') {
-                $('.sidebarwrapper').fadeIn(function () {
-                    $('.toggle-sidebar').addClass('active');
-                    $('.bubble-mobile').hide();                        
-                    $('.sidebar').animate({left: '0%'}, function () {                        
-                        $('.toggle-sidebar').attr('aria-expanded', 'true');
-                        $('body').addClass('noscroll');
-                        document.ontouchmove = function (event) {
-                            event.preventDefault();
-                        };
-                    });
-                });
-            }
-            else {
-                $('.toggle-sidebar').removeClass('active');
-                $('.sidebar').animate({left: '-100%'}, function () {
-                    $('.bubble-mobile').show();
-                    $('.toggle-sidebar').attr('aria-expanded', 'false');
-                    $('.sidebarwrapper').hide();
-                    $('body').removeClass('noscroll');
-                    document.ontouchmove = function (event) {
-                        event.preventDefault();
-                    };
-                });
-            }
-        });        
-    }    
+    };        
 }).filter('range', function() {
     return function(input, total) {
       total = parseInt(total);
