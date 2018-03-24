@@ -114,14 +114,17 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
     });   
 
     $(document).ready(function() {
+        $('body').click(function(e) {
+            $('.cuisine-nav-dropdown .menu').slideUp();
+        });
         $('.headbar-user-dropdown').dropdown();        
         $('.favourites-user-dropdown').dropdown({
             action: 'nothing'
         })
         $('.user-action-dropdown').dropdown();   
-        $('.cuisine-nav-dropdown').dropdown({
-            action: 'nothing'
-        });
+        // $('.cuisine-nav-dropdown').dropdown({
+        //     action: 'nothing'
+        // });
     });    
 
     $rootScope.addToFavourites = function(rid, $event) {                
@@ -241,6 +244,18 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
                 $scope.quickSearchResults = '';         
             }
         });    
+
+        $(document).on('click', '.c-dropdown-toggle-icon', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            if($(this).parent().find('.menu').css('display') == 'none') {
+                $(this).parent().find('.menu').slideDown(300);
+            }
+            else {
+                $(this).parent().find('.menu').slideUp(300);
+            }
+        });
+
 
         if (screen.width < 480 || screen.width < 800) {
             var h = screen.height;
