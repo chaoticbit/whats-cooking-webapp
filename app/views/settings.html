@@ -11,12 +11,22 @@
         <p class="settings-subtitle bold fg-darkBlue" style="margin: 30px 0 20px 0;">basic settings</p>        
         <div class="pure-g">
             <div class="pure-u-1 pure-u-md-1-3" style="padding: 15px 0;">
-                <div class="avatar-settings" style="background-image: url('http://192.168.1.2/soapbox/userdata/10002/steve.jpg');">
-                    <div class="avatar-defocus" style="display: none;">
+                <div class="avatar-settings" style="background-image: url('images/sample.jpg');">
+                    <div 
+                        class="avatar-defocus" 
+                        style="display: none;"
+                        ngf-select="uploadProfilePicture($file)"
+                        ngf-drop="uploadProfilePicture($file)"
+                        ngf-drag-over-class="'dragover'"
+                        ngf-pattern="'image/*'"
+                        ngf-multiple="false"                                                        
+                        ngf-max-files="1"     
+                    >
                         <i class="fa fa-camera fg-white fa-2x pointer" style="position: absolute;right: 75px;top: 75px;"></i>
-                    </div>
+                    </div>                    
                     <input type="file" name="file" id="avatar-file" accept="image/*" class="hidden" style="display: none;">
                 </div>
+                <span class="fg-red text-center pointer remove-picture-icon" ng-if="uploadedProfileImage !== ''" style="margin-left: 60px;">Remove</span>
             </div>
             <div class="pure-u-1 pure-u-md-2-3" style="padding: 15px 0;">
                 <form class="ui form" name="basic_settings_form">

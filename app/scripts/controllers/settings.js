@@ -7,7 +7,7 @@
  * # SettingsCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScope, $scope, $timeout, $window, AuthenticationService, SettingService) {    
+angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScope, $scope, $timeout, $window, ApiConfig, AuthenticationService, UtilService, SettingService, Upload) {    
 
     $scope.profile = {};
     $scope.foodGrpVal = [];        
@@ -15,7 +15,8 @@ angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScop
     var cuisines = $rootScope.listOfCuisines;
     $scope.username = '';
     $scope.email = '';
-    
+    $scope.uploadedProfileImage = '';
+
     $('.loader-bg').show();
     SettingService.getUserProfile().then(function(data) {
         if(data.success) {
@@ -94,6 +95,51 @@ angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScop
         $scope.profile.food_group = computed;
         console.log($scope.profile.food_group);        
     }
+
+    $scope.uploadProfilePicture = function(file) {
+        if($scope.uploadedProfileImage == '') {
+            if(file) {
+                Upload.upload({
+                    url: ApiConfig.API_URL + '/Util/uploadprofilepicture',
+                    data: {
+                        token: $rootScope.userProfile.token,
+                        file: file
+                    }
+                }).then(function(data) {
+                    if(data.success) {
+                        $scope.uploadedProfileImage = data.filename;
+                        console.log($scope.uploadedProfileImage);   
+                        $('.avatar-settings').removeAttr('style');
+                        $('.avatar-settings').css('opacity', '0');
+                        $('.avatar-settings').css('background-image', 'url(' + $rootScope.apiurl + '/' + $scope.uploadedProfileImage + ')').animate({opacity: '1'});                                             
+                    }
+                }, function(error) {
+
+                }).catch(function(e) {
+                                        
+                }).finally(function() {
+
+                }); 
+            }
+        }  
+    };
+
+    $(document).on('click','.remove-picture-icon', function() {           
+        var filename = $scope.uploadedProfileImage
+        UtilService.removeUploadedImage({filename: filename}).then(function(data) {
+            if(data.success) {
+                $scope.uploadedProfileImage = '';
+                $('.avatar-settings').removeAttr('style');
+                $('.avatar-settings').css('opacity', '0');
+                $('.avatar-settings').css('background-image', 'url(../../images/sample.jpg)').animate({opacity: '1'});                                             
+            }
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+        });
+    });
 
     $('.male-gender-btn').on('click', function() {
         $scope.profile.gender = 'male';
