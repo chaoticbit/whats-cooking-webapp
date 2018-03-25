@@ -33,6 +33,8 @@ angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScop
                 $scope.foodGrpVal = ['v','ve'];
             }                                               
 
+            $scope.profile.password = $scope.profile.password.substring(0, 30);
+
             $timeout(function() {
                 $('.food-group-dropdown').dropdown({                        
                     useLabels: false
@@ -44,8 +46,7 @@ angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScop
                     break;
                 }
             };
-            cuisines[index]['selected'] = true;
-            console.log(cuisines);
+            cuisines[index]['selected'] = true;            
             
             $('.modal-cuisine-dropdown').dropdown({
                 values: cuisines,       
@@ -79,4 +80,13 @@ angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScop
         $(this).addClass('female-gender-selected');
         $('.male-gender-btn').attr('data-selected', false);
     });    
+
+    //avatar defocus panel
+    $('.avatar-settings').on('mouseover', function () {
+        $('.avatar-defocus').show();
+    });
+    $('.avatar-settings').on('mouseout', function () {
+        $('.avatar-defocus').hide();
+    });
+
 });

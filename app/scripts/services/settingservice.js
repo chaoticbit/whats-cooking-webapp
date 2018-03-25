@@ -24,5 +24,13 @@ angular.module('whatsCookingApp').service('SettingService', function ($rootScope
             data: payload,		
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
 		});	  
-	};
+    };
+    this.saveSettings = function(payload) {
+        return $http({
+			method: 'POST',
+			url: ApiConfig.API_URL + '/Settings/save',
+            data: payload,		
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
+		});	  
+    };
 });

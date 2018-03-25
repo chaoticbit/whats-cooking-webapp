@@ -6,7 +6,7 @@
 <div class="pure-g settings-page">
     <div class="pure-u-1 pure-u-md-1-5"></div>
     <div class="pure-u-1 pure-u-md-3-5" style="margin-top: 20px;padding: 0 10px;">
-        <p class="margin0 fg-grayLight"><small>sipps7</small></p>
+        <p class="margin0 fg-grayLight"><small>{{profile.username}}</small></p>
         <h3 class="light" style="margin:0;font-size: 24pt;line-height: 28pt;">Settings</h3>
         <p class="settings-subtitle bold fg-darkBlue" style="margin: 30px 0 20px 0;">basic settings</p>        
         <div class="pure-g">
@@ -19,142 +19,146 @@
                 </div>
             </div>
             <div class="pure-u-1 pure-u-md-2-3" style="padding: 15px 0;">
-                <form class="ui form">
+                <form class="ui form" name="basic_settings_form">
                     <ul class="basic-info">
                         <li>
                             <div class="field">
                                 <label>First Name</label>
-                                <input type="text" placeholder="First name" ng-model="profile.fname" />
+                                <input type="text" placeholder="First name" required ng-pattern="/^[A-Za-z]+$/" ng-model="profile.fname" />
                             </div>
                         </li>
                         <li>
                             <div class="field">
                                 <label>Last Name</label>
-                                <input type="text" placeholder="Last name" ng-model="profile.lname" />
+                                <input type="text" placeholder="Last name" required ng-pattern="/^[A-Za-z]+$/" ng-model="profile.lname" />
                             </div>
                         </li>
                     </ul>                
-                    <button class="ui button pure-u-1 pure-u-md-1-3 basic blue flt-right">Save Changes</button>
+                    <button class="ui button pure-u-1 pure-u-md-1-3 blue flt-right" ng-disabled="basic_settings_form.$invalid">Save Changes</button>
                 </form>
             </div>
         </div>        
         <p class="settings-subtitle bold fg-darkBlue" style="margin: 30px 0 20px 0;">account settings</p>        
-        <div class="pure-g ui form">            
-            <div class="pure-u-1 pure-u-md-1-2 adjust-on-mobile" style="padding-right: 20px;">
-                <ul class="basic-info">
-                    <li>
-                        <div class="field">
-                            <label>Username</label>
-                            <input type="text" placeholder="Username" ng-model="profile.username" />
-                        </div>
-                    </li>         
-                    <li>
-                        <div class="field">
-                            <label>Email</label>
-                            <input type="text" placeholder="Email" ng-model="profile.email" />
-                        </div>
-                    </li>           
-                </ul>      
-            </div>
-            <div class="pure-u-1 pure-u-md-1-2">
-                <ul class="basic-info">
-                    <li>
-                        <div class="field">
-                            <label>Password</label>
-                            <input type="password" placeholder="Password" ng-model="profile.password" />
-                        </div>
-                    </li>
-                    <li class="conf-pwd" style="display: none;">
-                        <div class="field">
-                            <label>Confirm Password</label>
-                            <input type="password" placeholder="Confirm Password" />
-                        </div>
-                    </li>                                        
-                </ul>
-                <button class="ui button pure-u-1 basic blue flt-right">Save Changes</button>
-            </div>
-        </div>
-        <p class="settings-subtitle bold fg-darkBlue" style="margin: 30px 0 20px 0;">User preferences</p>        
-        <div class="pure-g ui form">   
-            <div class="pure-u-1 pure-u-md-1-2 adjust-on-mobile" style="padding-right: 20px;">
-                <ul class="basic-info">
-                    <li>
-                        <div class="field">
-                            <label>City</label>
-                            <input type="text" placeholder="City" ng-model="profile.city" />
-                        </div>
-                    </li>         
-                    <li>
-                        <div class="field">
-                            <label>State</label>
-                            <input type="text" placeholder="State" ng-model="profile.state" />
-                        </div>
-                    </li> 
-                    <li>
-                        <div class="field">
-                            <label>Country</label>
-                            <input type="text" placeholder="Country" ng-model="profile.country" />
-                        </div>
-                    </li>         
-                    <li style="margin-top: 35px;">
-                        <div class="field">					
-					        <div class="ui buttons gender-btn-group">
-						        <button ng-class="{'male-gender-selected': profile.gender == 'male'}" class="ui icon fluid button male male-gender-btn">
-							        <i class="male icon"></i> Male
-						        </button>
-						        <div class="or"></div>
-						        <button ng-class="{'female-gender-selected': profile.gender == 'female'}" class="ui icon fluid button female-gender-btn">
-							        <i class="female icon"></i> Female
-						        </button>						
-					        </div>										
-				        </div>	
-                    </li> 
-                </ul>
-            </div>
-            <div class="pure-u-1 pure-u-md-1-2">
-                <ul class="basic-info">    
-                    <li>
-                        <div class="field">
-                            <label>Preferred Cuisine</label>
-                            <select class="ui fluid search selection dropdown modal-cuisine-dropdown" required id="modal-cuisine-dropdown">
-                                <option value="">Cuisines</option>
-                                <!-- <option ng-repeat="item in listOfCuisines" value="{{item.srno}}">{{item.name}}</option> -->
-                            </select>
-                        </div>                        
-                    </li>     
-                    <li>
-                        <div class="field">
-                            <label>Type</label>
-                            <select name="food-group" required multiple="" ng-model="foodGrpVal" class="ui fluid dropdown food-group-dropdown" placeholder="Food Group">
-                                <option value="">Food Group</option>
-                                <option value="v" class="veg-option">Vegetarian</option>
-                                <option value="n" class="nonveg-option">Non Vegetarian</option>
-                                <option value="ve" class="vegan-option">Vegan</option>
-                            </select>
-                        </div>				                        
-                    </li>   
-                    <li style="height: 61px;padding-top: 30px;">
-                        <div class="field">
-                            <!-- <label class="flt-left" style="padding: 7px 5px 0 0;">Spiceness</label> -->
-                            <div class="spiciness-rate-box" style="padding-top: 0px;">
-                                <input type="radio" id="modal_spicy5" name="spiciness" ng-model="profile.spiciness" value="5"><label class="full" for="modal_spicy5" title="Extremely spicy"></label>
-                                <input type="radio" id="modal_spicy4" name="spiciness" ng-model="profile.spiciness" value="4"><label class="full" for="modal_spicy4" title="Very spicy"></label>
-                                <input type="radio" id="modal_spicy3" name="spiciness" ng-model="profile.spiciness" value="3"><label class="full" for="modal_spicy3" title="Medium"></label>
-                                <input type="radio" id="modal_spicy2" name="spiciness" ng-model="profile.spiciness" value="2"><label class="full" for="modal_spicy2" title="Little spicy"></label>
-                                <input type="radio" id="modal_spicy1" name="spiciness" ng-model="profile.spiciness" value="1"><label class="full" for="modal_spicy1" title="No spicy"></label>
+        <form class="ui form" name="account_settings_form">
+            <div class="pure-g">            
+                <div class="pure-u-1 pure-u-md-1-2 adjust-on-mobile" style="padding-right: 20px;">
+                    <ul class="basic-info">
+                        <li>
+                            <div class="field">
+                                <label>Username</label>
+                                <input type="text" placeholder="Username" required ng-pattern="/^[a-z][a-zA-Z0-9_.]{0,24}$/" ng-model="profile.username" />
                             </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="field">
-                            <label>Calorie Intake</label>
-						    <input type="text" placeholder="Calorie intake" ng-model="profile.calorie_intake" />
-					    </div>	
-                    </li>
-                </ul>
-                <button class="ui button pure-u-1 basic blue flt-right">Save Changes</button>
-            </div>                    
-        </div>
+                        </li>         
+                        <li>
+                            <div class="field">
+                                <label>Email</label>
+                                <input type="text" placeholder="Email" required ng-pattern="/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/" ng-model="profile.email" />
+                            </div>
+                        </li>           
+                    </ul>      
+                </div>
+                <div class="pure-u-1 pure-u-md-1-2">
+                    <ul class="basic-info">
+                        <li>
+                            <div class="field">
+                                <label>Password</label>
+                                <input type="password" placeholder="Password" required ng-pattern="/^[a-zA-Z0-9!@#$%^*]{5,30}$/" ng-model="profile.password" />
+                            </div>
+                        </li>
+                        <li class="conf-pwd" style="display: none;">
+                            <div class="field">
+                                <label>Confirm Password</label>
+                                <input type="password" required required ng-pattern="/^[a-zA-Z0-9!@#$%^*]{5,30}$/" placeholder="Confirm Password" />
+                            </div>
+                        </li>                                        
+                    </ul>
+                    <button class="ui button pure-u-1 blue flt-right" ng-disabled="account_settings_form.$invalid">Save Changes</button>
+                </div>
+            </div>
+        </form>
+        <p class="settings-subtitle bold fg-darkBlue" style="margin: 30px 0 20px 0;">User preferences</p>        
+        <form class="ui form" name="user_pref_form">
+            <div class="pure-g">   
+                <div class="pure-u-1 pure-u-md-1-2 adjust-on-mobile" style="padding-right: 20px;">
+                    <ul class="basic-info">
+                        <li>
+                            <div class="field">
+                                <label>City</label>
+                                <input type="text" placeholder="City" required ng-pattern="/^[A-Za-z ]+$/" ng-model="profile.city" />
+                            </div>
+                        </li>         
+                        <li>
+                            <div class="field">
+                                <label>State</label>
+                                <input type="text" placeholder="State" required ng-pattern="/^[A-Za-z ]+$/" ng-model="profile.state" />
+                            </div>
+                        </li> 
+                        <li>
+                            <div class="field">
+                                <label>Country</label>
+                                <input type="text" placeholder="Country" required ng-pattern="/^[A-Za-z ]+$/" ng-model="profile.country" />
+                            </div>
+                        </li>         
+                        <li style="margin-top: 35px;">
+                            <div class="field">					
+                                <div class="ui buttons gender-btn-group">
+                                    <button ng-class="{'male-gender-selected': profile.gender == 'male'}" class="ui icon fluid button male male-gender-btn">
+                                        <i class="male icon"></i> Male
+                                    </button>
+                                    <div class="or"></div>
+                                    <button ng-class="{'female-gender-selected': profile.gender == 'female'}" class="ui icon fluid button female-gender-btn">
+                                        <i class="female icon"></i> Female
+                                    </button>						
+                                </div>										
+                            </div>	
+                        </li> 
+                    </ul>
+                </div>
+                <div class="pure-u-1 pure-u-md-1-2">
+                    <ul class="basic-info">    
+                        <li>
+                            <div class="field">
+                                <label>Preferred Cuisine</label>
+                                <select class="ui fluid search selection dropdown modal-cuisine-dropdown" id="modal-cuisine-dropdown">
+                                    <option value="">Cuisines</option>
+                                    <!-- <option ng-repeat="item in listOfCuisines" value="{{item.srno}}">{{item.name}}</option> -->
+                                </select>
+                            </div>                        
+                        </li>     
+                        <li>
+                            <div class="field">
+                                <label>Type</label>
+                                <select name="food-group" multiple="" ng-model="foodGrpVal" class="ui fluid dropdown food-group-dropdown" placeholder="Food Group">
+                                    <option value="">Food Group</option>
+                                    <option value="v" class="veg-option">Vegetarian</option>
+                                    <option value="n" class="nonveg-option">Non Vegetarian</option>
+                                    <option value="ve" class="vegan-option">Vegan</option>
+                                </select>
+                            </div>				                        
+                        </li>   
+                        <li style="height: 61px;padding-top: 30px;">
+                            <div class="field">
+                                <!-- <label class="flt-left" style="padding: 7px 5px 0 0;">Spiceness</label> -->
+                                <div class="spiciness-rate-box" style="padding-top: 0px;">
+                                    <input type="radio" id="modal_spicy5" name="spiciness" ng-model="profile.spiciness" value="5"><label class="full" for="modal_spicy5" title="Extremely spicy"></label>
+                                    <input type="radio" id="modal_spicy4" name="spiciness" ng-model="profile.spiciness" value="4"><label class="full" for="modal_spicy4" title="Very spicy"></label>
+                                    <input type="radio" id="modal_spicy3" name="spiciness" ng-model="profile.spiciness" value="3"><label class="full" for="modal_spicy3" title="Medium"></label>
+                                    <input type="radio" id="modal_spicy2" name="spiciness" ng-model="profile.spiciness" value="2"><label class="full" for="modal_spicy2" title="Little spicy"></label>
+                                    <input type="radio" id="modal_spicy1" name="spiciness" ng-model="profile.spiciness" value="1"><label class="full" for="modal_spicy1" title="No spicy"></label>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="field">
+                                <label>Calorie Intake</label>
+                                <input type="text" placeholder="Calorie intake" required ng-pattern="/^[0-9]+$/" ng-model="profile.calorie_intake" />
+                            </div>	
+                        </li>
+                    </ul>
+                    <button class="ui button pure-u-1 blue flt-right" ng-disabled="user_pref_form.$invalid">Save Changes</button>
+                </div>                    
+            </div>
+        </form>
         <p class="settings-subtitle bold fg-darkBlue" style="margin: 30px 0 20px 0;">delete account</p>
         <div class="pure-g" style="margin-bottom: 30px;">
             <div class="pure-u-1 pure-u-md-2-3" style="padding: 10px 0px 0 0px;text-align: justify;">
