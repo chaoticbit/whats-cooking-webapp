@@ -44,14 +44,16 @@
                 <div class="pure-u-1 pure-u-md-1-2 adjust-on-mobile" style="padding-right: 20px;">
                     <ul class="basic-info">
                         <li>
-                            <div class="field">
+                            <div class="field s-username-input" data-tooltip="Minimum 5 characters" data-inverted="" data-position="left center">
                                 <label>Username</label>
+                                <i class="icon" style="display: none;opacity: .99;position:absolute;margin-top: 10px;right: 5px;"></i>
                                 <input type="text" placeholder="Username" required ng-pattern="/^[a-z][a-zA-Z0-9_.]{0,24}$/" ng-model="profile.username" />
                             </div>
                         </li>         
                         <li>
-                            <div class="field">
+                            <div class="field s-email-input">
                                 <label>Email</label>
+                                <i class="icon" style="display: none;opacity: .99;position:absolute;margin-top: 10px;right: 5px;"></i>
                                 <input type="text" placeholder="Email" required ng-pattern="/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/" ng-model="profile.email" />
                             </div>
                         </li>           

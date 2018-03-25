@@ -7,13 +7,15 @@
  * # SettingsCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScope, $scope, $timeout, $window, SettingService) {    
+angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScope, $scope, $timeout, $window, AuthenticationService, SettingService) {    
 
     $scope.profile = {};
     $scope.foodGrpVal = [];        
     $scope.cid = 1;
     var cuisines = $rootScope.listOfCuisines;
-
+    $scope.username = '';
+    $scope.email = '';
+    
     $('.loader-bg').show();
     SettingService.getUserProfile().then(function(data) {
         if(data.success) {
@@ -34,10 +36,15 @@ angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScop
             }                                               
 
             $scope.profile.password = $scope.profile.password.substring(0, 30);
+            $scope.username = $scope.profile.username;
+            $scope.email = $scope.profile.email;
 
             $timeout(function() {
                 $('.food-group-dropdown').dropdown({                        
-                    useLabels: false
+                    useLabels: false,
+                    onChange: function(value) {
+                        computeFoodGroupValue($scope.foodGrpVal);
+                    }
                 });                     
                 var index = -1;
             for(var i = 0; i < cuisines.length; i++) {
@@ -65,6 +72,28 @@ angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScop
         $('.loader-bg').hide();
     });
     
+    function computeFoodGroupValue(foodGroup) {        
+        var computed;
+        if(foodGroup.length == 1) {			
+			if (foodGroup[0] == 'v') {
+				computed = '100';
+			} else if (foodGroup[0] == 'n') {
+				computed = '010';
+			} else if (foodGroup[0] == 've') {
+				computed = '001';
+			}
+		} else if(foodGroup.length == 2) {
+			if (foodGroup[0] == 'v' && foodGroup[1] == 'n') {
+				computed = '110';
+			} else if (foodGroup[0] == 'v' && foodGroup[1] == 've') {
+				computed = '101';
+			} 
+		} else if (foodGroup.length == 3) {
+			computed = '111';
+        }
+        $scope.profile.food_group = computed;
+        console.log($scope.profile.food_group);        
+    }
 
     $('.male-gender-btn').on('click', function() {
         $scope.profile.gender = 'male';
@@ -87,6 +116,78 @@ angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScop
     });
     $('.avatar-settings').on('mouseout', function () {
         $('.avatar-defocus').hide();
+    });
+
+    $(".s-username-input input").bind('input', function () {
+        $(this).val($(this).val().replace(/\s/g, '_'));     
+        var username = $.trim($(this).val());
+        
+        if (/^[a-z][a-zA-Z0-9_.]{0,24}$/.test(username)) { 
+            if (username.length < 5) {
+                $('.s-username-input').removeClass('error');
+                $('.s-username-input').find('i').removeClass().hide();
+            }
+            if (username.length >= 5) { 
+                if(username != $scope.username) {
+                    $('.s-username-input').find('i').addClass('icon loading').show();
+                    AuthenticationService.checkUsername({'username': username}).then(function(data) {
+                        if(data.success) {
+                            $scope.validUsername = false;
+                            $('.s-username-input').addClass('error');
+                            $('.s-username-input').find('i').removeClass().addClass('icon cancel fg-red').show();                                                
+                        } else {
+                            $scope.validUsername = true;
+                            $('.s-username-input').removeClass('error');
+                            $('.s-username-input').find('i').removeClass().addClass('icon check fg-green').show();                                                
+                        }            
+                    }, function(error) {
+                                        
+                    }).catch(function(e) {
+                                        
+                    }).finally(function() {
+                        
+                    });
+                }
+            }
+        } else {
+            if(username == "") {
+                $('.s-username-input').removeClass('error');
+                $('.s-username-input').find('i').removeClass().hide();
+            }
+        }
+    });
+
+    $(".s-email-input input").bind('input', function () { 
+        var email = $.trim($(this).val());
+        if(email !== "") {
+            if(email.substring(email.length - 4) == '.com') {
+                if(email != $scope.email) { 
+                    $('.s-email-input').find('i').addClass('icon loading').show();
+                    AuthenticationService.checkEmail({'email': email}).then(function(data) {
+                        if(data.success) {
+                            $scope.validEmail = false;
+                            $('.s-email-input').addClass('error');
+                            $('.s-email-input').find('i').removeClass().addClass('icon cancel fg-red').show();                                                
+                        } else {
+                            $scope.validEmail = true;
+                            $('.s-email-input').removeClass('error');
+                            $('.s-email-input').find('i').removeClass().addClass('icon check fg-green').show();
+                            $('.signup-btn').removeAttr('disabled');                        
+                        }            
+                    }, function(error) {
+                                        
+                    }).catch(function(e) {
+                                        
+                    }).finally(function() {
+                        
+                    });
+                }
+            }            
+        }
+        else {
+            $('.s-email-input').removeClass('error');
+            $('.s-email-input').find('i').removeClass().hide();
+        }
     });
 
 });
