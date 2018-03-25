@@ -25,10 +25,10 @@ angular.module('whatsCookingApp').service('SettingService', function ($rootScope
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
 		});	  
     };
-    this.saveSettings = function(payload) {
+    this.updateSettings = function(payload) {
         return $http({
 			method: 'POST',
-			url: ApiConfig.API_URL + '/Settings/save',
+			url: ApiConfig.API_URL + '/Settings/update',
             data: payload,		
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
 		});	  

@@ -7,7 +7,7 @@
  * # SettingsCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScope, $scope, $timeout, $window, ApiConfig, AuthenticationService, UtilService, SettingService, Upload) {    
+angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScope, $scope, $timeout, $window, ApiConfig, AuthenticationService, UtilService, SettingService, Upload, localStorageService) {    
 
     $scope.profile = {};
     $scope.foodGrpVal = [];        
@@ -39,6 +39,13 @@ angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScop
             $scope.profile.password = $scope.profile.password.substring(0, 30);
             $scope.username = $scope.profile.username;
             $scope.email = $scope.profile.email;
+
+            if($scope.profile.profile_imagepath == '') {
+                $scope.profile.profile_imagepath = '../../images/sample.jpg';
+            } else {
+                var pic = $scope.profile.profile_imagepath;
+                $scope.profile.profile_imagepath = $rootScope.apiurl + '/' + pic;
+            }
 
             $timeout(function() {
                 $('.food-group-dropdown').dropdown({                        
@@ -235,5 +242,52 @@ angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScop
             $('.s-email-input').find('i').removeClass().hide();
         }
     });
+
+    $scope.saveSettings = function($event, key) {
+        var elem = $event.currentTarget;
+        var payload = {};
+        payload.key = key;
+
+        if(key == 'basic') {
+            payload.fname = $scope.profile.fname;
+            payload.lname = $scope.profile.lname;
+            payload.profile_imagepath = ($scope.uploadedProfileImage == '') ? $scope.profile.profile_imagepath.split('whats-cooking-api/')[1] : '';
+        } else if(key == 'acc') {
+            payload.username = $scope.profile.username;
+            payload.password = $scope.profile.password;
+            payload.email = $scope.profile.email;
+        } else if(key == 'pref') {
+            payload.city = $scope.profile.city;
+            payload.state = $scope.profile.state;
+            payload.country = $scope.profile.country;
+            payload.gender = $scope.profile.gender;
+            payload.spiciness = $scope.profile.spiciness;
+            payload.food_group = $scope.profile.food_group;
+            payload.cid = $scope.profile.cid;
+            payload.calorie_intake = $scope.profile.calorie_intake;
+        }
+        console.log(payload);
+
+        SettingService.updateSettings(payload).then(function(data) {
+            if(data.success) {
+                $('.status-msg-modal').modal('show', function() {
+                    onVisible: setTimeout(function() {
+                        $('.status-msg-modal').modal('hide');
+                    }, 1500)
+                });
+                if($scope.profile.profile_imagepath != '') {
+                    var profile = localStorageService.get('userProfile');
+                    profile.avatarpath = $scope.profile.profile_imagepath.split('whats-cooking-api/')[1];
+                    localStorageService.set('userProfile', profile);
+                    $rootScope.userProfile = localStorageService.get('userProfile');
+                }
+            }                              
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+        });
+    };
 
 });
