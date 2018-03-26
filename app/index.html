@@ -68,7 +68,7 @@
 						<div class="menu" style="margin-top: 0;top: 50px;min-width: 300px;max-height: 400px;overflow:auto;">                            			
                             <div class="item flt-left" ng-repeat="item in listOfCuisines" style="height: 80px;width: 100%;">                                
                                     <!-- url('{{apiurl}}/assets/images/cuisine_photos/{{item.imagepath}}') no-repeat center-->
-                                <div class="flt-left" style="display: block;overflow:hidden;height: 100%;width: 30%;background: #eae9ed;background-size:cover;"></div>
+                                <div class="flt-left" style="display: block;overflow:hidden;height: 100%;width: 30%;background: url('{{apiurl}}/assets/images/cuisine_photos/{{item.imagepath}}') no-repeat center;background-size:cover;"></div>
                                 <div class="flt-left" style="padding-left: 10px;">
                                     <h3 class="light margin0">{{item.name}}</h3>
                                     <small class="fg-gray bold">{{item.count}} <span ng-if="item.count == 1">recipe</span> <span ng-if="item.count >=0 && item.count != 1">recipes</span></small>                                    
