@@ -107,7 +107,7 @@ var app = angular
 });
 
 app.run(function($rootScope, $timeout, $window, $location, localStorageService) {
-    $rootScope.apiurl = 'http://localhost/whats-cooking-api';
+    $rootScope.apiurl = 'http://216.37.103.147/whats-cooking-api';
     $rootScope.isLoggedIn = (localStorageService.length() == 0) ? false : true;    
     $rootScope.userProfile = localStorageService.get('userProfile');
     $rootScope.$on('$locationChangeStart', function(event, currentRoute, prevRoute) {                        

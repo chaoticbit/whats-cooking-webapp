@@ -67,6 +67,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $scope.signUpModalProfile = {};
     $scope.signUpModalProfile.spiciness = 1;
     $scope.modalFoodGrpVal = [];
+    
 	$scope.listOfIngredients = [{
 		qty: '4 pieces',
 		name: 'Ginger',
@@ -76,9 +77,6 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 	$scope.getNumber = function(num) {
     	return new Array(num);   
 	}
-
-    
-
 
     function getTags () {
         UtilService.getTags().then(function(data) {
@@ -227,7 +225,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		action: 'combo',
 		minCharacters: 1,
 		apiSettings: {
-			url: 'http://localhost/soapbox-api/Ajax_Controller/search_tags/{query}'
+			url: 'http://216.37.103.147/soapbox-api/Ajax_Controller/search_tags/{query}'
 		},		
 		filterRemoteData: false,
 		saveRemoteData:false,
@@ -303,7 +301,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     });
 
 	$('.post-recipe-btn').click(function() {
-		$scope.recipeFoodGroup = -1;
+        $scope.recipeFoodGroup = -1;        
+        $scope.selectedCuisine = $('.cuisine-dropdown .menu').find('.item.active.selected').data('value');
         
         $scope.recipeFoodGroup = computeFoodGroupValue($scope.foodGrpVal);
 
@@ -338,23 +337,23 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             'uploaded_images': uploadedImages,
             'uploaded_video': $scope.uploadedVideo.split('/')[2] || ''
         };
-        
-        RecipeService.postNewRecipe(newRecipeObject).then(function(data) {
-            if(data.success) {
-                console.log(data.results);                
-                $scope.recipes.push(data.results);
-                $('.new-recipe-box').slideUp(function() {
-                    $('.feed-box').css('margin-top', '50px');
-                    $('body').removeClass('noscroll');			                    
-                });		
-            }                            
-        }, function(error) {
+             
+        // RecipeService.postNewRecipe(newRecipeObject).then(function(data) {
+        //     if(data.success) {
+        //         console.log(data.results);                
+        //         $scope.recipes.push(data.results);
+        //         $('.new-recipe-box').slideUp(function() {
+        //             $('.feed-box').css('margin-top', '50px');
+        //             $('body').removeClass('noscroll');			                    
+        //         });		
+        //     }                            
+        // }, function(error) {
                               
-        }).catch(function(e) {
+        // }).catch(function(e) {
                               
-        }).finally(function() {
+        // }).finally(function() {
 
-        });
+        // });
     });
     
     $scope.uploadedFilesList = [];
