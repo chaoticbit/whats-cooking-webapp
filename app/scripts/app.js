@@ -53,6 +53,11 @@ var app = angular
     controller: 'SettingsCtrl',
     controllerAs: 'settings'
     })
+    .when('/category/:cname', {
+    templateUrl: 'views/category.html',
+    controller: 'CategoryCtrl',
+    controllerAs: 'category'
+    })
 	  .otherwise({
 		redirectTo: '/'
 	  });
