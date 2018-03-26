@@ -7,7 +7,7 @@
  * # RecipeCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sce, $routeParams, $window, RecipeService, UtilService, localStorageService) {
+angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sce, $routeParams, $timeout, $window, RecipeService, UtilService, localStorageService) {
     $scope.rid = $routeParams.id;
     $scope.recipe = {};
     $scope.rating = 0;    
@@ -34,14 +34,7 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
             $scope.recipe.gallery = $scope.recipe.gallery.filter(image => image.type != '2');            
             if($scope.recipeVideo == '') {
                 $scope.recipeVideo = false;
-            }
-            $('.ui.rating').rating({
-                initialRating: parseInt($scope.recipe.user_rating),
-                onRate: function(value) {
-                    $scope.rating = value;     
-                    rateRecipe();       
-                }
-            });
+            }            
         } else {
             window.location.href = '/';
         }                    
@@ -52,6 +45,18 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
     }).finally(function() {
         $('.loader-bg').hide();
     });    
+
+    $(document).ready(function() {
+        $timeout(function() {
+            $('.ui.rating').rating({
+                initialRating: parseInt($scope.recipe.user_rating),
+                onRate: function(value) {
+                    $scope.rating = value;     
+                    rateRecipe();       
+                }
+            });
+        }, 500);         
+    });
 
     $scope.getStars = function(rating) {
         // Get the value
