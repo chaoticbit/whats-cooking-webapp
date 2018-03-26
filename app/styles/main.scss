@@ -5,6 +5,7 @@
 @import "recipe.scss";
 @import "profile.scss";
 @import "settings.scss";
+@import "category.scss";
 
 $spiciness-level-color: rgb(247, 81, 81);
 
@@ -97,6 +98,14 @@ body {
 }
 .bold > .italic,.italic > .bold{
     font-family: 'Open Sans BoldItalic' !important;
+}
+
+.subtitle {
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 9pt;
 }
 
 .headbar {
