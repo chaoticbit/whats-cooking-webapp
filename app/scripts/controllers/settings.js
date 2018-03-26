@@ -290,4 +290,33 @@ angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScop
         });
     };
 
+    $(document).on('keydown',function(e){         
+        if($('.modal-wrapper').length > 0){
+            if(e.keyCode === 27){
+                $('.modal-wrapper').fadeOut(100,function(){ $('.modal-wrapper').removeClass('pop-in');});
+                $('body').removeClass('noscroll');
+            }
+        }        
+    });
+    $(document).on('click','.close-modal',function(){
+        $('.modal-wrapper').fadeOut(100,function(){
+            $(this).removeClass('pop-in');
+        });
+    });
+
+    $('.delete-ac').on('click',function(){        
+    $('.modal-wrapper').show().addClass('pop-in');
+       $('<div class="modal-wrapper">\n\
+           <div class="pure-g">\n\
+                <div class="pure-u-1 pure-u-md-1-3 bg-white modal-content" style="margin-top: 50px;position: relative;">\n\n\
+                    <span class="close-modal pointer" style="right: 10px;top: 38px;font-size: 18px;position:absolute;"><i class="fa fa-times fg-grayLighter"></i></span>\n\
+                    <h5 class="fg-grayLight light" style="padding: 10px 0;border-bottom: 1px solid rgba(0,0,0,0.05);font-size: 20pt;">Deleting Account</h5>\n\
+                    <p class="fg-gray" style="line-height:1.5;font-size: 16px;text-align:justify;"><small>Deleting your account will erase your profile and remove your threads, replies and comments etc. from most things you\'ve shared on Soapbox. Some information may still be visible to others.</small></p>\n\
+                   \n\
+               </div>\n\
+           </div>\n\
+       </div>').insertAfter('.container-fluid').addClass('pop-in');                        
+    $('body').addClass('noscroll');
+    });
+
 });
