@@ -79,7 +79,7 @@ module.exports = function(config) {
 
     // Uncomment the following lines if you are using grunt's server to run the tests
     // proxies: {
-    //   '/': 'http://216.37.103.147:9000/'
+    //   '/': 'http://192.168.1.2:9000/'
     // },
     // URL root prevent conflicts with the site root
     // urlRoot: '_karma_'

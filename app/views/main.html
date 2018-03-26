@@ -104,7 +104,7 @@
                         <div class="ui black card video-preview-box" style="display: none;margin:0;">
                             <div class="video" style="height: 100%;">
                                 <i class="icon close remove-video-icon fg-black" data-name="{{uploadedVideo}}"></i>
-                                <video src="http://216.37.103.147/whats-cooking-api/{{uploadedVideo}}" style="height: 100%;width:188.55px;display: block !important;"></video>
+                                <video src="http://192.168.1.2/whats-cooking-api/{{uploadedVideo}}" style="height: 100%;width:188.55px;display: block !important;"></video>
                             </div>
                         </div>
                         <div class="ui black card video-select-box"                             
@@ -139,7 +139,7 @@
 							<div class="black card" ng-repeat="item in uploadedFilesList" style="cursor: pointer;height: 97.3px;float:left !important;">
 								<div class="image" style="height: 97.3px;">
                                     <i class="icon close remove-image-icon" data-name="{{item}}"></i>
-                                    <img src="http://216.37.103.147/whats-cooking-api/{{item}}" class="uploaded-image-card" data-name="{{item.split('/')[2]}}" style="height: 100%;">									                                    
+                                    <img src="http://192.168.1.2/whats-cooking-api/{{item}}" class="uploaded-image-card" data-name="{{item.split('/')[2]}}" style="height: 100%;">									                                    
 								</div>
                             </div>	                                                     	
                             <div class="black card placeholder-image-upload-box-1"
@@ -209,7 +209,7 @@
                 </div>
 				<div class="ui image" style="margin-top: 2em;height: 160px;overflow:hidden;">                    
 					<img ng-if="item.cover_imagepath == ''" src="images/wireframe_image.png" />
-					<img ng-if="item.cover_imagepath != ''" src="http://216.37.103.147/whats-cooking-api/{{item.cover_imagepath}}" />
+					<img ng-if="item.cover_imagepath != ''" src="http://192.168.1.2/whats-cooking-api/{{item.cover_imagepath}}" />
 				</div>
 				<div class="content">
 					<div class="header">

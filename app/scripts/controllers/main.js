@@ -50,8 +50,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 			static: false,			
 		}
     });
-    
-    $rootScope.listOfCuisines = [];
+        
     $scope.imagesAccepted = 6;
     $scope.imagesUploaded = 0;
     $scope.number = 10;
@@ -225,7 +224,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		action: 'combo',
 		minCharacters: 1,
 		apiSettings: {
-			url: 'http://216.37.103.147/soapbox-api/Ajax_Controller/search_tags/{query}'
+			url: 'http://192.168.1.2/soapbox-api/Ajax_Controller/search_tags/{query}'
 		},		
 		filterRemoteData: false,
 		saveRemoteData:false,
@@ -337,7 +336,10 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             'uploaded_images': uploadedImages,
             'uploaded_video': $scope.uploadedVideo.split('/')[2] || ''
         };
-             
+        
+        console.log(newRecipeObject);
+        
+
         // RecipeService.postNewRecipe(newRecipeObject).then(function(data) {
         //     if(data.success) {
         //         console.log(data.results);                
