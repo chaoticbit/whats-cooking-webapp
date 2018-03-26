@@ -7,12 +7,15 @@
  * # CategoryCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('CategoryCtrl', function ($rootScope, $scope, RecipeService) {    
+angular.module('whatsCookingApp').controller('CategoryCtrl', function ($rootScope, $routeParams, $scope, RecipeService) {    
+    $scope.cname = $routeParams.cname;
+    $scope.cid = $routeParams.cid;
     $scope.recipes = [];
-
-    function getRecipes() {    
+    $scope.tags = [];
+    
+    function getPerCategoryRecipes() {    
         $('.loader-bg').show();
-        RecipeService.getRecipes().then(function(data) {
+        RecipeService.getPerCategoryRecipes({cid: $scope.cid}).then(function(data) {
             if(data.success) {
                 $scope.recipes = data.results;                
             }                        
@@ -25,6 +28,22 @@ angular.module('whatsCookingApp').controller('CategoryCtrl', function ($rootScop
         });
     }    
 
-    getRecipes();
+    function getCategoryRelatedTags() {
+        RecipeService.getCategoryRelatedTags({cid: $scope.cid}).then(function(data) {
+            if(data.success) {
+                $scope.tags = data.results;                
+            }                        
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {            
+            
+        });
+    }
 
+    (function() {
+        getPerCategoryRecipes();
+        getCategoryRelatedTags();
+    })();    
 });

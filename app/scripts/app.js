@@ -53,7 +53,7 @@ var app = angular
     controller: 'SettingsCtrl',
     controllerAs: 'settings'
     })
-    .when('/category/:cname', {
+    .when('/category/:cname/:cid', {
     templateUrl: 'views/category.html',
     controller: 'CategoryCtrl',
     controllerAs: 'category'

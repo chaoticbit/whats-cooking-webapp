@@ -8,15 +8,16 @@
         <div class="pure-u-md-1-5"></div>
         <div class="pure-u-md-3-5">
             <p class="margin0 fg-grayLight"><small>recipes in</small></p>
-            <h3 class="light" style="margin:0;font-size: 18pt;line-height: 28pt;">American cuisine</h3>                            
+            <h3 class="light" style="margin:0;font-size: 18pt;line-height: 28pt;">{{cname}} cuisine</h3>                            
         </div>        
     </div>
     <div class="pure-u-1 pure-u-md-1-4"></div>    
 </div>
-<div class="ui divider" style="margin: 10px 0;"></div>
+<!-- <div class="ui divider" style="margin: 10px 0;"></div> -->
 <div class="pure-g category-page">
     <div class="pure-u-1 pure-u-md-3-4 left-pane">
-        <div class="ui four doubling cards recipe-card-list" style="position: relative;">
+        <h3 ng-if="recipes.length == 0" class="fg-grayLight light text-center block" style="font-size: 20pt;padding: 20px;">No recipes found</h3>
+        <div ng-if="recipes.length > 0" class="ui four doubling cards recipe-card-list" style="position: relative;">
             <div class="card recipe-item" ng-repeat="item in recipes track by $index">                
 				<a class="ui top attached label recipe-card-menu" style="background-color: #e8e8e861;">
 					<b class="bold">{{item.cname}}</b>
@@ -84,7 +85,7 @@
     </div>
     <div class="pure-u-1 pure-u-md-1-4 right-pane-fixed hidden-for-mobile-and-tablet">
 		<div style="padding: 15px 0 20px 20px;">
-			<p class="featured-tags-title">featured tags</p>
+			<p class="featured-tags-title">related tags</p>
 		</div>
 		<div style="padding: 0px 20px;">
 			<a href="#" class="tag" ng-repeat="item in tags | limitTo: 15">{{item.name}}</a>

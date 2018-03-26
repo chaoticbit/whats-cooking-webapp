@@ -61,4 +61,22 @@ angular.module('whatsCookingApp').service('RecipeService', function ($rootScope,
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}
         });
     };
+
+    this.getPerCategoryRecipes = function(payload) {
+        return $http({
+            method: 'POST',
+            url: ApiConfig.API_URL + '/Recipe/per_category_recipes/',             
+            data: payload,
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}
+        });
+    };
+
+    this.getCategoryRelatedTags = function(payload) {
+        return $http({
+            method: 'POST',
+            url: ApiConfig.API_URL + '/Recipe/category_related_tags/',             
+            data: payload,
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}
+        });
+    };
 });
