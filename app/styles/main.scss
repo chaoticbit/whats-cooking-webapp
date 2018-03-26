@@ -66,6 +66,10 @@ $spiciness-level-color: rgb(247, 81, 81);
 
 *, *:before, *:after {box-sizing:  border-box !important;}
 
+html {
+    -webkit-font-smoothing: antialiased !important;
+}
+
 body {
   padding: 0;  
 }
