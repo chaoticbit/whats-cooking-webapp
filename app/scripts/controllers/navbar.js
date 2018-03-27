@@ -175,7 +175,10 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
                 $('.new-recipe-box').slideDown(function() {					
                     $('.feed-box').css('margin-top', '10px');				
                     $('.toggle-recipe-box-btn').hide();		
-                    $('body').addClass('noscroll');                    
+                    $('body').addClass('noscroll');      
+                    $('.cuisine-dropdown').dropdown({
+                        values: $rootScope.listOfCuisines
+                    });               
                 });			
             } else { //SlideUp
                 $('.new-recipe-box').slideUp(function() {

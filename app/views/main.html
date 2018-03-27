@@ -209,7 +209,7 @@
                 </div>
 				<div class="ui image" style="margin-top: 2em;height: 160px;overflow:hidden;">                    
 					<img ng-if="item.cover_imagepath == ''" src="images/wireframe_image.png" />
-					<img ng-if="item.cover_imagepath != ''" src="http://192.168.1.2/whats-cooking-api/{{item.cover_imagepath}}" />
+					<img style="height: 100%;" ng-if="item.cover_imagepath != ''" src="http://192.168.1.2/whats-cooking-api/{{item.cover_imagepath}}" />
 				</div>
 				<div class="content">
 					<div class="header">
@@ -219,7 +219,7 @@
                     </div>
 					<div class="meta"><a href="/#!/user/{{item.username}}"><small>{{item.fullname}}</small></a></div>
 					<div class="description">
-						<p>{{item.description}}</p>
+						<p>{{item.description.substring(0, 100)}}</p>
 					</div>
 				</div>
 				<div class="extra content">

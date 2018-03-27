@@ -124,7 +124,7 @@
                     counter-reset: step-counter;
 			        list-style-type: none;
                     li {
-                        padding: 5px 0 5px 35px;
+                        padding: 0px 0 5px 35px;
                         text-align: justify !important; 
                         counter-increment: step-counter;
                         margin-bottom: 15px;
@@ -133,7 +133,7 @@
                         .align-top {
                             margin-top: -3px;
                         }               		
-                    }                    					
+                    }                      			
                     li::before {
                         content: counter(step-counter);                        
                         display: inline-block;

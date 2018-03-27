@@ -335,27 +335,24 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             'description': $scope.recipeDescription,
             'uploaded_images': uploadedImages,
             'uploaded_video': $scope.uploadedVideo.split('/')[2] || ''
-        };
-        
-        console.log(newRecipeObject);
-        
+        };                
 
-        // RecipeService.postNewRecipe(newRecipeObject).then(function(data) {
-        //     if(data.success) {
-        //         console.log(data.results);                
-        //         $scope.recipes.push(data.results);
-        //         $('.new-recipe-box').slideUp(function() {
-        //             $('.feed-box').css('margin-top', '50px');
-        //             $('body').removeClass('noscroll');			                    
-        //         });		
-        //     }                            
-        // }, function(error) {
+        RecipeService.postNewRecipe(newRecipeObject).then(function(data) {
+            if(data.success) {
+                console.log(data.results);                
+                $scope.recipes.push(data.results);
+                $('.new-recipe-box').slideUp(function() {
+                    $('.feed-box').css('margin-top', '50px');
+                    $('body').removeClass('noscroll');			                    
+                });		
+            }                            
+        }, function(error) {
                               
-        // }).catch(function(e) {
+        }).catch(function(e) {
                               
-        // }).finally(function() {
+        }).finally(function() {
 
-        // });
+        });
     });
     
     $scope.uploadedFilesList = [];
@@ -580,6 +577,23 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             return false;
         }
     };
+
+    $scope.toggleNewRecipeBox = function(val) {
+        if(val == 1) { //SlideDown			
+            $('.new-recipe-box').slideDown(function() {					
+                $('.feed-box').css('margin-top', '10px');				
+                $('.toggle-recipe-box-btn').hide();		
+                $('body').addClass('noscroll');                    
+            });			
+        } else { //SlideUp
+            $('.new-recipe-box').slideUp(function() {
+                $('.feed-box').css('margin-top', '50px');
+                $('body').removeClass('noscroll');			
+                $('.toggle-recipe-box-btn').show();
+            });			
+        }
+    }
+
 
     $scope.saveSignupUserProfile = function(signUpModalProfile) {
         signUpModalProfile.food_group = computeFoodGroupValue($scope.modalFoodGrpVal);        
