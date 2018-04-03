@@ -1173,6 +1173,14 @@ MEDIA QUERIES
 		margin-left: 9px !important; 
 		margin-right: 0px !important;
     }
+    .ingredient-search-box {
+        .keyword-box {
+            padding-right: 0px !important;
+        }
+        .search-btn-box {
+            padding-left: 0px !important;
+        }
+    }
     .login-panel {
         margin: 10px;
     }
