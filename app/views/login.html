@@ -18,13 +18,13 @@
 			<form class="ui form" name="loginform" ng-submit="processLogin(login)">
 				<div class="field">
 					<div class="ui left icon input fluid">
-		  				<input type="text" placeholder="Username" required ng-model="login.username" autofocus>
+		  				<input type="text" placeholder="Username" ng-pattern="/^[a-z][a-zA-Z0-9_.]{0,24}$/" required ng-model="login.username" autofocus>
 		  				<i class="user icon"></i>
 					</div>
 				</div>
 				<div class="field">
 					<div class="ui left icon input fluid">
-		  				<input type="password" placeholder="Password" required ng-model="login.password">
+		  				<input type="password" placeholder="Password" ng-pattern="/^[a-zA-Z0-9!@#$%^*]{5,30}$/" required ng-model="login.password">
 		  				<i class="key icon"></i>
 					</div>
 				</div>
@@ -38,34 +38,34 @@
 					<div class="field">
 						<div class="ui icon input s-username-input" data-tooltip="Minimum 5 characters" data-inverted="" data-position="left center">
                             <i class="icon" style="display: none;opacity: .99;"></i>
-			  				<input type="text" placeholder="Username" required ng-keyup="checkUsername($event)" ng-model="signup.username" autofocus>
+			  				<input type="text" placeholder="Username" required ng-pattern="/^[a-z][a-zA-Z0-9_.]{5,24}$/" ng-keyup="checkUsername($event)" ng-model="signup.username" autofocus>
 						</div>
 					</div>
 					<div class="field">
 						<div class="ui input s-pwd-input">
-			  				<input type="password" placeholder="Password" required ng-model="signup.password">
+			  				<input type="password" placeholder="Password" ng-pattern="/^[a-zA-Z0-9!@#$%^*]{5,30}$/" required ng-model="signup.password">
 						</div>
 					</div>
 				</div>
 				<div class="two fields">
 					<div class="field">
 						<div class="ui input s-fname-input">
-			  				<input type="text" placeholder="First Name" required ng-model="signup.fname" maxlength="30">
+			  				<input type="text" placeholder="First Name" ng-pattern="/^[A-Za-z]+$/" required ng-model="signup.fname" maxlength="30">
 						</div>
 					</div>
 					<div class="field">
 						<div class="ui input s-lname-input">
-			  				<input type="text" placeholder="Last Name" required ng-model="signup.lname" maxlength="30">
+			  				<input type="text" placeholder="Last Name" ng-pattern="/^[A-Za-z]+$/" required ng-model="signup.lname" maxlength="30">
 						</div>
 					</div>
 				</div>
 				<div class="field">
 						<div class="ui icon input s-email-input">
                             <i class="icon" style="opacity: .99;display: none;"></i>
-			  				<input type="email" placeholder="Email" required ng-model="signup.email">
+			  				<input type="email" placeholder="Email" ng-pattern="/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/" required ng-model="signup.email">
 						</div>
 					</div>
-				<button class="ui button blue fluid signup-btn" ng-click="doSignup(signup)" disabled="disabled">SIGNUP</button>
+				<button class="ui button blue fluid signup-btn" ng-click="doSignup(signup)" disabled="disabled" ng-disabled="signupform.$invalid">SIGNUP</button>
 			</form>
   		</div>
 	</div>
