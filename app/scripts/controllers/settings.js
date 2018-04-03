@@ -251,7 +251,9 @@ angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScop
         if(key == 'basic') {
             payload.fname = $scope.profile.fname;
             payload.lname = $scope.profile.lname;
-            payload.profile_imagepath = ($scope.uploadedProfileImage == '') ? $scope.profile.profile_imagepath.split('whats-cooking-api/')[1] : '';
+            // if($scope.uploadedProfileImage !== '') {
+            payload.profile_imagepath = $scope.uploadedProfileImage;
+            // }
         } else if(key == 'acc') {
             payload.username = $scope.profile.username;
             payload.password = $scope.profile.password;

@@ -11,7 +11,7 @@
             <div class="pure-u-1">
                 <div ng-if="userprofile.profile_imagepath == '' && userprofile.gender == 'male'" class="profile-avatar" style="background-image: url('images/elliot.jpg')"></div>
                 <div ng-if="userprofile.profile_imagepath == '' && userprofile.gender == 'female'" class="profile-avatar" style="background-image: url('images/stevie.jpg')"></div>
-                <div ng-if="userprofile.profile_imagepath !== ''" class="profile-avatar" style="background-image: url('{{apiurl}}/{{userprofile.profile_imagepath}}')"></div>
+                <div ng-if="userprofile.profile_imagepath !== ''" class="profile-avatar" style="background-position: center;background-image: url('{{apiurl}}/{{userprofile.profile_imagepath}}')"></div>
             </div>
             <div class="pure-u-1" style="margin-top: 65px;">
                 <h1 class="light text-center margin0">{{userprofile.fullname}}</h1>
