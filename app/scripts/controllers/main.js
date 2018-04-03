@@ -536,19 +536,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             $(this).val('');
             $('body').removeClass('noscroll');
         }
-    });
-
-    $(document).on('click touchstart','.toggle-search-btn',function() {
-        if($('.global-search-div').css('display') != 'none') {
-            $('.global-search-div').hide();
-            $('.ingredient-search-filter').show();   
-            $('.ing-search-input').focus();
-        } else {
-            $('.ingredient-search-filter').hide();   
-            $('.global-search-div').show();
-            $('.global-search').focus();
-        }
-    });
+    });   
 
     function processIngredientSearch() {
         alert($('.ing-search-hdn-input').val());
