@@ -224,7 +224,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		action: 'combo',
 		minCharacters: 1,
 		apiSettings: {
-			url: 'http://192.168.1.2/soapbox-api/Ajax_Controller/search_tags/{query}'
+			url: ApiConfig.API_URL + '/Util/getTags'
 		},		
 		filterRemoteData: false,
 		saveRemoteData:false,

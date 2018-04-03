@@ -106,8 +106,8 @@ var app = angular
 	});
 });
 
-app.run(function($rootScope, $timeout, $window, $location, localStorageService) {
-    $rootScope.apiurl = 'http://192.168.1.2/whats-cooking-api';
+app.run(function($rootScope, $timeout, $window, $location, localStorageService, ApiConfig) {
+    $rootScope.apiurl = ApiConfig.API_URL.split('/api')[0];
     $rootScope.isLoggedIn = (localStorageService.length() == 0) ? false : true;    
     $rootScope.userProfile = localStorageService.get('userProfile');
     $rootScope.$on('$locationChangeStart', function(event, currentRoute, prevRoute) {                        
