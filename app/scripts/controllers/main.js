@@ -56,6 +56,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $scope.number = 10;
 
     $rootScope.quickSearchResults = '';
+    $scope.autocompleteIngList = [];
     $scope.recipes = [];
     $scope.recipeCoverImage = '';
     $rootScope.favourites = [];
@@ -68,9 +69,9 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $scope.modalFoodGrpVal = [];
     
 	$scope.listOfIngredients = [{
-		qty: '4 pieces',
-		name: 'Ginger',
-		notes: 'chopped'
+		qty: '',
+		name: '',
+		notes: ''
     }];               
 
 	$scope.getNumber = function(num) {
@@ -541,7 +542,69 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             $(this).val('');
             $('body').removeClass('noscroll');
         }
-    });   
+    });       
+
+    $scope.acIng = function(key, $index) {             
+        key = key.replace(/^[!@#$%^&*()-+_='";:,.<>?/[\]{}']/g, '');                    
+        if ($.trim(key) === '') {                           
+            return;
+        }
+        else { 
+            UtilService.autocompleteIngredients(key).then(function(data) {
+                $('.ing-autocomplete-dropdown').show();        
+                $scope.autocompleteIngList = data.results;
+                var offset = $('#input-ing-' + $index).offset();
+                $('.ing-autocomplete-dropdown').css({'top': offset.top + 40 + 'px'});
+            }, function(error) {
+                                  
+            }).catch(function(e) {
+                                  
+            }).finally(function() {
+                
+            });
+            
+        }
+    };
+
+    $scope.acClickIng = function(val, $index) {
+        $scope.listOfIngredients[$index].name = val;
+        $scope.autocompleteIngList = [];
+        $('.ing-autocomplete-dropdown').hide();                    
+    };
+
+    $scope.acSelectIng = function($event, $index) {
+        var $listItems = $('.ing-autocomplete-dropdown > ul > li');
+        var key = $event.keyCode, 
+            $selected = $listItems.filter('.selected'), 
+            $current;
+
+        if (key !== 40 && key !== 38 && key !== 13 && key !== 27 && key !== 8) {
+            return;
+        }
+        $listItems.removeClass('selected');
+        if (key === 40) {            
+            if (!$selected.length || $selected.is(':last-child')) {
+                $current = $listItems.eq(0);
+            }
+            else
+                $current = $selected.next();
+        }
+        else if (key === 38) {            
+            if (!$selected.length || $selected.is(':first-child')) {
+                $current = $listItems.last();
+            }
+            else
+                $current = $selected.prev();
+        }
+        else if (key === 13) {    
+            console.log('13');                 
+            $scope.listOfIngredients[$index].name = $selected['0'].innerText;        
+            $scope.autocompleteIngList = [];
+            $('.ing-autocomplete-dropdown').hide();            
+            return false;
+        }
+        $current.addClass('selected');
+    };
 
     function processIngredientSearch() {
         alert($('.ing-search-hdn-input').val());

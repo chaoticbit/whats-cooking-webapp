@@ -25,6 +25,15 @@ angular.module('whatsCookingApp').service('UtilService', function ($rootScope, $
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
         });
     }
+
+    this.autocompleteIngredients = function(key) {
+        return $http({
+            method: 'POST',
+            url: ApiConfig.API_URL + '/Util/autocompleteIngredients/' + key,            
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
+        });
+    }
+
     this.getFavourites = function() {
         return $http({
             method: 'POST',
