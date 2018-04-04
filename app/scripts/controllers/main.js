@@ -77,6 +77,10 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     	return new Array(num);   
 	}
 
+    $rootScope.$on("CallRecipes", function() {
+        getRecipes();
+    });
+
     function getTags () {
         UtilService.getTags().then(function(data) {
             if(data.success) {
@@ -224,7 +228,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 		action: 'combo',
 		minCharacters: 1,
 		apiSettings: {
-			url: ApiConfig.API_URL + '/Util/getTags'
+            url: ApiConfig.API_URL + '/Util/getTagsByKey/{query}',
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': $rootScope.userProfile.token}
 		},		
 		filterRemoteData: false,
 		saveRemoteData:false,

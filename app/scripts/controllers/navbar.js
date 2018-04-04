@@ -99,7 +99,7 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
                     console.log($rootScope.listOfCuisines[addIndex]);            
                 }
 
-                getRecipes();
+                $rootScope.$emit("CallRecipes", {});
                 // $scope.$apply();
             }                        
         }, function(error) {
