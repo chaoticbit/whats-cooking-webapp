@@ -346,7 +346,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         RecipeService.postNewRecipe(newRecipeObject).then(function(data) {
             if(data.success) {
                 console.log(data.results);                
-                $scope.recipes.push(data.results);
+                $scope.recipes.unshift(data.results);
+                // $scope.recipes.push(data.results);
                 $('.new-recipe-box').slideUp(function() {
                     $('.feed-box').css('margin-top', '50px');
                     $('body').removeClass('noscroll');			                    
