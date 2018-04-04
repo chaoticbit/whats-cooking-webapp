@@ -34,7 +34,8 @@
                                     <div class="pure-u-1" style="margin-bottom: 10px;">
                                         <ul>
                                             <li>
-                                                <div class="avatar" style="background-image: url('images/wireframe_image.png');"></div>
+                                                <div class="avatar" ng-if="recipe.profile_imagepath == ''" style="background-image: url('images/wireframe_image.png');"></div>
+                                                <div class="avatar" ng-if="recipe.profile_imagepath !== ''" style="background-image: url('{{apiurl}}/{{recipe.profile_imagepath}}');"></div>
                                             </li>
                                             <li style="padding-left: 10px;">
                                                 <p>
