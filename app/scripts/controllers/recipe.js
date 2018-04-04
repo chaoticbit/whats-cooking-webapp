@@ -18,12 +18,29 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
         $('body').removeClass('noscroll');
     }
 
+    function strip(html) {
+        var tmp = document.createElement("DIV");
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText;
+    }
+
     $('.loader-bg').show();
     RecipeService.getRecipeById($scope.rid).then(function(data) {
         if(data.success) {
             console.log(data.results);
             $scope.recipe = data.results;
-            $scope.recipe.safeIngredients = $sce.trustAsHtml($scope.recipe.ingredients_html);
+            var listItems = $scope.recipe.ingredients_html.match(/<l(.)>.*?<\/l\i>/g);
+            var onlyIngredients = $scope.recipe.ingredients.split(",");
+
+            for(var i = 0; i < listItems.length; i++) {
+                var innerContent = strip(listItems[i]).trim();                
+                var innerContentWithLink = '<a href="https://www.amazon.com/s/ref=sr_1_2?url=search-alias%3Damazonfresh&field-keywords=' + onlyIngredients[i] + '" target="_blank">' + innerContent + '</a>';                
+                listItems[i] = '<li>' + innerContentWithLink + '</li>';
+            }
+            var finalList = listItems.join("");
+            finalList = '<ol>' + finalList + '</ol>';
+            $scope.recipe.safeIngredients = $sce.trustAsHtml(finalList);
+            
             $scope.recipe.safePreparation = $sce.trustAsHtml($scope.recipe.preparation);
             $scope.recipeVideo = '';            
             _.forEach($scope.recipe.gallery, function(value, key) {
