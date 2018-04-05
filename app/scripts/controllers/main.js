@@ -579,7 +579,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             $selected = $listItems.filter('.selected'), 
             $current;
 
-        if (key !== 40 && key !== 38 && key !== 13 && key !== 27 && key !== 8) {
+        if (key !== 40 && key !== 38 && key !== 13 && key !== 27) {
             return;
         }
         $listItems.removeClass('selected');
@@ -597,8 +597,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
             else
                 $current = $selected.prev();
         }
-        else if (key === 13) {    
-            console.log('13');                 
+        else if (key === 13) {                
             $scope.listOfIngredients[$index].name = $selected['0'].innerText;        
             $scope.autocompleteIngList = [];
             $('.ing-autocomplete-dropdown').hide();            
