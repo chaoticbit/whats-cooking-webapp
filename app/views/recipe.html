@@ -76,7 +76,7 @@
                         </div>                                                        
                     </div>
                     <div class="pure-u-1 ttitle" style="padding: 10px 0;">
-                        <h2 class="black flt-left" style="color: rgba(0,0,0,0.8);width: 87%;">{{recipe.title}}</h2>                        
+                        <h2 class="black flt-left" style="color: rgba(0,0,0,0.8);width: 82%;">{{recipe.title}}</h2>                        
                         <div ng-if="recipe.food_group == 100" style="width: 8%;float: right;text-align:right;">
                             <span class="food-group-icon veg-icon">&#9679;</span>
                         </div>
@@ -90,8 +90,8 @@
                             <span class="food-group-icon veg-icon">&#9679;</span>
                             <span class="fg-black food-group-icon vegan-icon">V</span>
                         </div>
-                        <i ng-if="recipe.is_favourite == 1" class="icon heart flt-right pointer added fg-red" style="width: 0%;padding: 4px;font-size: 21px;" ng-click="updateFavourite($event)"></i>
-                        <i ng-if="recipe.is_favourite != 1" class="icon heart outline flt-right pointer" style="width: 0%;padding: 4px;font-size: 21px;" ng-click="updateFavourite($event)"></i>                        
+                        <i ng-if="recipe.is_favourite == 1" class="icon heart flt-right pointer added fg-red" style="width: 0%;padding: 4px 15px;font-size: 21px;" ng-click="updateFavourite($event)"></i>
+                        <i ng-if="recipe.is_favourite != 1" class="icon heart outline flt-right pointer" style="width: 0%;padding: 4px 15px;font-size: 21px;" ng-click="updateFavourite($event)"></i>                        
                     </div>
                     <div class="pure-u-1 recipe-desc">
                         <!-- <ol style="margin:0;padding:0;">
@@ -248,6 +248,23 @@
                     Rate this recipe: <div class="ui star rating" data-max-rating="5"></div>
                 </div>
             </div>     
+        </div>
+    </div>
+</div>
+<div class="recipe-tabs-mobile show-for-mobile">
+    <div class="pure-g">
+        <div class="pure-u-1">
+            <ul>
+                <li data-tab="1">
+                    <i class="icon tasks"></i>
+                </li>
+                <li data-tab="2">
+                    <i class="far fa-file-alt"></i>
+                </li>
+                <li data-tab="3">
+                    <i class="far fa-chart-bar"></i>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

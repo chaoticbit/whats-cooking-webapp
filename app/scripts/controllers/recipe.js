@@ -297,4 +297,25 @@ angular.module('whatsCookingApp').controller('RecipeCtrl', function ($scope, $sc
         }).finally(function() {
         });
     });
+
+    $('.recipe-tabs-mobile li').on('click', function() {
+        var tab = $(this).data('tab');
+        var elem = $(this);
+        if(tab == 1) {
+            $('.recipe-container,.stats-action-container').removeClass('show-for-mobile').addClass('hidden-for-mobile');            
+            $('.ingredients-container').addClass('show-for-mobile');
+            $('.recipe-tabs-mobile li').removeClass('active-tab');
+            $(elem).addClass('active-tab');
+        } else if(tab == 2) {
+            $('.ingredients-container,.stats-action-container').removeClass('show-for-mobile').addClass('hidden-for-mobile');
+            $('.recipe-container').addClass('show-for-mobile');
+            $('.recipe-tabs-mobile li').removeClass('active-tab');
+            $(elem).addClass('active-tab');
+        } else if(tab == 3) {            
+            $('.ingredients-container,.recipe-container').removeClass('show-for-mobile').addClass('hidden-for-mobile');
+            $('.stats-action-container').addClass('show-for-mobile');
+            $('.recipe-tabs-mobile li').removeClass('active-tab');
+            $(elem).addClass('active-tab');            
+        }
+    });
 });
