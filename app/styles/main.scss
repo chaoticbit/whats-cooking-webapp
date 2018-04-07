@@ -1205,6 +1205,12 @@ MEDIA QUERIES
     .hidden-for-mobile { display: none !important; }
     .hidden-for-mobile-and-tablet { display: none !important; }
     .show-for-mobile { display: block !important;}
+    .login-heading {                
+        .header:first-child {
+            font-size: 17pt !important;
+            margin-bottom: 10px;
+        }
+    }    
 	.recipe-item { 
 		width: calc(50% - 1em) !important;
 		margin-left: 9px !important; 

@@ -258,6 +258,9 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
 
 
         if (screen.width < 480 || screen.width < 800) {
+            document.addEventListener('gesturestart', function (e) {
+                e.preventDefault();
+            });
             var h = screen.height;
             $('.sidebar .pure-u-3-4').css('height', h + 'px');
             $('.toggle-sidebar').on('click', function () {
