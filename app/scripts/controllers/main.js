@@ -655,8 +655,9 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         signUpModalProfile.food_group = computeFoodGroupValue($scope.modalFoodGrpVal);        
         signUpModalProfile.profile_imagepath = '';
         signUpModalProfile.followed_cuisines = $('.selected-cuisines').val();            
+        signUpModalProfile.pref_cuisine = $('.modal-cuisine-dropdown .menu').find('.item.active.selected').data('value');
 
-        $('.save-signup-profile-btn').addClass('icon loading');
+        $('.save-signup-profile-btn').addClass('icon loading');        
         SettingService.saveUserProfile(signUpModalProfile).then(function(data) {
             if(data.success) {
                 $('.user-profile-signup-modal').modal('hide');
@@ -666,6 +667,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                     }, 1500)
                 });
                 $cookies.remove('new-access');  
+                getRecipes();
             }                  
         }, function(error) {
                               
