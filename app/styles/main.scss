@@ -909,7 +909,7 @@ color: #eeeeee !important;
 			.content {
 				padding: 15px 10px 5px !important;
 				.header {
-                    font-size: 16px !important;
+                    font-size: 16px;
                     a:hover {
                         text-decoration: underline !important;
                     }
@@ -1248,6 +1248,11 @@ MEDIA QUERIES
         }
         .adjust-on-mobile {
             padding-right: 0px !important;
+        }
+    }
+    .recipe-card-list {			        
+        .content {            
+            .header { font-size: 14px !important; }
         }
     }
 }
