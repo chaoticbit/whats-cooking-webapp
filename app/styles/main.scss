@@ -1021,7 +1021,12 @@ color: #eeeeee !important;
                 }
             }
         }		
-	}
+    }
+    .favourites-pane {						
+		background-color: #FbFbFb;
+		box-shadow: -1px 0 1px -2px rgba(0,0,0,0.9);
+        padding-top: 10px;        
+    }
 }
 .spice-box {
     i {
@@ -1302,4 +1307,41 @@ MEDIA QUERIES
 @media only screen and (min-width : 1024px) and (max-width : 1224px) {
     .hidden-for-mobile-and-tablet { display: none !important; }
     .show-for-mobile { display: none !important;}
+}
+.recipe-tabs-mobile {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0px;
+    padding: 8px 10px;
+    background: #fff;
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
+    ul {
+        padding: 0px;
+        margin: 0px;
+        li {
+            width: 32.6%;
+            display: inline-block;
+            padding: 7px 15px;
+            box-shadow: 1px 0 1px -2px rgba(0,0,0,0.9);
+            -webkit-box-shadow: 1px 0 1px -2px rgba(0,0,0,0.9);
+            i {
+                text-align: center;
+                display: block;
+                margin: auto;
+                font-size: 18px;
+                cursor: pointer;
+                color: #444;
+            }
+        }
+        li.active-tab {
+            i{
+                color: #1ba1e2;
+            }
+        }
+        li:last-child {
+            box-shadow: none;
+        }
+    }
 }

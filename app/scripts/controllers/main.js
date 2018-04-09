@@ -56,6 +56,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $scope.number = 10;
 
     $rootScope.quickSearchResults = '';
+    $scope.localFavourites = [];
     $scope.autocompleteIngList = [];
     $scope.recipes = [];
     $scope.recipeCoverImage = '';
@@ -80,6 +81,11 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
 
     $rootScope.$on("CallRecipes", function() {
         getRecipes();
+    });
+
+    $scope.$on('StoreFavourites', function(event, data) {
+        console.log(data);        
+        $scope.localFavourites = data;
     });
 
     function getTags () {
@@ -676,7 +682,31 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         }).finally(function() {
 
         });                
-    };        
+    };     
+    
+    $('.recipe-tabs-mobile li').on('click', function() {
+        var tab = $(this).data('tab');
+        var elem = $(this);
+        if(tab == 1) { //Trending            
+            $('.favourites-pane').removeClass('show-for-mobile').addClass('hidden-for-mobile-and-tablet');
+            $('.left-pane').removeClass('show-for-mobile').addClass('hidden-for-mobile');
+            $('.right-pane-fixed').removeClass('hidden-for-mobile-and-tablet').addClass('show-for-mobile');
+            $('.recipe-tabs-mobile li').removeClass('active-tab');
+            $(elem).addClass('active-tab');
+        } else if(tab == 2) { //Home
+            $('.right-pane-fixed,.favourites-pane').removeClass('show-for-mobile').addClass('hidden-for-mobile-and-tablet');
+            $('.left-pane').removeClass('hidden-for-mobile').addClass('show-for-mobile');
+            $('.recipe-tabs-mobile li').removeClass('active-tab');
+            $(elem).addClass('active-tab');
+        } else if(tab == 3) { //Favourites
+            $('.right-pane-fixed').removeClass('show-for-mobile').addClass('hidden-for-mobile-and-tablet');
+            $('.left-pane').removeClass('show-for-mobile').addClass('hidden-for-mobile');
+            $('.favourites-pane').removeClass('hidden-for-mobile-and-tablet').addClass('show-for-mobile');
+            $('.recipe-tabs-mobile li').removeClass('active-tab');
+            $(elem).addClass('active-tab');
+        }        
+    });
+    
 }).filter('range', function() {
     return function(input, total) {
       total = parseInt(total);

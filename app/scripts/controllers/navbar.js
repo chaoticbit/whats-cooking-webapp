@@ -7,7 +7,7 @@
  * # NavbarCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope, $window, $scope, $location, SearchService, UtilService) {
+angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope, $window, $scope, $timeout, $location, SearchService, UtilService) {
     $rootScope.listOfCuisines = [];
     $scope.quickSearchResults = '';
     $scope.favourites = [];
@@ -47,7 +47,8 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
     function getFavourites() {
         UtilService.getFavourites().then(function(data) {
             if(data.success) {
-                $scope.favourites = data.results;                
+                $scope.favourites = data.results;                                
+                $rootScope.$broadcast('StoreFavourites', $scope.favourites);                
             }                        
         }, function(error) {
                               
