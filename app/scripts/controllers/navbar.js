@@ -12,6 +12,7 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
     $scope.quickSearchResults = '';
     $scope.favourites = [];
     $rootScope.showRecipeBox = false;        
+    $scope.navSearchSelectedFilter = 'search_r';
 
     function getCuisines() {
         UtilService.getCuisines().then(function(data) {
@@ -111,6 +112,7 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
     $(document).ready(function() {
         $('body').click(function(e) {
             $('.cuisine-nav-dropdown .menu').slideUp();
+            $('.nav-search-filter-dropdown').slideUp(100);
         });
         $('.headbar-user-dropdown').dropdown();        
         $('.favourites-user-dropdown').dropdown({
@@ -211,7 +213,7 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
             else {
                 if (val.charAt(0) !== '>' && val.charAt(0) !== '<') { 
                     $(elem).parent().addClass('loading');
-                    SearchService.quickSearch(val).then(function(data) {
+                    SearchService.quickSearch(val, $scope.navSearchSelectedFilter).then(function(data) {
                         if(data.success) {
                             $scope.quickSearchResults = data.results;                                                                                                            
                         }                                    
@@ -254,6 +256,24 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
             }
         });
 
+        $(document).on('click', '.toggle-search-btn', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            if($(this).parent().find('.nav-search-filter-dropdown').css('display') == 'none') {
+                $(this).parent().find('.nav-search-filter-dropdown').slideDown(100);
+            }
+            else {
+                $(this).parent().find('.nav-search-filter-dropdown').slideUp(100);
+            }
+        });
+
+        $('.nav-search-filter-dropdown ul li').on('click', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            $scope.navSearchSelectedFilter = $(this).data('name');
+            $('.nav-search-filter-dropdown ul li').removeClass('selected');
+            $(this).addClass('selected');
+        });
 
         if (screen.width < 480 || screen.width < 800) {
             document.addEventListener('gesturestart', function (e) {

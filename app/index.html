@@ -46,7 +46,7 @@
                         <div ng-if="quickSearchResults.length == 0 && quickSearchResults!==''" class="item flt-left">
                             <div class="text-center" style="padding: 15px;">Sorry! Nothing to show :(</div>
                         </div>
-                        <div ng-if="quickSearchResults.length > 0" class="item flt-left" ng-repeat="item in quickSearchResults">  
+                        <div ng-if="quickSearchResults.length > 0 && navSearchSelectedFilter == 'search_r'" class="item flt-left" ng-repeat="item in quickSearchResults">                              
                             <a href="/#!/recipe/{{item.srno}}">
                                 <div class="flt-left round hidden-for-mobile" style="background:url('{{apiurl}}/userdata/{{item.uid}}/{{item.cover_imagepath}}') no-repeat center;"></div>
                                 <div class="flt-left desc">
@@ -54,15 +54,33 @@
                                     <div class="ui star rating" data-rating="{{item.rating}}"></div>                                           
                                 </div>
                             </a>
+                        </div>
+                        <div ng-if="quickSearchResults.length > 0 && navSearchSelectedFilter == 'search_p'" class="item flt-left" ng-repeat="item in quickSearchResults">                              
+                            <a href="/#!/user/{{item.username}}">
+                                <div class="flt-left round hidden-for-mobile" style="background:url('{{apiurl}}/{{item.profile_imagepath}}') no-repeat center;"></div>
+                                <div class="flt-left desc">
+                                    <div class="margin0">{{item.name}}</div>                                              
+                                </div>
+                            </a>
+                        </div>
+                        <div ng-if="quickSearchResults.length > 0 && navSearchSelectedFilter == 'search_t'" class="item flt-left" style="height: auto;padding: 10px 10px 5px 10px;">                              
+                            <div ng-repeat="item in quickSearchResults" class="tag"><a href="/#!/tag/{{item.name}}" style="padding: 0px;">{{item.name}}</a></div>
                         </div>                        
                         <div class="pure-u-1 pure-u-md-1-2 search-all">
                             <i class="fa fa-search"></i>
                             Search all
                         </div>
                     </div>                                                              
-                </div>                            
-                <i class="filter icon large fg-white toggle-search-btn mobile-btn pointer show-for-mobile"></i>
+                </div>                                            
 				<div class="pure-u-1 pure-u-md-1-5 icon-group hidden-for-mobile-and-tablet">						                            
+                    <i class="filter icon large fg-white toggle-search-btn mobile-btn pointer"></i>
+                    <div class="nav-search-filter-dropdown" style="display: none;">
+                        <ul>
+                            <li class="selected" data-name="search_r">Recipe</li>
+                            <li data-name="search_p">People</li>
+                            <li data-name="search_t">Tags</li>
+                        </ul>
+                    </div>
 					<div class="ui icon top right pointing dropdown cuisine-nav-dropdown">
 						<i class="fa fa-th fg-white c-dropdown-toggle-icon"></i>
 						<div class="menu" style="margin-top: 0;top: 50px;min-width: 300px;max-height: 400px;overflow:auto;">                            			

@@ -10,10 +10,10 @@
 angular.module('whatsCookingApp').service('SearchService', function ($rootScope, $http, ApiConfig) {
     var token = $rootScope.userProfile.token;
     
-    this.quickSearch = function(key) {
+    this.quickSearch = function(key, filter) {
         return $http({
             method: 'GET',
-            url: ApiConfig.API_URL + '/Search/quick/' + key,            
+            url: ApiConfig.API_URL + '/Search/quick/' + key + '/' + filter,            
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
         });
     }    

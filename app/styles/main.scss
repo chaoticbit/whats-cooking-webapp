@@ -178,7 +178,7 @@ body {
         }
         
         .toggle-search-btn.mobile-btn {
-            margin: 9px 7px;
+            margin: 2px 10px 10px 10px;
         }        
 
         .search-dropdown {
@@ -204,7 +204,7 @@ body {
                 border-bottom: 1px solid #eae9ed;
                 height: 55px;
                 width: 100%;                
-                a {
+                > a {
                     padding: 7px 1.14285714rem!important;
                     display: block;                    
                     width: 100%;
@@ -680,12 +680,25 @@ color: #eeeeee !important;
     border-radius: 3px;
     margin: 0 5px 7px 0;
 	display: inline-block;
-	transition: background 0.2s ease-in-out;
-    -webkit-transition: background 0.2s ease-in-out;
-    -moz-transition: background 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
 }
 .tag:hover {
     background: rgba(235,235,235,0.5);
+}
+
+div.tag {
+    a {
+        padding: 0px !important; 
+        display: inline-block !important;
+        width: auto !important;
+        height: auto !important;
+        color: #333 !important;
+    }
+    a:hover {
+        background: transparent !important;
+    }
 }
 
 .selected-as-cover {
@@ -1068,6 +1081,45 @@ color: #eeeeee !important;
                 background: rgba(235,235,235,0.7);
             }
        }
+    }
+}
+
+.nav-search-filter-dropdown {
+    position: absolute;
+    display: block;
+    width: 120px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+    margin-left: -77px;
+    border-radius: 3px;
+    margin-top: 0px;    
+    background: #fff;
+    z-index: 9;    
+    ul {
+        padding: 0px;
+        margin: 0px;
+        li{
+            display: block !important;
+            transition: all 0.2s ease-in-out;
+            -webkit-transition: all 0.2s ease-in-out;
+            padding: 10px;
+            cursor: pointer;
+        }
+        li:hover {
+            background: #eae9ed;
+        }
+        li.selected {
+            font-family: 'Open Sans Bold' !important;
+        }
+    }
+    ul:after {
+        border: 6px solid rgba(0, 0, 0, 0);
+        border-bottom-color: #F5F5F5;
+        content: ' ';
+        height: 0;
+        position: absolute;
+        right: 13px;
+        top: -12px;
+        width: 0;
     }
 }
 
