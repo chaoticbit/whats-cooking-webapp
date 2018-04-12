@@ -84,7 +84,6 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     });
 
     $scope.$on('StoreFavourites', function(event, data) {
-        console.log(data);        
         $scope.localFavourites = data;
     });
 
