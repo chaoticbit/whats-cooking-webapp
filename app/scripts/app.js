@@ -58,6 +58,11 @@ var app = angular
     controller: 'CategoryCtrl',
     controllerAs: 'category'
     })
+.when('/tag', {
+  templateUrl: 'views/tag.html',
+  controller: 'TagCtrl',
+  controllerAs: 'tag'
+})
 	  .otherwise({
 		redirectTo: '/'
 	  });
