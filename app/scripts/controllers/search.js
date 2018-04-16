@@ -11,7 +11,12 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
     $scope.sortValue = '';    
     $scope.searchInput = '';
     $scope.filters = {};
-    
+
+    $rootScope.$on("SetCuisineFilter", function(event, data) {
+        $scope.filters.cuisine = data;
+        console.log($scope.filters);
+    });
+
     $('.ui.radio.checkbox').checkbox({
         onChange: function(val) {
             $scope.sortValue = $('.ui.radio.checkbox.checked > input').val();            

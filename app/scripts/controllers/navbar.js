@@ -36,6 +36,14 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
                     values: $rootScope.listOfCuisines,        
                     placeholder: 'Cuisines'                    
                 });
+                
+                $('.search-page-cuisine-dropdown').dropdown({
+                    values: $rootScope.listOfCuisines,        
+                    placeholder: 'Cuisines',
+                    onChange: function(value) {
+                        $rootScope.$emit("SetCuisineFilter", value);
+                    }                    
+                });
             }
         }, function(error) {
                               

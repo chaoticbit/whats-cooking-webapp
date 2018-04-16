@@ -72,10 +72,27 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="s-food-group">
-                            <h6 class="light">Food group</h6>
+                        <li class="s-spiciness">
+                            <h6 class="light">Spiciness</h6>
                             <div>
+                                <div class="spiciness-rate-box" style="padding-top: 13px;margin-left: -7px;">
+                                    <input type="radio" id="modal_spicy5" ng-model="filters.spiciness" name="spiciness" value="5"><label class="full" for="modal_spicy5" title="Extremely spicy"></label>
+                                    <input type="radio" id="modal_spicy4" ng-model="filters.spiciness" name="spiciness" value="4"><label class="full" for="modal_spicy4" title="Very spicy"></label>
+                                    <input type="radio" id="modal_spicy3" ng-model="filters.spiciness" name="spiciness" value="3"><label class="full" for="modal_spicy3" title="Medium"></label>
+                                    <input type="radio" id="modal_spicy2" ng-model="filters.spiciness" name="spiciness" value="2"><label class="full" for="modal_spicy2" title="Little spicy"></label>
+                                    <input type="radio" id="modal_spicy1" ng-model="filters.spiciness" name="spiciness" value="1"><label class="full" for="modal_spicy1" title="No spicy"></label>
+                                </div>
                             </div>                  
+                        </li>
+                        <li class="s-cuisines">
+                            <h6 class="light">Cuisines</h6>
+                            <div>
+                                <div class="field" style="margin-top: 10px;">
+                                    <select class="ui fluid search selection dropdown search-page-cuisine-dropdown" required id="search-page-cuisine-dropdown">
+                                        <option value="">Cuisines</option>                                        
+                                    </select>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
