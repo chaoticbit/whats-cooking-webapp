@@ -94,6 +94,36 @@
                                 </div>
                             </div>
                         </li>
+                        <li class="s-calorie-intake">
+                            <h6 class="light">Calorie Intake</h6>
+                            <div>
+                                <div class="field">
+                                    <div class="ui fluid input" style="padding-top: 5px;">
+                                        <input type="text" name="calorie_intake" ng-model="filters.calorie_intake" placeholder="200" />
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="s-cooking-time">
+                            <h6 class="light">Cooking Time</h6>
+                            <div>
+                                <div class="ui form">                                
+                                    <div class="two fields" style="padding-top: 5px;margin-bottom: 0px;">
+                                        <div class="field">
+                                            <div class="ui fluid input">
+                                                <input type="number" name="cooking_time" class="c-time-input" min="0" />
+                                            </div>
+                                        </div>
+                                        <div class="field">                                            
+                                            <select name="time" class="ui fluid selection dropdown ctime-dropdown" required id="">
+                                                <option value="mins">mins</option>                                        
+                                                <option value="hour">hour</option>                                                                                    
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <!-- <div class="pure-u-1-4">&nbsp;</div> -->
