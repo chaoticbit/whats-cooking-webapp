@@ -25,8 +25,8 @@
                     <span class="right floated"><i class="fab fa-hotjar fg-red" ng-repeat="n in [] | range: item.spicy" style="margin-left: 3px;"></i></span>               
                 </div>
                 <div class="pure-u-1" style="padding: 5px 0;">
-                    <h4 class="light text-center" style="margin:0;">
-                        <a href="/#!/recipe/{{item.recipe_id}}" class="fg-gray">{{item.title}}</a>
+                    <h4 class="light text-center r-title" style="margin:0;">
+                        <a href="/#!/recipe/{{item.recipe_id}}">{{item.title}}</a>
                     </h4>
                     <p style="margin:0;padding:0;display: block;" class="text-center">
                         <small ng-if="item.rating == 0">No ratings</small>
@@ -41,22 +41,22 @@
                     </div>
                 </div>
                 <div class="pure-u-1" style="padding: 5px 0;border-bottom: 1px solid #e8e8e861;">                    
-                    <div class="pure-u-1">
+                    <div class="pure-u-1 r-card-stats">
                         <ul style="margin:0;padding:5px 0;" class="pure-g text-center">
                             <li class="pure-u-1-4">
-                                <i class="fa fa-cut fg-gray" style="font-size: 15px;"></i><br>
+                                <i class="fa fa-cut" style="font-size: 15px;"></i><br>
                                 <h4 class="light" style="margin-top: 0px;">{{item.prep_time}}</h4>
                             </li>
                             <li class="pure-u-1-4">
-                                <i class="icon alarm clock fg-gray" style="font-size: 15px;"></i><br>
+                                <i class="icon alarm clock" style="font-size: 15px;"></i><br>
                                 <h4 class="light" style="margin-top: 0px;">{{item.cooking_time}}</h4>
                             </li>
                             <li class="pure-u-1-4">
-                                <i class="icon heartbeat fg-gray" style="font-size: 15px;"></i><br>
+                                <i class="icon heartbeat" style="font-size: 15px;"></i><br>
                                 <h4 class="light" style="margin-top: 0px;">{{item.calorie_intake}}</h4>
                             </li>
                             <li class="pure-u-1-4">
-                                <i class="fa fa-utensils fg-gray" style="font-size: 15px;"></i><br>
+                                <i class="fa fa-utensils" style="font-size: 15px;"></i><br>
                                 <h4 class="light" style="margin-top: 0px;">{{item.servings}}</h4>
                             </li>
                         </ul>                        
