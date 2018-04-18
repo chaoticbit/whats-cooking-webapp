@@ -10,6 +10,7 @@
 angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope, $scope, $window, $timeout, SearchService) {
     $scope.sortValue = '';    
     $scope.searchInput = '';
+    $scope.searchResults = [];
     $scope.filters = {
         'cuisine': '',
         'food_group': '',
@@ -25,8 +26,10 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
     });
 
     $scope.$watchGroup(['filters.cuisine','filters.spiciness','filters.calorie_intake','filters.cooking_time','filters.food_group'], function(newValue, oldValue, scope) {
-        // console.log($scope.filters);    
-        triggerSearchAPI($.trim($('.search-input').val()));    
+        // console.log($scope.filters); 
+        if($.trim($('.search-input').val()) !== '') {   
+            triggerSearchAPI($.trim($('.search-input').val()));    
+        }
     });
 
     $('.ui.radio.checkbox').checkbox({
@@ -149,7 +152,17 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
             searchApiUrl = key;
         }
         
-        console.log(searchApiUrl);        
+        console.log(searchApiUrl);     
+        $('.loader-bg').show();
+        SearchService.extendedSearch(searchApiUrl).then(function(data) {
+            $scope.searchResults = data.results;
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+            $('.loader-bg').hide();
+        });
     }
 
 });
