@@ -7,9 +7,17 @@
  * # SearchCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope, $scope, $window, $timeout, SearchService) {
+angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope, $scope, $routeParams, $window, $timeout, SearchService) {    
+    if(!$routeParams.key) {
+        $scope.searchInput = '';
+    } else {
+        $scope.searchInput = $routeParams.key;
+        $(".search-dropdown,.search-wrapper").hide();
+        $('.global-search').val('');
+        $('body').removeClass('noscroll');
+        $('.search-input').focus();
+    }
     $scope.sortValue = 'none';        
-    $scope.searchInput = '';
     $scope.searchResults = '';
     $scope.filters = {
         'cuisine': '',

@@ -200,6 +200,12 @@ body {
                 list-style-type: none;
                 margin: 0;
                 padding: 10px 0;
+                li.selected {
+                    background: #eae9ed;
+                    a {
+                        background: #eae9ed;
+                    }
+                }
             }
             .item {
                 border-bottom: 1px solid #eae9ed;

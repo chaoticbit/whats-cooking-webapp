@@ -241,17 +241,40 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
             $('body').addClass('noscroll');
         });
     
-        $('.global-search').bind('keydown', function(e) {
-            var key = e.keyCode;
-            if (key === 27) {
+        $(document).on('keydown','.global-search', function(e) {
+            var $listItems = $('.search-dropdown ul > li');
+            var key = e.keyCode, $selected = $listItems.filter('.selected'), $current;
+            if (key !== 40 && key !== 38 && key !== 13 && key !== 27 && key !== 8) {
+                return;
+            }
+            $listItems.removeClass('selected');
+            if (key === 40) {
+                if (!$selected.length || $selected.is(':last-child')) {
+                    $current = $listItems.eq(0);
+                }
+                else
+                    $current = $selected.next();
+            }
+            else if (key === 38) {
+                if (!$selected.length || $selected.is(':first-child')) {
+                    $current = $listItems.last();
+                }
+                else
+                    $current = $selected.prev();
+            }
+            else if (key === 27) {
                 $(".search-dropdown,.search-wrapper").hide();
                 $(this).val('');
                 $('body').removeClass('noscroll');
             }
-            if(key === 8 && $(this).val() == '') {            
+            else if(key === 8 && $(this).val() == '') {            
                 $scope.quickSearchResults = '';         
             }
-        });    
+            else if(key == 13) {
+                $window.location.href = '/#!/search/' + $.trim($(this).val());
+            }
+            $current.addClass('selected');
+        });                    
 
         $(document).on('click', '.c-dropdown-toggle-icon', function(e) {
             e.stopPropagation();
@@ -317,4 +340,11 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
                 }
             });        
         }    
+}).filter('range', function() {
+    return function(input, total) {
+      total = parseInt(total);
+      for (var i=0; i<total; i++)
+        input.push(i);
+      return input;
+    };
 });
