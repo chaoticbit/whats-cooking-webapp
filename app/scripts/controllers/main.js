@@ -259,12 +259,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         var index = -1;
 
         RecipeService.upvote({rid: recipe_id}).then(function(data) {
-            if(data.success) {
-                if($(elem).hasClass('upvoted')) { //remove upvote
-                    $(elem).removeClass('upvoted');            
-                } else { //add upvote
-                    $(elem).addClass('upvoted');                    
-                }     
+            if(data.success) {                
                 for(var i = 0; i < $scope.recipes.length; i++) {
                     if($scope.recipes[i].recipe_id == recipe_id) {
                         index = i;
@@ -272,6 +267,12 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
                     }
                 }
                 $scope.recipes[index].upvotes = data.results.upvote_cnt;
+                if($(elem).hasClass('upvoted')) { //remove upvote
+                    $(elem).removeClass('upvoted');            
+                    $scope.recipes[index].isUpvoted = false;
+                } else { //add upvote
+                    $scope.recipes[index].isUpvoted = true;                            
+                }                     
             }                                
         }, function(error) {
                               
