@@ -8,9 +8,9 @@
  * Controller of the whatsCookingApp
  */
 angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope, $scope, $window, $timeout, SearchService) {
-    $scope.sortValue = '';    
+    $scope.sortValue = 'none';        
     $scope.searchInput = '';
-    $scope.searchResults = [];
+    $scope.searchResults = '';
     $scope.filters = {
         'cuisine': '',
         'food_group': '',
@@ -35,6 +35,9 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
     $('.ui.radio.checkbox').checkbox({
         onChange: function(val) {
             $scope.sortValue = $('.ui.radio.checkbox.checked > input').val();            
+            if($.trim($('.search-input').val()) !== '') {   
+                triggerSearchAPI($.trim($('.search-input').val()));    
+            }
         }
     });    
 
@@ -147,9 +150,9 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
         
         if(conditions.length > 0) {
             filterUrl = conditions.join('&');
-            searchApiUrl = key + '?' + filterUrl;
+            searchApiUrl = key + '?' + filterUrl + '?sort_by=' + $scope.sortValue;
         } else {
-            searchApiUrl = key;
+            searchApiUrl = key + '?sort_by=' + $scope.sortValue;
         }
         
         console.log(searchApiUrl);     
