@@ -1096,8 +1096,8 @@ div.tag {
 .recipe-card-list {			
     padding: 10px 20px 20px;
     .recipe-item {
-        border-radius: 4px;
-        box-shadow: 0px 1px 4px rgba(0,0,0,0.22);
+        border-radius: 4px !important;
+        box-shadow: 0px 1px 4px rgba(0,0,0,0.22) !important;
         .r-title {
             a {
                 color: #333333 !important;

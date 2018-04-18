@@ -26,7 +26,7 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
 
     $scope.$watchGroup(['filters.cuisine','filters.spiciness','filters.calorie_intake','filters.cooking_time','filters.food_group'], function(newValue, oldValue, scope) {
         // console.log($scope.filters);    
-        triggerSearchAPI();    
+        triggerSearchAPI($.trim($('.search-input').val()));    
     });
 
     $('.ui.radio.checkbox').checkbox({
@@ -36,11 +36,8 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
     });    
 
     $('.ctime-dropdown').dropdown({
-        onChange: function() {
-            var val = $.trim($('.c-time-input').val());
-            if(val !== '') {
-                setCookingTime(val);
-            }                    
+        onChange: function(value) {                        
+            setCookingTime($('.c-time-input').val());                                
         }
     });
 
@@ -48,8 +45,11 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
         if(val == '') {
             $scope.filters.cooking_time = '';
         } else {
-            var time = $('.ctime-dropdown').find('.text').text();            
-            $scope.filters.cooking_time = val + ' ' + time;  
+            var time = $('.ctime-dropdown .menu').find('.item.active.selected').data('value');            
+            if(time == 'h') {
+                val = val * 60;
+            }
+            $scope.filters.cooking_time = val + 'm';  
         }
         $scope.$apply();
     }
@@ -60,8 +60,11 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
         if(val == '') {
             $scope.filters.cooking_time = '';
         } else {
-            var time = $('.ctime-dropdown').find('.text').text();            
-            $scope.filters.cooking_time = val + ' ' + time;  
+            var time = $('.ctime-dropdown .menu').find('.item.active.selected').data('value');            
+            if(time == 'h') {
+                val = val * 60;
+            }
+            $scope.filters.cooking_time = val + 'm';  
         }        
         $scope.$apply();
     });
@@ -106,10 +109,22 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
         $scope.$apply();
     }
 
-    function triggerSearchAPI() {
+    $scope.clearCuisineDropdown = function() {
+        $timeout(function(){
+            $('.search-page-cuisine-dropdown').dropdown('clear');
+        });        
+    };
+
+    $('.search-input').on('input', function() {
+        $(this).val($.trim($(this).val()));
+        triggerSearchAPI($(this).val());       
+    });
+
+    function triggerSearchAPI(key) {
         var filters = $scope.filters;
         var filterUrl = '';
         var conditions = [];
+        var searchApiUrl = '';
 
         if(filters.food_group !== '') {
             conditions.push("fg=" + filters.food_group);
@@ -129,8 +144,12 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
         
         if(conditions.length > 0) {
             filterUrl = conditions.join('&');
+            searchApiUrl = key + '?' + filterUrl;
+        } else {
+            searchApiUrl = key;
         }
-        console.log(filterUrl);        
+        
+        console.log(searchApiUrl);        
     }
 
 });
