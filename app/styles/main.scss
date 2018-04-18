@@ -919,7 +919,11 @@ div.tag {
             -webkit-perspective: 1000;            
         }
 		.recipe-card-list {			
-			padding: 10px 20px 20px;			
+            padding: 10px 20px 20px;
+            .recipe-item {
+                border-radius: 4px;
+                box-shadow: 0px 1px 4px rgba(0,0,0,0.22);
+            }			
 			.content {
 				padding: 15px 10px 5px !important;
 				.header {
@@ -1121,6 +1125,23 @@ div.tag {
         right: 13px;
         top: -12px;
         width: 0;
+    }
+}
+
+.round-cnt {
+    float: left;
+    border: 0px;
+    width: 30px;
+    height: 30px;
+    line-height: 1;
+    background-color: rgba(255,255,255,0.97);    
+    border-radius: 100%;
+    color: rgba(0,0,0,0.44);
+    overflow: hidden;
+    span {
+        text-align: center;
+        display: block;
+        line-height: 39px;
     }
 }
 
