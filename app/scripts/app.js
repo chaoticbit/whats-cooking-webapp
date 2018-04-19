@@ -126,6 +126,7 @@ app.run(function($rootScope, $timeout, $window, $location, localStorageService, 
     $rootScope.isLoggedIn = (localStorageService.length() == 0) ? false : true;    
     $rootScope.userProfile = localStorageService.get('userProfile');
     $rootScope.$on('$locationChangeStart', function(event, currentRoute, prevRoute) {                        
+        $('body').removeClass('noscroll');
         var currentRoute = $location.path();
         $('.toggle-sidebar').removeClass('active');
         $('.sidebar').animate({left: '-100%'}, function () {

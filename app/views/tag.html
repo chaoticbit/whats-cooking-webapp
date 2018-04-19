@@ -18,7 +18,7 @@
     <div class="pure-g category-page">
         <div class="pure-u-1 pure-u-md-3-4 left-pane">
             <h3 ng-if="recipes.length == 0" class="fg-grayLight light text-center block" style="font-size: 20pt;padding: 20px;">No recipes found</h3>
-            <div ng-if="recipes.length > 0" class="ui four doubling cards recipe-card-list" style="position: relative;">
+            <div ng-if="recipes.length > 0" class="ui four stackable cards recipe-card-list" style="position: relative;padding-top: 20px;">
                 <div class="card recipe-item" ng-repeat="item in recipes track by $index">
                     <div class="ui top attached label recipe-card-menu" style="background-color: #e8e8e861;">
                         <b class="bold"><a href="/#!/category/{{item.cname}}/{{item.cid}}" class="fg-gray">{{item.cname}}</a></b>     
