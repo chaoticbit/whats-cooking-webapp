@@ -400,6 +400,7 @@ g
 	<div class="pure-u-1 pure-u-md-1-4 favourites-pane" style="display: none;">
 		<div style="padding: 15px 0 20px 20px;">
             <p class="featured-tags-title">favourites</p>
+            <h3 class="light text-center" ng-if="localFavourites.length == 0">No favourites added</h3>
             <div ng-if="localFavourites.length > 0" class="item flt-left" ng-repeat="item in localFavourites track by $index" style="height: 65px;width: 100%;padding: 5px;margin-top: 10px;">                                                    
                 <div class="flt-left" style="display: block;overflow:hidden;height: 100%;width: 15%;border-radius:50%;background:url('{{apiurl}}/userdata/{{item.recipe_owner_id}}/{{item.cover_imagepath}}') no-repeat center;background-size:cover;"></div>
                 <div class="flt-left" style="padding-left: 10px;">

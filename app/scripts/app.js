@@ -132,10 +132,7 @@ app.run(function($rootScope, $timeout, $window, $location, localStorageService, 
             $('.bubble-mobile').show();
             $('.toggle-sidebar').attr('aria-expanded', 'false');
             $('.sidebarwrapper').hide();
-            $('body').removeClass('noscroll');
-            document.ontouchmove = function (event) {
-                event.preventDefault();
-            };
+            $('body').removeClass('noscroll');            
         });    
         if (currentRoute.substring(1) === 'login') {
             $('body').addClass('login-bg');

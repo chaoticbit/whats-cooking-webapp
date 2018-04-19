@@ -1222,6 +1222,9 @@ div.tag {
     color: #fff !important;
 }
 .ui.dropdown .menu .active.item { font-family: 'Open Sans Bold' !important; }
+.fab.fa-hotjar {
+    color: $spiciness-level-color !important;
+}
 .spiciness-rate-box {
     float: left;
     padding-top: 10px;
@@ -1320,7 +1323,7 @@ MEDIA QUERIES
             margin-bottom: 10px;
         }
     }    
-    .recipe-feed-box {
+    .feed-box {
         margin-bottom: 50px;
     }
     .recipe-card-list {
