@@ -1236,8 +1236,10 @@ div.tag {
         margin: 0 5px;
         font-size: 24px;			
         display: inline-block;
-        font-family: Icons;
-        content: "\f06d";		
+        // font-family: 'Icons';
+        // content: "\f06d";		
+        font-family: 'Font Awesome 5 Brands';
+        content: "\f3b1";
     }		
 }
 .spiciness-rate-box > input:checked ~ label, /* show gold star when clicked */
