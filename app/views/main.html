@@ -226,9 +226,9 @@
                     <p class="text-center"><small><i class="light">{{item.description.substring(0, 30)}}</i></small></p>
                 </div>
                 <div class="pure-u-1">
-                    <div class="ui image" style="height: 160px;overflow: hidden;width: 100%;">                        
-                        <img ng-if="item.cover_imagepath == ''" src="images/wireframe_image.png" />
-                        <img style="height: 100%;width:100%;" ng-if="item.cover_imagepath != ''" ng-src="{{apiurl}}/{{item.cover_imagepath}}" />
+                    <div class="ui image r-card-image" style="height: 160px;overflow: hidden;width: 100%;">                        
+                        <img ng-if="item.cover_imagepath == ''" src="images/wireframe_image.png" data-src="images/wireframe_image.png" />
+                        <img style="height: 100%;width:100%;" ng-if="item.cover_imagepath != ''" data-src="{{apiurl}}/{{item.cover_imagepath}}" src="images/wireframe_image.png" />
                     </div>
                 </div>
                 <div class="pure-u-1" style="padding: 5px 0;border-bottom: 1px solid #e8e8e861;">                    

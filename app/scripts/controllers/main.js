@@ -616,6 +616,12 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         alert($('.ing-search-hdn-input').val());
     }
 
+    $('.r-card-image img').visibility({
+        type       : 'image',
+        transition : 'fade in',
+        duration   : 1000
+    });   
+
     $('.male-gender-btn').on('click', function() {
         $scope.signUpModalProfile.gender = 'male';
         $(this).attr('data-selected', true);
