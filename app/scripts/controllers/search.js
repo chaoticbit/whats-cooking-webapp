@@ -11,12 +11,14 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
     if(!$routeParams.key) {
         $scope.searchInput = '';
     } else {
-        $scope.searchInput = $routeParams.key;
-        $(".search-dropdown,.search-wrapper").hide();
-        $('.global-search').val('');
-        $('body').removeClass('noscroll');
-        $('.search-input').focus();
+        $scope.searchInput = $routeParams.key;        
     }
+
+    $(".search-dropdown,.search-wrapper").hide();
+    $('.global-search').val('');
+    $('body').removeClass('noscroll');
+    $('.search-input').focus(); 
+
     $scope.sortValue = 'none';        
     $scope.searchResults = '';
     $scope.filters = {
@@ -26,6 +28,8 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
         'calorie_intake': '',
         'cooking_time': ''
     };    
+
+    $('.search-page-cuisine-dropdown').dropdown('refresh'); 
 
     //CUISINE
     $rootScope.$on("SetCuisineFilter", function(event, data) {
@@ -54,6 +58,21 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
             setCookingTime($('.c-time-input').val());                                
         }
     });
+
+    var debounce = function (func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+   };   
 
     function setCookingTime(val) {
         if(val == '') {
@@ -129,10 +148,10 @@ angular.module('whatsCookingApp').controller('SearchCtrl', function ($rootScope,
         });        
     };
 
-    $('.search-input').on('input', function() {
+    $('.search-input').on('input', (debounce(function(){
         $(this).val($.trim($(this).val()));
-        triggerSearchAPI($(this).val());       
-    });
+        triggerSearchAPI($(this).val());           
+    },500)));
 
     function triggerSearchAPI(key) {
         var filters = $scope.filters;

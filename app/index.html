@@ -40,7 +40,7 @@
               	<div class="pure-u-3-4 pure-u-md-1-2">
 					<div class="ui left icon fluid input global-search-div">
                         <i class="search icon"></i>
-                        <input type="text" class="global-search" placeholder="Search" style="padding: 7px;margin-top: 3px;" />                        
+                        <input type="text" class="global-search" ng-model="navSearchInput" placeholder="Search" style="padding: 7px;margin-top: 3px;" />                        
                     </div>                    
                     <div class="pure-u-1 pure-u-md-1-2 search-dropdown">                            
                         <div ng-if="quickSearchResults.length == 0 && quickSearchResults!==''" class="item flt-left">
@@ -73,7 +73,7 @@
                         <div ng-if="quickSearchResults.length > 0 && navSearchSelectedFilter == 'search_t'" class="item flt-left" style="height: auto;padding: 10px 10px 5px 10px;">                              
                             <div ng-repeat="item in quickSearchResults" class="tag"><a href="/#!/tag/{{item.name}}" style="padding: 0px;">{{item.name}}</a></div>
                         </div>                        
-                        <a href="/#!/search/" class="pure-u-1 pure-u-md-1-2 search-all">
+                        <a href="/#!/search/{{navSearchInput}}" class="pure-u-1 pure-u-md-1-2 search-all">
                             <i class="fa fa-search"></i>
                             Search all
                         </a>

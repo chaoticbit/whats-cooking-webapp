@@ -63,11 +63,16 @@ var app = angular
     controller: 'TagCtrl',
     controllerAs: 'tag'
     })
-.when('/search/:key', {
-  templateUrl: 'views/search.html',
-  controller: 'SearchCtrl',
-  controllerAs: 'search'
-})
+    .when('/search/:key', {
+    templateUrl: 'views/search.html',
+    controller: 'SearchCtrl',
+    controllerAs: 'search'
+    })
+    .when('/search/', {
+    templateUrl: 'views/search.html',
+    controller: 'SearchCtrl',
+    controllerAs: 'search'
+    })
 	  .otherwise({
 		redirectTo: '/'
 	  });
