@@ -54,6 +54,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $scope.imagesAccepted = 6;
     $scope.imagesUploaded = 0;
     $scope.number = 10;
+    $scope.morePages = false;
 
     $rootScope.quickSearchResults = '';
     $scope.localFavourites = [];
@@ -109,8 +110,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         RecipeService.getRecipes().then(function(data) {
             if(data.success) {
                 $scope.recipes = data.results;  
-                $scope.lastTimestamp = $scope.recipes[$scope.recipes.length - 1].timestamp;
-                console.log($scope.lastTimestamp)              
+                $scope.lastTimestamp = $scope.recipes[$scope.recipes.length - 1].timestamp;                     
+                $scope.morePages = true;
             }                        
         }, function(error) {
                               
@@ -122,6 +123,31 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         });
     }    
 
+    function loadMoreRecipes() {
+        $('.loader-bg').show();
+        RecipeService.loadMoreRecipes({'last_ts': $scope.lastTimestamp}).then(function(data) {
+            if(data.results.length > 0) {
+                for(var i = 0,j = $scope.recipes.length; i < data.results.length; i++,j++) {
+                    $scope.recipes[j] = data.results[i];
+                }                                                   
+                $scope.lastTimestamp = $scope.recipes[$scope.recipes.length - 1].timestamp;       
+                console.log($scope.lastTimestamp);
+            } else {
+                $scope.morePages = false;
+            }                        
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+            // $('.ui.dimmer').dimmer('hide');
+            $('.loader-bg').hide();
+        });
+    }
+
+    $(document).on('click','.load-more', function() {
+        loadMoreRecipes();
+    });
      
 
     function getFeaturedRecipes() {

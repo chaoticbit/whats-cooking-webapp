@@ -1302,6 +1302,37 @@ div.tag {
     }
 }
 
+.load-more{
+    display: table;
+    margin: 20px auto;
+    height: 120px;
+    width: 120px;
+    cursor: pointer;
+}
+.load-more > a{
+    text-transform: uppercase;
+    padding: 0 9px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    display: table-cell;
+    vertical-align: middle;
+    color: #4090db !important;
+}
+.load-more:before{   
+    height: 120px;
+    width: 120px;
+    border: 2px solid #4090db;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    content: '';
+    position: absolute;    
+}
+
 /**
 MEDIA QUERIES
 **/
