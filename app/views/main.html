@@ -305,7 +305,10 @@
             </div>
             <div class="card recipe-item bg-transparent load-more-card" ng-if="morePages" style="box-shadow: none !important;">
                 <div class="load-more" style="margin-top: 65%;">
-                    <a href="javascript:;">load more</a>
+                    <a href="javascript:;">
+                        <div class="ui loader"></div>
+                        <span>load more</span>
+                    </a>
                 </div>
             </div>
 			<!-- <div class="card recipe-item" ng-repeat="item in recipes track by $index">                

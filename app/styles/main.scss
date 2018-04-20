@@ -1404,6 +1404,11 @@ MEDIA QUERIES
             .header { font-size: 14px !important; }
         }
     }
+    .load-more-card {
+        .load-more {
+            margin-top: 10% !important;
+        }
+    }
 }
 
 /*--- Mobile landscape ---*/
@@ -1481,7 +1486,7 @@ MEDIA QUERIES
         }
         li.active-tab {
             i{
-                color: #1ba1e2;
+                color: #4090db;
             }
         }
         li:last-child {

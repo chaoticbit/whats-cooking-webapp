@@ -124,7 +124,9 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     }    
 
     function loadMoreRecipes() {
-        $('.loader-bg').show();
+        $('.load-more > a').find('.ui.loader').addClass('active');
+        $('.load-more > a').find('span').hide();        
+        // $('.loader-bg').show();
         RecipeService.loadMoreRecipes({'last_ts': $scope.lastTimestamp}).then(function(data) {
             if(data.results.length > 0) {
                 for(var i = 0,j = $scope.recipes.length; i < data.results.length; i++,j++) {
@@ -140,8 +142,9 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         }).catch(function(e) {
                               
         }).finally(function() {
-            // $('.ui.dimmer').dimmer('hide');
-            $('.loader-bg').hide();
+            $('.load-more > a').find('.ui.loader').removeClass('active');
+            $('.load-more > a').find('span').show();
+            // $('.loader-bg').hide();
         });
     }
 
