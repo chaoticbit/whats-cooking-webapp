@@ -159,8 +159,8 @@ app.run(function($rootScope, $timeout, $window, $location, localStorageService, 
     }
 
     $rootScope.logout = function() {
-        $window.location.reload();
-        $rootScope.isLoggedIn = false;
         localStorageService.remove('userProfile');
+        $rootScope.isLoggedIn = false;        
+        $window.location.reload();        
     };
 });

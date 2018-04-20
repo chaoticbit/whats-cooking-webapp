@@ -88,4 +88,13 @@ angular.module('whatsCookingApp').service('RecipeService', function ($rootScope,
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}
         });
     };
+
+    this.loadMoreRecipes = function(payload) {
+        return $http({
+            method: 'POST',
+            url: ApiConfig.API_URL + '/Recipe/load_more',
+            data: payload,
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}
+        });
+    };
 });

@@ -68,7 +68,8 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $scope.signUpModalProfile = {};
     $scope.signUpModalProfile.spiciness = 1;
     $scope.modalFoodGrpVal = [];
-    
+    $scope.lastTimestamp = '';
+
 	$scope.listOfIngredients = [{
 		qty: '',
 		name: '',
@@ -107,7 +108,9 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         $('.loader-bg').show();
         RecipeService.getRecipes().then(function(data) {
             if(data.success) {
-                $scope.recipes = data.results;                
+                $scope.recipes = data.results;  
+                $scope.lastTimestamp = $scope.recipes[$scope.recipes.length - 1].timestamp;
+                console.log($scope.lastTimestamp)              
             }                        
         }, function(error) {
                               
