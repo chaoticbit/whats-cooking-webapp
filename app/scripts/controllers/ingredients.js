@@ -7,18 +7,19 @@
  * # IngredientsCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootScope, $scope, $window, $timeout, $routeParams, SearchService, $sce) {
+angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootScope, $location, $scope, $window, $timeout, $routeParams, SearchService, $sce) {
     $scope.searchResults = '';
     if($routeParams.keyword) {
         $scope.searchKeyword = $routeParams.keyword;
-    }
-    $scope.ings = $routeParams.ing;    
-    var routeIngredientsArray = $scope.ings.split(',');    
-    for(var i = 0; i < routeIngredientsArray.length; i++) {
-        addtags(routeIngredientsArray[i]);
-        processIngredientSearch();
-    }
-
+    } else {
+        $scope.ings = $routeParams.ing;    
+        var routeIngredientsArray = $scope.ings.split(',');    
+        for(var i = 0; i < routeIngredientsArray.length; i++) {
+            addtags(routeIngredientsArray[i]);
+            processIngredientSearch();
+        }
+    }    
+    
     function strip(html) {
         var tmp = document.createElement("DIV");
         tmp.innerHTML = html;
@@ -29,13 +30,15 @@ angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootS
         var payload = {
             'keyword': $scope.searchKeyword || '',
             'ingredients': $('.ing-search-hdn-input').val()
-        };
+        };        
+        // if($scope.searchKeyword) {            
+        //     $location.url('/ingredients/search/' + encodeURI($scope.searchKeyword) + '/' + $('.ing-search-hdn-input').val());
+        // } else {
+        //     $location.url('/ingredients/search/' + $('.ing-search-hdn-input').val());            
+        // }
         $('.loader-bg').show();
         SearchService.ingredientSearch(payload).then(function(data) {
-            $scope.searchResults = data.results;    
-            // _.forEach($scope.searchResults, function(value, key) {
-            //     value.safeIngredients =            
-            // });
+            $scope.searchResults = data.results;                                       
             for(var i = 0; i < $scope.searchResults.length; i++) {
                 var listItems = $scope.searchResults[i].ingredients_html.match(/<l(.)>.*?<\/l\i>/g);
                 var onlyIngredients = $scope.searchResults[i].ingredients.split(",");                
@@ -79,9 +82,9 @@ angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootS
             if (value !== "") {
                 var array = $('.ing-search-hdn-input').val().split(",");
                 if ($.inArray(tag, array) === -1) {
-                    $('<a href="#" class="tag" style="float: left;transform: translate(7%,11%);" id="tag-' + tag.replace(/[^a-zA-Z0-9]/g, "") + '">' + tag.replace(/[^a-zA-Z0-9]/g, "") + '</a>').insertBefore($('.ing-search-input'));
+                    $('<a href="#" class="tag" style="float: left;transform: translate(7%,11%);" id="tag-' + tag + '">' + tag + '</a>').insertBefore($('.ing-search-input'));
                     $('.ing-search-hdn-input').attr('data-cnt', cnt);
-                    $('.ing-search-hdn-input').val(value + ',' + tag.replace(/[^a-zA-Z0-9]/g, ""));
+                    $('.ing-search-hdn-input').val(value + ',' + tag);
                     $('.ing-search-input').focus();
                     $('.ing-search-input').val('');
                     cnt++;
@@ -95,8 +98,8 @@ angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootS
                 }
             }
             else {
-                $('<a href="#" class="tag" style="float: left;transform: translate(7%,11%);" id="tag-' + tag.replace(/[^a-zA-Z0-9]/g, "") + '">' + tag.replace(/[^a-zA-Z0-9]/g, "") + '</a>').insertBefore($('.ing-search-input'));
-                $('.ing-search-hdn-input').val(tag.replace(/[^a-zA-Z0-9]/g, ""));
+                $('<a href="#" class="tag" style="float: left;transform: translate(7%,11%);" id="tag-' + tag + '">' + tag + '</a>').insertBefore($('.ing-search-input'));
+                $('.ing-search-hdn-input').val(tag);
                 $('.ing-search-input').focus();
                 $('.ing-search-input').val('');
                 cnt++;
