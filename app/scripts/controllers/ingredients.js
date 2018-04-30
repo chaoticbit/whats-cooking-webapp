@@ -7,7 +7,8 @@
  * # IngredientsCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootScope, $scope, $window, $timeout, $routeParams, SearchService) {
+angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootScope, $scope, $window, $timeout, $routeParams, SearchService, $sce) {
+    $scope.searchResults = '';
     if($routeParams.keyword) {
         $scope.searchKeyword = $routeParams.keyword;
     }
@@ -15,11 +16,57 @@ angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootS
     var routeIngredientsArray = $scope.ings.split(',');    
     for(var i = 0; i < routeIngredientsArray.length; i++) {
         addtags(routeIngredientsArray[i]);
+        processIngredientSearch();
+    }
+
+    function strip(html) {
+        var tmp = document.createElement("DIV");
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText;
     }
 
     function processIngredientSearch() {
-        alert($('.ing-search-hdn-input').val());
+        var payload = {
+            'keyword': $scope.searchKeyword || '',
+            'ingredients': $('.ing-search-hdn-input').val()
+        };
+        $('.loader-bg').show();
+        SearchService.ingredientSearch(payload).then(function(data) {
+            $scope.searchResults = data.results;    
+            // _.forEach($scope.searchResults, function(value, key) {
+            //     value.safeIngredients =            
+            // });
+            for(var i = 0; i < $scope.searchResults.length; i++) {
+                var listItems = $scope.searchResults[i].ingredients_html.match(/<l(.)>.*?<\/l\i>/g);
+                var onlyIngredients = $scope.searchResults[i].ingredients.split(",");                
+                
+                for(var j = 0; j < listItems.length; j++) {
+                    var innerContent = strip(listItems[j]).trim();      
+                    for(var k = 0; k < routeIngredientsArray.length; k++) {          
+                        if(onlyIngredients[j].match(routeIngredientsArray[k])) {                        
+                            var innerContentWithLink = '<a href="https://www.amazon.com/s/ref=sr_1_2?url=search-alias%3Damazonfresh&field-keywords=' + onlyIngredients[j] + '" target="_blank" style="background: cornsilk;">' + innerContent + '</a>';                
+                        } else {
+                            var innerContentWithLink = '<a href="https://www.amazon.com/s/ref=sr_1_2?url=search-alias%3Damazonfresh&field-keywords=' + onlyIngredients[j] + '" target="_blank">' + innerContent + '</a>';                
+                        }
+                    }
+                    listItems[j] = '<li>' + innerContentWithLink + '</li>';
+                }
+                var finalList = listItems.join("");
+                finalList = '<ol>' + finalList + '</ol>';
+                $scope.searchResults[i].safeIngredients = $sce.trustAsHtml(finalList);                        
+            }                        
+        }, function(error) {
+                              
+        }).catch(function(e) {
+                              
+        }).finally(function() {
+            $('.loader-bg').hide();
+        });
     }
+
+    $('.search-ing-btn').on('click', function() {
+        processIngredientSearch();
+    });
 
     function regex_escape(str) {
         return str.replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:;\\-\']', 'g'), '\\$&');

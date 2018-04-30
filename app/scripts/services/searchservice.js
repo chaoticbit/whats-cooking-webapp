@@ -24,5 +24,14 @@ angular.module('whatsCookingApp').service('SearchService', function ($rootScope,
             url: ApiConfig.API_URL + '/Search/g/' + searchApiUrl,            
             headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
         });
-    }
+    };
+
+    this.ingredientSearch = function(payload) {
+        return $http({
+            method: 'POST',
+            url: ApiConfig.API_URL + '/Search/ingredients/',            
+            data: payload,
+            headers: {'x-api-key': btoa(ApiConfig.API_KEY),'Authorization': token}	
+        });
+    };
 });

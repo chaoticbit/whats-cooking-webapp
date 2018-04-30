@@ -18,7 +18,7 @@
                     </div>                                                                
                 </div>     
                 <div class="pure-u-1 pure-u-md-1-6 text-center search-btn-box" style="padding: 11px 0 0 19px;">
-                    <button class="ui button fluid blue">Search</button>
+                    <button class="ui button fluid blue search-ing-btn">Search</button>
                 </div>
             </div>                   
         </div>        
@@ -32,30 +32,32 @@
             </div>
             <div class="pure-g">
                 <div class="pure-u-1 pure-u-md-19-24" style="padding-left: 20px;">
-                    <div class="pure-u-1 ing-search-results-item bg-white">
+                    <div class="pure-u-1 ing-search-results-item bg-white" ng-repeat="item in searchResults track by $index">
                         <div class="pure-g" style="box-shadow: 0px 0px 4px #eae9ed;">
-                            <div class="pure-u-1 pure-u-md-1-3" style="box-shadow: 1px 0px 0px #eae9ed;">
-                                <!-- <div class="ui image r-card-image" style="height: 200px;overflow: hidden;width: 100%;">                        
-                                    <img src="images/wireframe_image.png" data-src="images/wireframe_image.png" />
-                                    <img style="height: 100%;width:100%;" data-src="{{apiurl}}/{{item.cover_imagepath}}" src="images/wireframe_image.png" />
-                                </div> -->
-                                <div class="pure-u-1 thumbnail-video" style="background: rgba(0,0,0,0.8);height:100%;width: 100%;">
-                                    <video ng-cloak ng-src="{{apiurl}}/userdata/5/7920301521330897.mp4" width="100%" height="100%" controls controlsList="nodownload"></video>
-                                </div>
+                            <div ng-if="item.cover_imagepath == '' && item.video == ''" class="pure-u-1 pure-u-md-1-3 bg-dark" style="box-shadow: 1px 0px 0px #eae9ed;background: url('images/wireframe_image.png')">
+                                &nbsp;
                             </div>
+                            <div ng-if="item.cover_imagepath != '' && item.video == ''" class="pure-u-1 pure-u-md-1-3 bg-dark" 
+                                 style="box-shadow: 1px 0px 0px #eae9ed;background: url('{{apiurl}}/{{item.cover_imagepath}}');background-size: cover;"
+                            >&nbsp;</div>
+                            <div ng-if="item.video !== ''" class="pure-u-1 pure-u-md-1-3 bg-dark">
+                                <div class="pure-u-1 thumbnail-video" style="height:100%;width: 100%;">
+                                    <video ng-cloak ng-src="{{apiurl}}/{{item.video}}" width="100%" height="100%" controls controlsList="nodownload"></video>
+                                </div>
+                            </div>                            
                             <div class="pure-u-1 pure-u-md-2-3" style="padding: 10px 10px 10px 15px;">
                                 <div class="pure-g">
                                     <div class="pure-u-1">
                                         <h3 style="font-weight: 300;margin:0;">
-                                            Puneri misal pav                                    
+                                            <a href="/#!/recipe/{{item.recipe_id}}" class="fg-gray">{{item.title}}</a>
                                         </h3>               
                                     </div>
                                     <div class="pure-u-3-8" style="border-bottom: 1px solid #eae9ed;">                                    
                                         <small style="font-size: 10px;">
                                             <i>
-                                                <a href="javascript:;" class="fg-gray">by Nikita Gokhale</a>
+                                                <a href="/#!/user/{{item.username}}" class="fg-gray">by {{item.fullname}}</a>
                                             </i>.
-                                            <a href="javascript:;" class="fg-gray">Indian</a>
+                                            <a href="/#!/category/{{item.cname}}/{{item.cid}}" class="fg-gray">{{item.cname}}</a>
                                         </small>            
                                     </div>
                                     <div class="pure-u-3-5 text-center" style="border-bottom: 1px solid #eae9ed;">
@@ -66,72 +68,75 @@
                                     <div class="pure-u-1 pure-u-md-3-8 r-card-stats">
                                         <div class="pure-g text-left block" style="padding: 10px 0;">
                                             <div class="pure-u-1 pure-u-md-1-2">
-                                                <i class="fab fa-hotjar fg-red" style="margin-left: 2px;"></i>
-                                                <i class="fab fa-hotjar fg-red" style="margin-left: 2px;"></i>
-                                                <i class="fab fa-hotjar fg-red" style="margin-left: 2px;"></i>
-                                                <i class="fab fa-hotjar fg-red" style="margin-left: 2px;"></i>
-                                                <i class="fab fa-hotjar fg-red" style="margin-left: 2px;"></i>
+                                                <i class="fab fa-hotjar fg-red" style="margin-left: 2px;" ng-repeat="n in [] | range: item.spicy"></i>                                                
                                             </div>
                                             <div class="pure-u-1 pure-u-md-1-2">
-                                                <i class="icon star yellow" style="margin-right: .05em"></i>
-                                                <i class="icon star yellow" style="margin-right: .05em"></i>
-                                                <i class="icon star yellow" style="margin-right: .05em"></i>
-                                                <i class="icon star yellow" style="margin-right: .05em"></i>
-                                                <i class="icon star yellow" style="margin-right: .05em"></i>
-                                                
+                                                <small ng-if="item.rating == 0">No ratings</small>
+                                                <i class="icon star yellow" style="margin-right: .05em" ng-repeat="n in [] | range: item.rating"></i>                                                                                                
                                             </div>
                                         </div>
                                         <ul style="margin:0;padding:5px 0;" class="pure-g text-center">
                                             <li class="pure-u-1-4">
                                                 <i class="fa fa-cut" style="font-size: 15px;"></i><br>
-                                                <h4 class="light" style="margin-top: 0px;">20m</h4>
+                                                <h4 class="light" style="margin-top: 0px;">{{item.prep_time}}</h4>
                                             </li>
                                             <li class="pure-u-1-4">
                                                 <i class="icon alarm clock" style="font-size: 15px;"></i><br>
-                                                <h4 class="light" style="margin-top: 0px;">1h</h4>
+                                                <h4 class="light" style="margin-top: 0px;">{{item.cooking_time}}</h4>
                                             </li>
                                             <li class="pure-u-1-4">
                                                 <i class="icon heartbeat" style="font-size: 15px;"></i><br>
-                                                <h4 class="light" style="margin-top: 0px;">275</h4>
+                                                <h4 class="light" style="margin-top: 0px;">{{item.calorie_intake}}</h4>
                                             </li>
                                             <li class="pure-u-1-4">
                                                 <i class="fa fa-utensils" style="font-size: 15px;"></i><br>
-                                                <h4 class="light" style="margin-top: 0px;">4</h4>
+                                                <h4 class="light" style="margin-top: 0px;">{{item.servings}}</h4>
                                             </li>
                                         </ul>  
                                         <div class="pure-g extra content stats" style="padding: 10px 15px;">
                                             <div class="pure-u-1-3 text-left">                            
-                                                <span style="outline:0;" ng-class="{'upvoted': item.isUpvoted}" class="pointer" ng-click="upvoteRecipe(item.recipe_id, $event)">
+                                                <span ng-if="!item.isUpvoted" style="outline:0;" ng-class="{'upvoted': item.isUpvoted}" class="pointer" ng-click="upvoteRecipe(item.recipe_id, $event)">
                                                     <img src="images/chef_blank.png" style="margin-top: -3px;" /> 
-                                                    <span class="fg-gray">78</span>
+                                                    <span class="fg-gray">{{item.upvotes}}</span>
+                                                </span>                            
+                                                <span ng-if="item.isUpvoted" style="outline:0;" ng-class="{'upvoted': item.isUpvoted}" class="pointer" ng-click="upvoteRecipe(item.recipe_id, $event)">
+                                                    <img src="images/chef_filled.png" style="margin-top: -3px;" /> 
+                                                    <span class="fg-gray">{{item.upvotes}}</span>   
                                                 </span> 
                                             </div>
                                             <div class="pure-u-1-3 text-center">
-                                                <i class="comment icon fg-gray"></i> 99
+                                                <i class="comment icon fg-gray"></i> {{item.replies}}
                                             </div>
                                             <div class="pure-u-1-3 text-right">
-                                                <i class="eye icon fg-gray"></i> 167
+                                                <i class="eye icon fg-gray"></i> {{item.views}}
                                             </div>
                                         </div>        
                                         <div class="pure-g" style="padding: 5px 15px 0;">
                                             <div class="pure-u-1 pure-u-md-1-4">
-                                                <span class="food-group-icon veg-icon" style="margin-right: 5px;">&#9679;</span>
+                                                <span ng-if="item.food_group == 100">                                                        
+                                                    <span class="food-group-icon veg-icon" style="margin-right: 5px;">&#9679;</span>
+                                                </span>
+                                                <span ng-if="item.food_group == 010">                        
+                                                    <span class="food-group-icon nonveg-icon" style="margin-right: 5px;">&#9679;</span>
+                                                </span>
+                                                <span ng-if="item.food_group == 001">                        
+                                                    <span class="food-group-icon vegan-icon" style="margin-right: 5px;">&#9679;</span>
+                                                </span>                    					
+                                                <span ng-if="item.food_group == 101">                        
+                                                    <span style="font-size: 12px;font-family: sans-serif !important;color:green;border: 1px solid green;padding: 0 3px;">&#9679;</span>						
+                                                    <span class="fg-black" style="font-size: 12px;font-family: sans-serif !important;margin-left: 5px;padding: 1px 4px;border: 1px solid #000;border-radius: 100%;">V</span>
+                                                </span>                                                 
                                             </div>
                                             <div class="pure-u-1 pure-u-md-3-4 text-right" style="padding-top: 3px;">
-                                                <i class="icon heart right floated pointer added fg-red" style="font-size: 18px;"></i> 
+                                                    <i ng-if="item.addedToFavourites" class="icon heart right floated pointer added fg-red" style="font-size: 18px;" ng-click="addToFavourites(item.recipe_id, $event)"></i>
+                                                    <i ng-if="!item.addedToFavourites" class="icon heart outline right floated pointer" style="font-size: 18px;" ng-click="addToFavourites(item.recipe_id, $event)"></i>
                                                 <span class="fg-gray">Add to favourites</span>
                                             </div>
                                         </div>              
                                     </div>
                                     <div class="pure-u-1 pure-u-md-3-5">
                                         <div class="pure-u-1 ing-list-desc" style="padding: 10px 0 0 10px;height: 200px;overflow: auto;">
-                                            <ol style="margin: 0;">
-                                                <li>1 cup sprouts</li>
-                                                <li>1 cup sprouts</li>
-                                                <li>1 cup sprouts</li>
-                                                <li>1 cup sprouts</li>
-                                                <li>1 cup sprouts</li>
-                                            </ol>
+                                            <div ng-bind-html="item.safeIngredients"></div>
                                         </div>
                                     </div>
                                 </div>
