@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $window, $cookies, $http, $timeout, ApiConfig, SettingService, RecipeService, SearchService, UtilService, localStorageService, Upload) {	
+angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $scope, $location,$window, $cookies, $http, $timeout, ApiConfig, SettingService, RecipeService, SearchService, UtilService, localStorageService, Upload) {	
     
     if($cookies.get('new-access')) {
         $('.user-profile-signup-modal').modal({
@@ -70,6 +70,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $scope.signUpModalProfile.spiciness = 1;
     $scope.modalFoodGrpVal = [];
     $scope.lastTimestamp = '';
+    $scope.ingSearchKeyword = '';
 
 	$scope.listOfIngredients = [{
 		qty: '',
@@ -285,6 +286,10 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     //         $(this).closest('.recipe-item').find('.recipe-card-menu').fadeIn(300);
     //     });
     // });
+
+    $scope.triggerIngredientSearch = function() {             
+        $location.path('/ingredients/search/' + $('.ing-search-hdn-input').val());
+    };
 
     $scope.upvoteRecipe = function(recipe_id, $event) {
         var elem = $event.currentTarget;
@@ -545,13 +550,15 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $('.ing-search-input').bind('keydown', function (e) { 
         var key = e.keyCode;        
         if (key === 13) {  
-            if($('.ing-search-hdn-input').attr('data-cnt') == 3) {
-                processIngredientSearch();
-            }                  
+            // if($('.ing-search-hdn-input').attr('data-cnt') == 3) {
+            $location.path("/ingredients/search/" + $('.ing-search-hdn-input').val());
+            // }         
+        }
+        else if(key === 9) {         
             if ($(this).val() !== "") {
                 addtags($(this).val());                
             }
-            return false;
+            // return false;
         }
         else if (key === 8 && $(this).val() === "") {
             if($('.ing-search-hdn-input').val() == '') {
@@ -644,8 +651,18 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         $current.addClass('selected');
     };
 
-    function processIngredientSearch() {
-        alert($('.ing-search-hdn-input').val());
+    function processIngredientSearch() {           
+        // var div = document.getElementById('keyword-box'); 
+        // var linkElem = document.createElement('a');
+        // linkElem.setAttribute("href", "/#!/ingredients/search/" + $('.ing-search-hdn-input').val());
+        // linkElem.setAttribute("id", "ing-search-link");        
+        // div.appendChild(linkElem);
+        // document.getElementById('ing-search-link').click();
+        $location.path("/ingredients/search/" + $('.ing-search-hdn-input').val());
+        // if($scope.ingSearchKeyword == '') {
+        // } else {
+        //     $location.path('/ingredients/search/' + $scope.ingSearchKeyword + '/' + $('.ing-search-hdn-input').val());
+        // }
     }
 
     $('.r-card-image img').visibility({

@@ -9,9 +9,17 @@
  */
 angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootScope, $location, $scope, $window, $timeout, $routeParams, SearchService, $sce) {
     $scope.searchResults = '';
+    
     if($routeParams.keyword) {
         $scope.searchKeyword = $routeParams.keyword;
+        $scope.ings = $routeParams.ing;    
+        var routeIngredientsArray = $scope.ings.split(',');    
+        for(var i = 0; i < routeIngredientsArray.length; i++) {
+            addtags(routeIngredientsArray[i]);
+            processIngredientSearch();
+        }
     } else {
+        $scope.searchKeyword = '';
         $scope.ings = $routeParams.ing;    
         var routeIngredientsArray = $scope.ings.split(',');    
         for(var i = 0; i < routeIngredientsArray.length; i++) {
@@ -30,12 +38,10 @@ angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootS
         var payload = {
             'keyword': $scope.searchKeyword || '',
             'ingredients': $('.ing-search-hdn-input').val()
-        };        
-        // if($scope.searchKeyword) {            
-        //     $location.url('/ingredients/search/' + encodeURI($scope.searchKeyword) + '/' + $('.ing-search-hdn-input').val());
-        // } else {
-        //     $location.url('/ingredients/search/' + $('.ing-search-hdn-input').val());            
-        // }
+        };                
+        
+        window.location.replace('http://0.0.0.0:9000/#!/ingredients/search/' + $('.ing-search-hdn-input').val());                
+        
         $('.loader-bg').show();
         SearchService.ingredientSearch(payload).then(function(data) {
             $scope.searchResults = data.results;                                       
@@ -65,6 +71,10 @@ angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootS
         }).finally(function() {
             $('.loader-bg').hide();
         });
+    }
+
+    function makeAPICall() {
+
     }
 
     $('.search-ing-btn').on('click', function() {
@@ -117,9 +127,11 @@ angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootS
     $('.ing-search-input').bind('keydown', function (e) { 
         var key = e.keyCode;        
         if (key === 13) {  
-            if($('.ing-search-hdn-input').attr('data-cnt') == 3) {
+            // if($('.ing-search-hdn-input').attr('data-cnt') == 3) {
                 processIngredientSearch();
-            }                  
+            // }         
+        }
+        if(key === 9) {         
             if ($(this).val() !== "") {
                 addtags($(this).val());                
             }
