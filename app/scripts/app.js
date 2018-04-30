@@ -73,11 +73,16 @@ var app = angular
     controller: 'SearchCtrl',
     controllerAs: 'search'
     })
-.when('/ingredients', {
-  templateUrl: 'views/ingredients.html',
-  controller: 'IngredientsCtrl',
-  controllerAs: 'ingredients'
-})
+    .when('/ingredients/search/:ing', {
+    templateUrl: 'views/ingredients.html',
+    controller: 'IngredientsCtrl',
+    controllerAs: 'ingredients'
+    })
+    .when('/ingredients/search/:keyword/:ing', {
+    templateUrl: 'views/ingredients.html',
+    controller: 'IngredientsCtrl',
+    controllerAs: 'ingredients'
+    })
 	  .otherwise({
 		redirectTo: '/'
 	  });
