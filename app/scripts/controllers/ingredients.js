@@ -7,29 +7,22 @@
  * # IngredientsCtrl
  * Controller of the whatsCookingApp
  */
-angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootScope, $location, $scope, $window, $timeout, $routeParams, SearchService, $sce) {
+angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootScope, $location, $scope, $window, $timeout, $routeParams, SearchService, localStorageService, $sce) {
     $scope.searchResults = '';
+    var ingredientSearchParams = localStorageService.get('IngredientSearchParams');
+    $scope.searchKeyword = ingredientSearchParams.keyword || '';
+    $scope.ings = ingredientSearchParams.inglist;
     
-    if($routeParams.keyword) {
-        $scope.searchKeyword = $routeParams.keyword;
-        $scope.ings = $routeParams.ing;    
-        var routeIngredientsArray = $scope.ings.split(',');    
-        for(var i = 0; i < routeIngredientsArray.length; i++) {
-            addtags(routeIngredientsArray[i]);
-            processIngredientSearch();
-        }
-    } else {
-        $scope.searchKeyword = '';
-        $scope.ings = $routeParams.ing;    
+    // $timeout(function() {
         $('.ing-search-hdn-input').val($scope.ings);
         var routeIngredientsArray = $scope.ings.split(',');    
         $('.ing-search-hdn-input').attr('data-cnt',routeIngredientsArray.length);
         for(var i = 0; i < routeIngredientsArray.length; i++) {            
-            $('<a href="#" class="tag" style="float: left;transform: translate(7%,11%);" id="tag-' + routeIngredientsArray[i] + '">' + routeIngredientsArray[i] + '</a>').insertBefore($('.ing-search-input'));            
-            // addtags(routeIngredientsArray[i]);
-            processIngredientSearch();            
+            $('<a href="#" class="tag" style="float: left;transform: translate(7%,11%);" id="tag-' + routeIngredientsArray[i] + '">' + routeIngredientsArray[i] + '</a>').insertBefore($('.ing-search-input'));                                
         }
-    }    
+        processIngredientSearch();            
+    // }, 500);    
+    
     
     function strip(html) {
         var tmp = document.createElement("DIV");
@@ -43,7 +36,10 @@ angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootS
             'ingredients': $('.ing-search-hdn-input').val()
         };                
         
-        window.location.replace('http://0.0.0.0:9000/#!/ingredients/search/' + $('.ing-search-hdn-input').val());                
+        var ingredientSearchParams = { 'keyword': $scope.searchKeyword || '', 'inglist': $('.ing-search-hdn-input').val()};
+        localStorageService.set('IngredientSearchParams', ingredientSearchParams);
+
+        window.location.replace('http://0.0.0.0:9000/#!/ingredients/search/');                
         
         $('.loader-bg').show();
         SearchService.ingredientSearch(payload).then(function(data) {

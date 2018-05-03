@@ -288,7 +288,9 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     // });
 
     $scope.triggerIngredientSearch = function() {             
-        $location.path('/ingredients/search' + $('.ing-search-hdn-input').val());
+        var ingredientSearchParams = { 'keyword': $scope.ingSearchKeyword || '', 'inglist': $('.ing-search-hdn-input').val()};
+        localStorageService.set('IngredientSearchParams', ingredientSearchParams);
+        $location.path('/ingredients/search/');        
     };
 
     $scope.upvoteRecipe = function(recipe_id, $event) {
