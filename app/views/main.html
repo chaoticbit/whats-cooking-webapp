@@ -19,7 +19,7 @@
 						<td style="width: 26%;"><div class="ui fluid input"><input type="text" ng-model="item.qty" id="input-qty{{$index}}" class="input-qty"></div></td>
 						<td style="width: 35%;">
                             <div class="ui fluid input">
-                                <input type="text" class="ing-input-new-recipe" id="input-ing-{{$index}}" ng-change="acIng(item.name, $index)" ng-model="item.name" ng-required ng-keydown="acSelectIng($event, $index)">
+                                <input type="text" class="ing-input-new-recipe" id="input-ing-{{$index}}" ng-model="item.name" ng-required>
                             </div>                                                                                                                                                                               
                         </td>
 						<td style="width: 45%;"><div class="ui fluid input"><input type="text" ng-model="item.notes" ng-required ng-keydown="$event.keyCode === 13 && addItem()"></div></td>
@@ -424,7 +424,7 @@ g
 
 <div class="ui small modal user-profile-signup-modal">
 	<div class="header bg-darkCyan">
-		<span class="fg-white light">Welcome to What's Cooking</span><br>
+		<span class="fg-white light">Welcome to Rasoi</span><br>
 		<span class="fg-white">
 			<small class="light" style="font-size: 70%;">
 				Fill your details to get a personalized recommendation of recipes.

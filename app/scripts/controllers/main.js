@@ -544,7 +544,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         }
         else{            
             $('.ing-search-input').val('');                   
-        }
+        }        
     }
 
     $('.ing-search-input').bind('keydown', function (e) { 
@@ -590,27 +590,27 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
         }
     });       
 
-    $scope.acIng = function(key, $index) {             
-        key = key.replace(/^[!@#$%^&*()-+_='";:,.<>?/[\]{}']/g, '');                    
-        if ($.trim(key) === '') {                           
-            return;
-        }
-        else { 
-            UtilService.autocompleteIngredients(key).then(function(data) {
-                $('.ing-autocomplete-dropdown').show();        
-                $scope.autocompleteIngList = data.results;
-                var offset = $('#input-ing-' + $index).offset();
-                $('.ing-autocomplete-dropdown').css({'top': offset.top + 40 + 'px'});
-            }, function(error) {
+    // $scope.acIng = function(key, $index) {             
+    //     key = key.replace(/^[!@#$%^&*()-+_='";:,.<>?/[\]{}']/g, '');                    
+    //     if ($.trim(key) === '') {                           
+    //         return;
+    //     }
+    //     else { 
+    //         UtilService.autocompleteIngredients(key).then(function(data) {
+    //             $('.ing-autocomplete-dropdown').show();        
+    //             $scope.autocompleteIngList = data.results;
+    //             var offset = $('#input-ing-' + $index).offset();
+    //             $('.ing-autocomplete-dropdown').css({'top': offset.top + 40 + 'px'});
+    //         }, function(error) {
                                   
-            }).catch(function(e) {
+    //         }).catch(function(e) {
                                   
-            }).finally(function() {
+    //         }).finally(function() {
                 
-            });
+    //         });
             
-        }
-    };
+    //     }
+    // };
 
     $scope.acClickIng = function(val, $index) {
         $scope.listOfIngredients[$index].name = val;

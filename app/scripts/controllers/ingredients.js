@@ -21,10 +21,13 @@ angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootS
     } else {
         $scope.searchKeyword = '';
         $scope.ings = $routeParams.ing;    
+        $('.ing-search-hdn-input').val($scope.ings);
         var routeIngredientsArray = $scope.ings.split(',');    
-        for(var i = 0; i < routeIngredientsArray.length; i++) {
-            addtags(routeIngredientsArray[i]);
-            processIngredientSearch();
+        $('.ing-search-hdn-input').attr('data-cnt',routeIngredientsArray.length);
+        for(var i = 0; i < routeIngredientsArray.length; i++) {            
+            $('<a href="#" class="tag" style="float: left;transform: translate(7%,11%);" id="tag-' + routeIngredientsArray[i] + '">' + routeIngredientsArray[i] + '</a>').insertBefore($('.ing-search-input'));            
+            // addtags(routeIngredientsArray[i]);
+            processIngredientSearch();            
         }
     }    
     
