@@ -1458,6 +1458,17 @@ MEDIA QUERIES
             margin-top: 10% !important;
         }
     }
+    .parent-pure-g { padding-right: 13px; }
+    .ing-search-results-item {
+        .cover-image-div {
+            height: 200px;
+        }
+        .ing-list {
+            ol {
+                padding: 0 !important;
+            }
+        }
+    }
 }
 
 /*--- Mobile landscape ---*/

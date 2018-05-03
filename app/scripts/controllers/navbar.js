@@ -124,8 +124,8 @@ angular.module('whatsCookingApp').controller('NavbarCtrl', function ($rootScope,
         });
         $('.headbar-user-dropdown').dropdown();        
         $('.favourites-user-dropdown').dropdown({
-            action: 'nothing'
-        })
+            
+        });
         $('.user-action-dropdown').dropdown();   
         // $('.cuisine-nav-dropdown').dropdown({
         //     action: 'nothing'

@@ -114,7 +114,7 @@
                                     <!-- url('{{apiurl}}/assets/images/cuisine_photos/{{item.imagepath}}') no-repeat center-->
                                 <div class="flt-left" style="display: block;overflow:hidden;height: 100%;width: 20%;border-radius:50%;background:url('{{apiurl}}/userdata/{{item.recipe_owner_id}}/{{item.cover_imagepath}}') no-repeat center;background-size:cover;"></div>
                                 <div class="flt-left" style="padding-left: 10px;">
-                                    <h3 class="light margin0">{{item.title}}</h3>
+                                    <h3 class="light margin0"><a href="/#!/recipe/{{item.srno}}" class="fg-black">{{item.title.substring(0,20)}}</a></h3>
                                     <small class="fg-gray bold">{{item.fullname}}</small>
                                     <!-- <button class="ui primary basic tiny button" style="position: absolute;right: 10px;"></button> -->
                                     <i class="icon heart pointer added fg-red nav-menu-fav" style="position: absolute;right: 0px;top: 10px;" ng-click="addToFavourites(item.srno, $event)"></i>                                    
@@ -122,14 +122,14 @@
                             </div>
 						</div>
 					</div>
-					<div class="ui icon top right pointing dropdown notification-nav-dropdown">
+					<!-- <div class="ui icon top right pointing dropdown notification-nav-dropdown">
 						<i class="fa fa-bell fg-white"></i>
 						<div class="menu">
 							<div class="item">Comfortable</div>
 							<div class="item">Cozy</div>
 							<div class="item">Compact</div>
 						</div>
-					</div>										
+					</div>										 -->
 				</div>
 				<div class="pure-u-1 pure-u-md-1-8 hidden-for-mobile-and-tablet">					
 					<div class="ui floating top left pointing dropdown flt-right headbar-user-dropdown" style="padding: 8.5px 15px;">

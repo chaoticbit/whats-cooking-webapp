@@ -51,16 +51,17 @@ angular.module('whatsCookingApp').controller('IngredientsCtrl', function ($rootS
             for(var i = 0; i < $scope.searchResults.length; i++) {
                 var listItems = $scope.searchResults[i].ingredients_html.match(/<l(.)>.*?<\/l\i>/g);
                 var onlyIngredients = $scope.searchResults[i].ingredients.split(",");                
+                var innerContentWithLink = '';
                 
                 for(var j = 0; j < listItems.length; j++) {
                     var innerContent = strip(listItems[j]).trim();      
-                    for(var k = 0; k < routeIngredientsArray.length; k++) {          
-                        if(onlyIngredients[j].match(routeIngredientsArray[k])) {                        
-                            var innerContentWithLink = '<a href="https://www.amazon.com/s/ref=sr_1_2?url=search-alias%3Damazonfresh&field-keywords=' + onlyIngredients[j] + '" target="_blank" style="background: cornsilk;">' + innerContent + '</a>';                
-                        } else {
-                            var innerContentWithLink = '<a href="https://www.amazon.com/s/ref=sr_1_2?url=search-alias%3Damazonfresh&field-keywords=' + onlyIngredients[j] + '" target="_blank">' + innerContent + '</a>';                
-                        }
-                    }
+                    // for(var k = 0; k < routeIngredientsArray.length; k++) {          
+                    //     if(onlyIngredients[j].match(routeIngredientsArray[k])) {                                                    
+                    //         innerContentWithLink = '<a href="https://www.amazon.com/s/ref=sr_1_2?url=search-alias%3Damazonfresh&field-keywords=' + onlyIngredients[j] + '" target="_blank" style="background: cornsilk;">' + innerContent + '</a>';                
+                    //     } else {
+                            innerContentWithLink = '<a href="https://www.amazon.com/s/ref=sr_1_2?url=search-alias%3Damazonfresh&field-keywords=' + onlyIngredients[j] + '" target="_blank">' + innerContent + '</a>';                
+                        // }
+                    // }
                     listItems[j] = '<li>' + innerContentWithLink + '</li>';
                 }
                 var finalList = listItems.join("");

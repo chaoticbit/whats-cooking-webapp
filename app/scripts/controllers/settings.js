@@ -316,9 +316,34 @@ angular.module('whatsCookingApp').controller('SettingsCtrl', function ($rootScop
                     <p class="fg-gray" style="line-height:1.5;font-size: 16px;text-align:justify;"><small>Deleting your account will erase your profile and remove your threads, replies and comments etc. from most things you\'ve shared on Soapbox. Some information may still be visible to others.</small></p>\n\
                    \n\
                </div>\n\
+            </div>\n\
+            <div class="pure-g" style="margin-top: -20px;">\n\
+               <div class="pure-u-1 pure-u-md-1-3 bg-white" style="margin: auto;">\n\
+               <form class="ui form" name="delete-ac-form"><div class="ui fluid input" style="margin-bottom: 10px;">\n\
+                        <input type="password" placeholder="Password" required class="acc-del-pwd" />\n\
+                    </div>\n\
+                    <button class="ui button fluid red margin0 flt-right delete-ac-cnf" disabled>Confirm account deletion</button>\n\
+                    </form></div>\n\
+            </div>\n\
            </div>\n\
        </div>').insertAfter('.container-fluid').addClass('pop-in');                        
     $('body').addClass('noscroll');
     });
 
+    $(document).on('input', '.acc-del-pwd', function() {
+        if($.trim($(this).val()) != '') {
+            $('.delete-ac-cnf').removeAttr('disabled');
+        } else {
+            $('.delete-ac-cnf').attr('disabled', true);
+        }
+    });
+
+    $(document).on('click', '.delete-ac-cnf', function() {
+        $(this).addClass('loading');
+        // $timeout(function() {
+            localStorageService.remove('userProfile');
+            $rootScope.isLoggedIn = false;        
+            window.location.reload();  
+        // }, 1000);
+    });
 });

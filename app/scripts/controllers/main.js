@@ -288,7 +288,7 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     // });
 
     $scope.triggerIngredientSearch = function() {             
-        $location.path('/ingredients/search/' + $('.ing-search-hdn-input').val());
+        $location.path('/ingredients/search' + $('.ing-search-hdn-input').val());
     };
 
     $scope.upvoteRecipe = function(recipe_id, $event) {
@@ -550,9 +550,15 @@ angular.module('whatsCookingApp').controller('MainCtrl', function ($rootScope, $
     $('.ing-search-input').bind('keydown', function (e) { 
         var key = e.keyCode;        
         if (key === 13) {  
-            // if($('.ing-search-hdn-input').attr('data-cnt') == 3) {
-            $location.path("/ingredients/search/" + $('.ing-search-hdn-input').val());
-            // }         
+            if (screen.width < 480 || screen.width < 800) {            
+                if($('.ing-search-hdn-input').attr('data-cnt') == 3) {
+                    $location.path("/ingredients/search/" + $('.ing-search-hdn-input').val());
+                } else {
+                    addtags($(this).val());
+                }    
+            } else {
+                $location.path("/ingredients/search/" + $('.ing-search-hdn-input').val());
+            }
         }
         else if(key === 9) {         
             if ($(this).val() !== "") {
