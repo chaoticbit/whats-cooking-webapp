@@ -156,7 +156,7 @@ app.run(function($rootScope, $timeout, $window, $location, localStorageService, 
         } else {
             $rootScope.showRecipeBox = false;
         }
-
+        
         if($rootScope.isLoggedIn){
               //do something
         }else{
@@ -169,8 +169,9 @@ app.run(function($rootScope, $timeout, $window, $location, localStorageService, 
     }
 
     $rootScope.logout = function() {
-        localStorageService.remove('userProfile');
-        $rootScope.isLoggedIn = false;        
+        $rootScope.isLoggedIn = false;   
+        localStorageService.remove('userProfile');             
+        localStorageService.remove('IngredientSearchParams');             
         $window.location.reload();        
     };
 });
